@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a0b10"><meta name="mobile-web-app-capable" content="yes"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="TWIXX HQ"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>TWIXX HQ</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%2312141b%27%2F%3E%3Cpath%20d%3D%27M32%207%2057%2032%2032%2057%207%2032Z%27%20fill%3D%27%23ff4655%27%2F%3E%3Cpath%20d%3D%27M32%2021%2043%2032%2032%2043%2021%2032Z%27%20fill%3D%27%2312141b%27%2F%3E%3C%2Fsvg%3E"><meta name="theme-color" content="#12141b"><style>
-:root{--bg:#0c0e13;--p:#151821;--p2:#1e222d;--r:#ff4655;--r2:#c7303d;--t:#f1ede6;--m:#8d93a5;--ok:#46d39a;--bd:#272b38;--f:"Bahnschrift","Segoe UI Variable Display","Segoe UI","Helvetica Neue",Arial,sans-serif}
+:root{--bg:#0c0e13;--p:#151821;--p2:#1e222d;--r:#ff4655;--rr:255,70,85;--r2:#c7303d;--t:#f1ede6;--m:#8d93a5;--ok:#46d39a;--bd:#272b38;--f:"Bahnschrift","Segoe UI Variable Display","Segoe UI","Helvetica Neue",Arial,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:radial-gradient(900px 500px at 85% -10%,#2a1218 0,transparent 60%),var(--bg);color:var(--t);font:14.5px/1.55 var(--f);display:flex;min-height:100vh}
 nav{width:232px;background:#0a0b10;border-right:1px solid var(--bd);padding:22px 14px;position:sticky;top:0;height:100vh;flex:none}
@@ -203,7 +203,7 @@ body.navcol .acct{justify-content:center;padding:6px}
 .mpc .bar{margin:6px 0 8px}
 body.ro [onclick*="A.edit"],body.ro [onclick*="A.del"],body.ro [onclick*="A.mv("],body.ro [onclick*="A.act("],body.ro [onclick*="A.addMap"],body.ro [onclick*="A.dupS"],body.ro [onclick*="A.demo"],body.ro [onclick*="A.undemo"],body.ro [onclick*="A.reset"],body.ro [onclick*="A.imp"],body.ro [onclick*="'imp'"],body.ro [onclick*="A.prFromOpp"],body.ro [onclick*="A.prToOpp"],body.ro [onclick*="A.prReset"],body.ro [onclick*="A.saveC"],body.ro [onclick*="A.savePrac"],body.ro [onclick*="A.fx"],body.ro [onclick*="A.ign"],body.ro [onclick*="A.unign"],body.ro [onclick*="S.name="],body.ro [onclick*="S.pts="],body.ro .pa .p{display:none!important}
 /* thème clair */
-html[data-theme=light]{color-scheme:light;--bg:#eef0f5;--p:#ffffff;--p2:#f1f3f8;--t:#1b1e29;--m:#5c6377;--bd:#d3d8e3;--ok:#13996a;--r:#e03546;--r2:#b52a38}
+html[data-theme=light]{color-scheme:light;--bg:#eef0f5;--p:#ffffff;--p2:#f1f3f8;--t:#1b1e29;--m:#5c6377;--bd:#d3d8e3;--ok:#13996a;--r:#e03546;--rr:224,53,70;--r2:#b52a38}
 html[data-theme=light] body{background:linear-gradient(rgba(0,0,0,.035) 1px,transparent 1px) 0 0/100% 38px,linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px) 0 0/38px 100%,var(--bg)}
 html[data-theme=light] nav{background:#fff}
 html[data-theme=light] nav a.on,html[data-theme=light] .gx-tabs>button[role=tab].on{color:var(--t)}
@@ -439,7 +439,7 @@ body.mob input:not([type=checkbox]):not([type=radio]):not([type=range]):not([typ
 body.mob button.dx,body.mob dialog button.sw,body.mob #mtop button:not(.mpf){border-radius:50%}
 body.mob .gx-pills button{border-radius:999px}
 body.mob main button:not(.sw):not(.dx),body.mob dialog button:not(.sw):not(.dx){min-height:44px;padding:9px 16px}
-body.mob button.p{box-shadow:0 4px 14px color-mix(in srgb,var(--r) 30%,transparent)}
+body.mob button.p{box-shadow:0 4px 14px rgba(var(--rr),.3)}
 body.mob .gx-tabs{border-bottom:0;gap:8px;padding:2px 0 8px}
 body.mob .gx-tabs>button[role=tab]{border:1px solid var(--bd);border-radius:999px;padding:9px 16px;margin:0;background:var(--p);color:var(--m)}
 body.mob .gx-tabs>button[role=tab].on{background:var(--r);border-color:var(--r);color:#fff}
@@ -455,15 +455,15 @@ body.mob dialog>.row:last-child,body.mob .ptabs{background:var(--p)}
 html[data-theme=light] body.mob dialog>.row:last-child,html[data-theme=light] body.mob .ptabs{background:#fff}
 body.mob #toast{background:var(--p2);color:var(--t);clip-path:none;border-radius:14px;border:1px solid var(--bd);bottom:calc(104px + env(safe-area-inset-bottom,0px))}
 body.mob .ntf{border-radius:16px}
-body.mob #mtop{background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:0;padding-bottom:10px}
+body.mob #mtop{background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:0;padding-bottom:10px}
 #mtop b i{border-radius:12px}
 #mtop b span{display:flex;flex-direction:column;line-height:1.2;min-width:0}
 #mtop b span small{display:block;font-size:11.5px;font-weight:400;color:var(--m);overflow:hidden;text-overflow:ellipsis}
-body.mob nav{left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom,0px));width:auto;padding:6px;border:1px solid var(--bd);border-radius:26px;background:color-mix(in srgb,var(--p) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 30px #0006}
+body.mob nav{left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom,0px));width:auto;padding:6px;border:1px solid var(--bd);border-radius:26px;background:var(--p);background:color-mix(in srgb,var(--p) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 30px #0006}
 body.mob nav a{border-top:0;border-radius:16px;font-size:11px;font-weight:600;color:var(--m)}
 body.mob nav a.on{border-top:0;color:var(--t)}
 body.mob nav a i{width:46px;height:28px;border-radius:999px;background:transparent;font-size:17px;transition:background .2s}
-body.mob nav a.on i{background:color-mix(in srgb,var(--r) 28%,transparent);color:var(--r)}
+body.mob nav a.on i{background:rgba(var(--rr),.28);color:var(--r)}
 body.mob main{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}
 body.mob #fab{width:auto;height:52px;padding:0 20px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:700;bottom:calc(98px + env(safe-area-inset-bottom,0px))}
 body.mob #asb{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
@@ -471,7 +471,7 @@ body.mob #mdr .mi,body.mob #mdr .mt{border-radius:16px;border-left-width:0}
 
 /* ===== v1.7.8 : menu Plus moderne + bulle sur l'onglet actif ===== */
 body.mob nav a{z-index:0}
-body.mob nav a.on::before{content:"";position:absolute;inset:1px 3px;border-radius:19px;z-index:-1;background:color-mix(in srgb,var(--r) 24%,transparent);border:1px solid color-mix(in srgb,var(--r) 60%,transparent);box-shadow:0 0 18px color-mix(in srgb,var(--r) 35%,transparent);animation:navpop .3s cubic-bezier(.34,1.56,.64,1)}
+body.mob nav a.on::before{content:"";position:absolute;inset:1px 3px;border-radius:19px;z-index:-1;background:rgba(var(--rr),.24);border:1px solid rgba(var(--rr),.6);box-shadow:0 0 18px rgba(var(--rr),.35);animation:navpop .3s cubic-bezier(.34,1.56,.64,1)}
 @keyframes navpop{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
 body.mob nav a.on i{background:transparent;color:var(--r)}
 body.mob nav a.on span{color:var(--t);font-weight:700}
@@ -486,18 +486,18 @@ body.mob #mdr .msec{font-size:12px;font-weight:700;letter-spacing:.08em;text-tra
 body.mob #mdr .mgrid{gap:10px;margin:0}
 body.mob #mdr .mt{min-height:120px;padding:14px;gap:14px;border:1px solid var(--bd);border-radius:22px;background:linear-gradient(160deg,var(--p2),var(--p));color:var(--t);font-size:15px;font-weight:700;box-shadow:0 6px 18px #0003;transition:transform .12s,border-color .2s}
 body.mob #mdr .mt:active{transform:scale(.97)}
-body.mob #mdr .mt i{width:44px;height:44px;border-radius:15px;background:color-mix(in srgb,var(--r) 16%,transparent);color:var(--r);font-size:20px}
+body.mob #mdr .mt i{width:44px;height:44px;border-radius:15px;background:rgba(var(--rr),.16);color:var(--r);font-size:20px}
 body.mob #mdr .mt .mtl{display:block;line-height:1.2}
 body.mob #mdr .mt small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;font-size:11.5px;font-weight:400;line-height:1.3;color:var(--m)}
 body.mob #mdr .mt em{top:12px;right:12px;min-width:24px;padding:2px 7px;border-radius:999px;text-align:center;font-weight:700;background:var(--r);color:#fff}
-body.mob #mdr .mt.on{border-color:var(--r);background:linear-gradient(160deg,color-mix(in srgb,var(--r) 22%,var(--p2)),var(--p));box-shadow:0 0 0 1px var(--r) inset,0 8px 22px color-mix(in srgb,var(--r) 25%,transparent)}
+body.mob #mdr .mt.on{border-color:var(--r);background:linear-gradient(160deg,rgba(var(--rr),.24),rgba(var(--rr),.04)),linear-gradient(160deg,var(--p2),var(--p));box-shadow:0 0 0 1px var(--r) inset,0 8px 22px rgba(var(--rr),.25)}
 body.mob #mdr .mt.on i{background:var(--r);color:#fff}
 body.mob #mdr .mi{min-height:62px;padding:12px 14px;border:1px solid var(--bd);border-radius:20px;background:var(--p);font-weight:600}
-body.mob #mdr .mi i{width:40px;height:40px;border-radius:13px;background:color-mix(in srgb,var(--r) 16%,transparent);color:var(--r)}
+body.mob #mdr .mi i{width:40px;height:40px;border-radius:13px;background:rgba(var(--rr),.16);color:var(--r)}
 html[data-theme=light] body.mob #mdr .mt{background:#fff;box-shadow:0 4px 14px #1b1e2914}
 /* ===== v1.7.8 : profil plus doux et moderne ===== */
 .acct{border-radius:14px;background:var(--p);border:1px solid var(--bd);gap:10px;padding:8px 10px;transition:border-color .15s,background .15s}
-.acct:hover{border-color:color-mix(in srgb,var(--r) 55%,var(--bd))}
+.acct:hover{border-color:rgba(var(--rr),.55)}
 .acct .av{border-width:2px}
 .acct span.nt.acct-t{display:flex;flex-direction:column;line-height:1.2;white-space:normal}
 .acct .acct-t b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -513,16 +513,16 @@ body:not(.mob) #dlg:has(.pf-seg){width:min(640px,94vw);border:1px solid var(--bd
 html[data-theme=light] .pf-segw{background:#fff}
 body.mob .pf-segw{top:-16px;margin:0 -14px 10px;padding:8px 14px;background:var(--p)}
 html[data-theme=light] body.mob .pf-segw{background:#fff}
-#dlg .pf-seg{display:flex;gap:4px;padding:4px;border-radius:16px;background:color-mix(in srgb,var(--bg) 80%,transparent);border:1px solid var(--bd)}
+#dlg .pf-seg{display:flex;gap:4px;padding:4px;border-radius:16px;background:var(--bg);background:color-mix(in srgb,var(--bg) 80%,transparent);border:1px solid var(--bd)}
 #dlg .pf-seg button{flex:1 1 0;min-width:0;min-height:40px;padding:8px 4px;border:0;border-radius:12px;background:transparent;color:var(--m);font-weight:600;font-size:14px;clip-path:none;white-space:nowrap}
-#dlg .pf-seg button.on{background:var(--p2);color:var(--t);box-shadow:0 1px 6px #0004,inset 0 0 0 1px color-mix(in srgb,var(--r) 45%,transparent)}
-.pf-hero{display:flex;align-items:center;gap:16px;padding:16px;margin:0 0 12px;border-radius:22px;border:1px solid var(--bd);background:linear-gradient(135deg,color-mix(in srgb,var(--r) 13%,var(--p2)),var(--p2))}
+#dlg .pf-seg button.on{background:var(--p2);color:var(--t);box-shadow:0 1px 6px #0004,inset 0 0 0 1px rgba(var(--rr),.45)}
+.pf-hero{display:flex;align-items:center;gap:16px;padding:16px;margin:0 0 12px;border-radius:22px;border:1px solid var(--bd);background:linear-gradient(135deg,rgba(var(--rr),.16),rgba(var(--rr),.02)),var(--p2)}
 #dlg .pf-av{position:relative;display:block;margin:0;cursor:pointer;flex:none;line-height:0}
 .pf-av .av{margin:0;border-width:3px}
 .pf-cam{position:absolute;right:-3px;bottom:-3px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--r);color:#fff;border:3px solid var(--p2)}
 .pf-id{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
 .pf-id b{font-size:21px;line-height:1.15;overflow-wrap:anywhere}
-.pf-role{font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:color-mix(in srgb,var(--r) 18%,transparent);color:var(--t)}
+.pf-role{font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:rgba(var(--rr),.18);color:var(--t)}
 .pf-id small{color:var(--m);font-size:12.5px;line-height:1.4}
 #dlg .pf-link{min-height:0!important;padding:0!important;border:0;background:none!important;color:var(--m);font-size:12.5px;text-decoration:underline;clip-path:none}
 .pf-card{margin:0 0 12px;padding:14px;border-radius:18px;border:1px solid var(--bd);background:var(--p2)}
@@ -532,14 +532,14 @@ html[data-theme=light] body.mob .pf-segw{background:#fff}
 .pf-t+.pf-r{border-top:0;padding-top:0}.pf-r:last-child{padding-bottom:0}
 .pf-l{font-size:14px;font-weight:600;color:var(--t)}
 body.mob .pf-r{flex-direction:column;align-items:stretch;gap:8px}
-#dlg .pf-opts .row{display:flex;flex-wrap:wrap;gap:4px;padding:4px;margin:0;border-radius:14px;background:color-mix(in srgb,var(--bg) 70%,transparent);border:1px solid var(--bd)}
+#dlg .pf-opts .row{display:flex;flex-wrap:wrap;gap:4px;padding:4px;margin:0;border-radius:14px;background:var(--bg);background:color-mix(in srgb,var(--bg) 70%,transparent);border:1px solid var(--bd)}
 #dlg .pf-opts .row>button{flex:1 1 auto;min-height:36px;padding:6px 12px;border:0;border-radius:10px;background:transparent;color:var(--m);font-size:13px;font-weight:600;clip-path:none;box-shadow:none}
-#dlg .pf-opts .row>button.p{background:color-mix(in srgb,var(--r) 22%,var(--p2));color:var(--t);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--r) 60%,transparent)}
+#dlg .pf-opts .row>button.p{background:linear-gradient(rgba(var(--rr),.24),rgba(var(--rr),.24)),var(--p2);color:var(--t);box-shadow:inset 0 0 0 1px rgba(var(--rr),.6)}
 #dlg .pf-card .av-col{gap:8px}
 #dlg .pf-card .av-col button.sw{width:30px;height:30px;min-height:0;padding:0}
 #dlg .pf-row{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:10px 12px;margin:0 0 8px;border:1px solid var(--bd);border-radius:14px;background:var(--p);text-align:left;font-weight:600;clip-path:none}
 #dlg .pf-row:last-child{margin:0}
-#dlg .pf-row>span{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:color-mix(in srgb,var(--r) 14%,transparent);flex:none}
+#dlg .pf-row>span{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:rgba(var(--rr),.14);flex:none}
 #dlg .pf-row>b{flex:1;font-weight:600}
 #dlg .pf-row>i{font-style:normal;color:var(--m);font-size:20px}
 #dlg .pf-row.pf-out{color:#ff7b86}#dlg .pf-row.pf-out>span{background:#ff465518}
@@ -573,7 +573,7 @@ const SYNC_DEFAULT='https://gist.githubusercontent.com/MijeMije17/6328dd4fdd380b
 /* ===== VERSION DU SITE : à chaque nouvelle version du fichier, augmenter APP_VERSION et ajouter une entrée EN HAUT de PATCHES ===== */
 const APP_VERSION='1.7.8';
 const PATCHES=[
- {v:'1.7.8',d:'2026-10-25',t:['Mobile : le menu « Plus » est refait, plus moderne : les pages sont rangées par catégorie (Jeu, Analyse, Détente, Outils), en grandes cartes arrondies avec une courte description, une icône dans une pastille et des badges bien visibles. La page ouverte est mise en valeur.','Mobile : la barre du bas montre maintenant clairement la page active grâce à une bulle colorée derrière l’icône et le nom, qui apparaît avec une petite animation. Quand tu es sur une page du menu « Plus » (Statistiques, Maps…), c’est le bouton « Plus » qui s’illumine.','Profil : l’onglet « Mon profil » est refait, plus doux et plus clair (mobile et ordinateur) : grande carte avec ta photo (toucher la photo pour la changer), onglets en bloc arrondi, réglages rangés en cartes par thème avec des choix en boutons discrets, bouton « Se déconnecter » dans une section Compte. Le rond de profil en haut à droite sur mobile et la puce de profil du menu sur ordinateur sont redessinés : rond propre dans une pastille, nom et rôle lisibles, sans gros badge rouge.']},
+ {v:'1.7.8',d:'2026-10-25',t:['Mobile : le menu « Plus » est refait, plus moderne : les pages sont rangées par catégorie (Jeu, Analyse, Détente, Outils), en grandes cartes arrondies avec une courte description, une icône dans une pastille et des badges bien visibles. La page ouverte est mise en valeur.','Mobile : la barre du bas montre maintenant clairement la page active grâce à une bulle colorée derrière l’icône et le nom, qui apparaît avec une petite animation. Quand tu es sur une page du menu « Plus » (Statistiques, Maps…), c’est le bouton « Plus » qui s’illumine.','Profil : l’onglet « Mon profil » est refait, plus doux et plus clair (mobile et ordinateur) : grande carte avec ta photo (toucher la photo pour la changer), onglets en bloc arrondi, réglages rangés en cartes par thème avec des choix en boutons discrets, bouton « Se déconnecter » dans une section Compte. Le rond de profil en haut à droite sur mobile et la puce de profil du menu sur ordinateur sont redessinés : rond propre dans une pastille, nom et rôle lisibles, sans gros badge rouge.','Compatibilité : les zones colorées (page active dans la barre du bas, choix sélectionné dans le profil, cartes du menu « Plus ») s’affichent maintenant aussi sur les téléphones et navigateurs un peu plus anciens, où elles restaient invisibles.']},
  {v:'1.7.7',d:'2026-10-25',t:['Détail d’un match : un joueur qui n’est pas titulaire dans le Roster (remplaçant) reçoit maintenant une étiquette « Remplaçant » à côté de son pseudo dans le tableau de stats. Le statut est mémorisé à l’enregistrement du match, il ne change pas si le joueur devient titulaire plus tard.','Mobile : les encadrés « Comment ça marche ? » sont supprimés.','Mobile : affichage plus arrondi et plus moderne : cartes aux coins arrondis, boutons et champs arrondis, onglets en pastilles, barre du bas flottante avec pastille sur la page active.','Mobile : ambiance plus douce, moins agressive : fond plus clair, plus de quadrillage ni de lueur rouge, rouge réservé aux actions principales, pastilles et badges adoucis, ombres légères.','Mobile : navigation plus intuitive : la barre du haut affiche le titre de la page avec une courte description, le bouton d’ajout est devenu « ＋ Ajouter » avec son libellé, boutons plus grands pour le doigt.','Tuto d’installation : une carte « Installe l’application » apparaît sur le Dashboard mobile (masquable), et un bouton « Installer l’application » est dans le menu Plus et dans Mon profil › Notifs. Le tuto explique d’ouvrir le site dans Chrome, puis les étapes Android (menu ⋮ › Installer l’application) et iPhone (Partager › Sur l’écran d’accueil).']},
  {v:'1.7.6',d:'2026-10-25',t:['Gaming House : les cases « Lien du gist » et « Jeton GitHub » ne sont plus remplies par le gestionnaire de mots de passe du navigateur (qui y mettait l’ancien identifiant ou mot de passe de connexion). Elles restent vides tant que tu ne colles rien.']},
  {v:'1.7.5',d:'2026-10-25',t:['Gaming House : c’est toi, l’admin, qui crées les pronostics. Un nouveau bloc « Créer un pronostic » liste les matchs et tournois du planning : un clic sur « Créer » (ou « Tout créer ») génère le pronostic avec le titre, la date et l’heure déjà remplis. Tu peux aussi créer un pronostic libre (scrim, match amical…) avec un titre, une date et une heure.','Chaque pronostic peut être modifié, clôturé, rouvert ou supprimé par l’admin. Le bouton « Résultat » permet de saisir à la main le résultat, le score et le MVP ; sinon ils sont repris du match saisi à la même date. Les pronostics se ferment au début du match et les choix de chacun sont alors révélés. Les pronostics sont stockés dans le gist de la Gaming House, les joueurs les reçoivent sans republier.','Nouveau « Salon en direct » : tu vois en temps quasi réel qui est connecté en même temps que toi (avatars, compteur, liste des hors ligne) et tu peux discuter. Quand quelqu’un écrit, une bulle de dialogue apparaît au-dessus de sa photo de profil pendant quelques secondes, et l’historique des messages (6 dernières heures) reste en dessous. Des boutons rapides (GG, 🔥, 😂…) envoient un message en un clic.','Fonctionnement : le salon utilise le service gratuit ntfy.sh. Le canal est secret : son nom est calculé à partir du jeton de la Gaming House, donc seuls ceux qui ont le jeton y accèdent. Aucun message n’est enregistré dans tes données ni dans le gist. Un nouveau pronostic ou un résultat déclenche aussi une mise à jour immédiate chez les joueurs connectés.']},
@@ -643,7 +643,7 @@ const pwOk=(q,pw)=>{const h=pwEff(q);return !h||sha256('teamops|pl|'+h.s+'|'+pw)
 const pwPanel=()=>{const P=S.players.filter(p=>!p.demo);return`<h3 style="margin-top:22px">Mots de passe des joueurs</h3><div class="c"><div class="m" style="margin-bottom:10px;line-height:1.6">Chaque joueur se connecte avec son pseudo et son mot de passe. Les mots de passe en clair ne sont affichés que sur cet appareil : l’export JSON ne contient que des empreintes (hash). Après une génération ou une réinitialisation, <b>exporte le JSON et republie-le</b> sur ton lien partagé. Un joueur peut changer son mot de passe depuis son profil, mais ce changement reste sur son appareil.</div>${P.length?`<table><tr><th>Joueur</th><th>Mot de passe</th><th></th></tr>${P.map(p=>`<tr><td>${av(p,22)} ${esc(p.name)}</td><td style="font-family:monospace">${!p.pw?'<span class="m">aucun</span>':pwVis(p)?(PWV?esc(pwVis(p)):'••••••••••'):'<span class="m">défini (non visible sur cet appareil)</span>'}</td><td><button onclick="A.pwCp('${p.id}')">Copier</button> <button onclick="A.pwReset('${p.id}')">Réinitialiser</button></td></tr>`).join('')}</table>`:'<div class="m">Aucun joueur.</div>'}<div class="row" style="margin-top:10px"><button onclick="A.pwTog()">${PWV?'Masquer':'Afficher'} les mots de passe</button><button onclick="A.pwList()">Copier la liste</button><button onclick="A.pwAll()">Générer les manquants</button></div></div>`};
 const isMob=()=>window.matchMedia('(max-width:760px)').matches;
 const applyTheme=()=>{const h=document.documentElement,P=USER?PROF:{},st=h.style,ac=/^#[0-9a-f]{6}$/i.test(P.accent||'')?P.accent:'',FF={sys:'"Segoe UI",Arial,sans-serif',mono:'ui-monospace,Consolas,monospace'};h.setAttribute('data-theme',P.theme=='light'?'light':'dark');
- if(ac){st.setProperty('--r',ac);st.setProperty('--r2','#'+ac.slice(1).match(/../g).map(x=>Math.round(parseInt(x,16)*.78).toString(16).padStart(2,'0')).join(''))}else{st.removeProperty('--r');st.removeProperty('--r2')}
+ if(ac){st.setProperty('--rr',[1,3,5].map(i=>parseInt(ac.slice(i,i+2),16)).join(','));st.setProperty('--r',ac);st.setProperty('--r2','#'+ac.slice(1).match(/../g).map(x=>Math.round(parseInt(x,16)*.78).toString(16).padStart(2,'0')).join(''))}else{st.removeProperty('--r');st.removeProperty('--rr');st.removeProperty('--r2')}
  FF[P.font]?st.setProperty('--f',FF[P.font]):st.removeProperty('--f');(document.body||h).style.zoom={s:'.9',l:'1.12'}[P.size]||'';
  h.setAttribute('data-dens',P.dens=='c'?'compact':'');h.setAttribute('data-anim',P.anim=='off'?'off':'');h.setAttribute('data-sq',P.sq=='round'?'round':'');['bg','wid','ico','bdg','avs'].forEach(k=>h.setAttribute('data-'+k,P[k]||''));if(document.body){document.body.classList.toggle('navcol',P.col=='1');document.body.classList.toggle('menu-lg',P.menu=='lg');document.body.classList.toggle('mob',isMob())}};
 const pPills=(k,L)=>`<div class="row" style="margin:0">${L.map(([v,l])=>`<button type="button" class="${(PROF[k]||'')==v?'p':''}" onclick="A.pset('${k}','${v}',1,this)">${l}</button>`).join('')}</div>`;
