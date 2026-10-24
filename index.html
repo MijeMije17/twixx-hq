@@ -424,6 +424,21 @@ html[data-theme=light] .mas-ic{background:#e8ebf3}
 @media(prefers-reduced-motion:reduce){.mas,.mas.al .mas-av{animation:none!important}}
 html[data-anim=off] .mas,html[data-anim=off] .mas.al .mas-av{animation:none!important}
 body.mob .mas-g{grid-template-columns:1fr}body.mob .mas-wrap{margin-bottom:12px}
+/* ===== v1.7.5 : salon en direct ===== */
+.lv-stage{display:flex;flex-wrap:wrap;gap:22px 18px;padding:74px 8px 6px;min-height:110px}
+.lv-u{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:64px}
+.lv-u .av{margin:0}
+.lv-n{font-size:12px;font-weight:600;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lv-b{position:absolute;bottom:calc(100% - 22px);left:50%;transform:translateX(-50%);max-width:210px;width:max-content;background:var(--t);color:var(--bg);padding:6px 10px;border-radius:12px;font-size:12.5px;line-height:1.35;font-weight:500;animation:lvPop .25s ease-out both;box-shadow:0 6px 18px #0006;z-index:2;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lv-b::after{content:'';position:absolute;top:100%;left:50%;margin-left:-6px;border:6px solid transparent;border-top-color:var(--t)}
+@keyframes lvPop{from{opacity:0;transform:translateX(-50%) scale(.6)}to{opacity:1;transform:translateX(-50%) scale(1)}}
+.lv-log{max-height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:10px;border:1px solid var(--bd);background:var(--p);margin:10px 0}
+.lv-m{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;overflow-wrap:anywhere}.lv-m .av{margin:0}.lv-m.me>div>b{color:var(--r)}
+.lv-f{display:flex;gap:8px;flex-wrap:wrap}.lv-f input{flex:1;min-width:140px}
+.lv-q button{padding:4px 10px}
+@media(prefers-reduced-motion:reduce){.lv-b{animation:none}}
+html[data-anim=off] .lv-b{animation:none}
+
 </style></head><body>
 <nav id="nav"></nav><div id="mtop"></div><main id="app"></main><dialog id="dlg"></dialog><dialog id="pal"></dialog><button id="top" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Haut de page">↑</button><button id="fab" class="p" aria-label="Ajouter" onclick="fabGo()">＋</button><div id="toast"></div><div id="notifs" aria-live="polite"></div><div id="asb"></div><div id="mdr"></div>
 <script>
@@ -434,8 +449,10 @@ const MAPS=['Bind','Haven','Split','Ascent','Icebox','Lotus','Sunset','Abyss','P
 /* ===== SYNCHRO PARTAGÉE : le propriétaire colle ici le lien de son JSON (GitHub raw ou Google Drive) avant de partager le fichier ===== */
 const SYNC_DEFAULT='https://gist.githubusercontent.com/MijeMije17/6328dd4fdd380b24d7046bc8da59ca44/raw/teamops.json',SYNC_KEY_DEFAULT='';
 /* ===== VERSION DU SITE : à chaque nouvelle version du fichier, augmenter APP_VERSION et ajouter une entrée EN HAUT de PATCHES ===== */
-const APP_VERSION='1.7.3';
+const APP_VERSION='1.7.5';
 const PATCHES=[
+ {v:'1.7.5',d:'2026-10-25',t:['Gaming House : c’est toi, l’admin, qui crées les pronostics. Un nouveau bloc « Créer un pronostic » liste les matchs et tournois du planning : un clic sur « Créer » (ou « Tout créer ») génère le pronostic avec le titre, la date et l’heure déjà remplis. Tu peux aussi créer un pronostic libre (scrim, match amical…) avec un titre, une date et une heure.','Chaque pronostic peut être modifié, clôturé, rouvert ou supprimé par l’admin. Le bouton « Résultat » permet de saisir à la main le résultat, le score et le MVP ; sinon ils sont repris du match saisi à la même date. Les pronostics se ferment au début du match et les choix de chacun sont alors révélés. Les pronostics sont stockés dans le gist de la Gaming House, les joueurs les reçoivent sans republier.','Nouveau « Salon en direct » : tu vois en temps quasi réel qui est connecté en même temps que toi (avatars, compteur, liste des hors ligne) et tu peux discuter. Quand quelqu’un écrit, une bulle de dialogue apparaît au-dessus de sa photo de profil pendant quelques secondes, et l’historique des messages (6 dernières heures) reste en dessous. Des boutons rapides (GG, 🔥, 😂…) envoient un message en un clic.','Fonctionnement : le salon utilise le service gratuit ntfy.sh. Le canal est secret : son nom est calculé à partir du jeton de la Gaming House, donc seuls ceux qui ont le jeton y accèdent. Aucun message n’est enregistré dans tes données ni dans le gist. Un nouveau pronostic ou un résultat déclenche aussi une mise à jour immédiate chez les joueurs connectés.']},
+ {v:'1.7.4',d:'2026-10-24',t:['La Gaming House devient connectée : elle a son propre gist GitHub (gaminghouse.json), séparé de celui des données de l’équipe. Dès qu’un joueur y enregistre quelque chose, le gist change et tout le monde le reçoit sans que personne ait à republier : la page se met à jour toute seule (environ toutes les 1 à 2 minutes, et le bouton « Actualiser » force la mise à jour).','Premier ajout : les pronostics entre potes. Pour chaque match ou tournoi du Planning, chaque joueur pronostique le résultat, le MVP et, en option, le score exact. Les choix restent cachés jusqu’au début du match, puis les points sont attribués quand le résultat est enregistré (résultat +3, MVP +2 = meilleur K/D du match, score exact +3) et un classement des pronostics se remplit.','Mise en place : crée un compte GitHub dédié, un gist gaminghouse.json et un jeton avec la seule permission « gist », puis colle le lien et le jeton dans La Gaming House. Le lien du gist est partagé avec l’équipe via les données publiées, le jeton reste sur chaque appareil et se transmet aux joueurs en privé. N’utilise pas le jeton de ton compte principal.']},
  {v:'1.7.3',d:'2026-10-24',t:['Roster : les rôles s’affichent mieux. Chaque joueur a maintenant des pastilles colorées : rôle principal (⚔️ Duelist, 📡 Initiator, 🌫️ Controller, 🛡️ Sentinel, 🔀 Flex), rôles secondaires (en plus clair) et fonctions en jeu (🧠 IGL, 🚪 Entry, 🕶️ Lurker, 🤝 Support, ⚓ Anchor, 🎯 Sniper, 🧊 Clutcher).','Nouveau champ « Fonctions en jeu » dans la fiche joueur (ex. IGL, Entry, Lurker). Les mots déjà écrits dans le champ « Style » sont reconnus aussi, rien à ressaisir. Les rôles secondaires sont lus dans le champ « Rôles secondaires » (français ou anglais).','Bloc « Équipe active » : une case par rôle avec les joueurs qui le tiennent (et ceux qui peuvent le dépanner), une ligne des fonctions en jeu, et une alerte s’il n’y a aucun IGL ou plusieurs IGL. Nouveau filtre par fonction et tri par rôle (Duelist → Flex, IGL en premier). Les pastilles apparaissent aussi sur le Dashboard et pour les invités.','Statistiques › Styles de jeu : 10 nouveaux styles, soit 32 au total (Chef d’orchestre, Sniper, Clutcheur, Finisseur, Bouclier, Ouvreur-soutien, Locomotive, Montée en puissance, Joueur de gros matchs, Joueur de scrim). Le style tient compte des fonctions déclarées dans le Roster, de la forme récente et des résultats en matchs importants (Tournoi, Playoff) comparés aux autres matchs.','Nouvel onglet « La Gaming House » (menu Détente) : Bloom et Bijou y déménagent et ne s’affichent plus sur le Dashboard ni sur les autres pages. Chacune a sa grande carte avec ses conseils (bouton « Autre conseil », lien « Voir » vers la page concernée) et un bouton 🐾 pour la caresser. C’est un onglet à part, pensé pour accueillir d’autres ajouts plus tard.','Les réglages des mascottes restent (activer ou masquer chacune, conseils automatiques, dans Mon profil › Options et Données › Mascottes), mais l’option « Emplacement » disparaît puisqu’elles ont désormais leur propre onglet. Le profil invité ne voit toujours pas l’onglet.']},
  {v:'1.7.2',d:'2026-10-24',t:['Correctif Statistiques : le tri par Kills, Morts et Assists (boutons et en-têtes de colonnes du tableau « Kills, morts et assists ») fonctionne de nouveau. Il provoquait l’erreur « Assignment to constant variable » à cause d’un nom de variable utilisé deux fois. Le lien de mise à jour partagée n’est pas affecté.','Nouvel onglet Statistiques › Styles de jeu : chaque joueur reçoit un style principal et un style secondaire parmi 22 profils (Ouvreur, Tête brûlée, Carry, Duelliste explosif, Chasseur de têtes, Chirurgien, Faiseur de highlights, Artilleur, Rôdeur, Survivant, Pilier, Facilitateur, Équipier de trade, Éclaireur, Architecte, Ancre, Métronome, Montagnes russes, Polyvalent, Spécialiste, Tout ou rien, Profil équilibré).','Le style est déduit des stats (K/D, ADR, KAST, headshots, premiers kills et premières morts, multi-kills, kills, morts et assists par match, régularité) comparées à la moyenne de l’équipe, et du gameplay réel (rôles et agents joués en match). Chaque carte indique les raisons du style. Il faut au moins 3 matchs ; les filtres de map et de type de match s’appliquent. Une légende liste tous les styles.']},
  {v:'1.7.1',d:'2026-10-24',t:['Mascottes : chaque joueur peut désormais régler Bloom et Bijou lui-même, comme l’admin. Dans Mon profil › Options, section « Mascottes » : activer ou masquer chaque mascotte, activer ou couper les conseils automatiques, choisir l’emplacement (Dashboard seul, pages pertinentes, mode discret).','Chaque réglage peut suivre le réglage de l’équipe (défini par l’admin dans Données › Mascottes) ou être remplacé par ton choix personnel. Tes choix restent sur ton appareil, comme le thème : ils ne modifient aucune donnée du site et ne sont pas partagés.','Le bouton « Revenir au réglage de l’équipe » efface tes choix personnels. Le profil invité ne voit toujours pas les mascottes.']},
@@ -523,7 +540,7 @@ function doLogin(){const v=$('lgu').value.trim(),e=$('lge');e.textContent='';if(
  {const pw=$('lgp').value;if(!pw){$('lgp').style.display='';$('lgp').focus();e.textContent='Mot de passe requis.';return}if(!pwOk(q,pw)){e.textContent='Mot de passe incorrect.';$('lgp').value='';return}}
  enter({name:q.name,admin:false,pv:1})}
 function loginAs(i){const q=S.players[i];if(!q)return;$('lgu').value=q.name;lgIn();if(pwEff(q)){$('lgp').focus();$('lge').textContent='Entre ton mot de passe.'}else $('lge').textContent='Aucun mot de passe défini pour ce compte : importe la sauvegarde partagée ci-dessous ou demande à l’admin.'}
-function enter(u){USER=u;try{localStorage.teamops_user=JSON.stringify(u)}catch(e){}PROF=getProf(u.name);applyTheme();if(PROF.home&&V[PROF.home])S.view=PROF.home;const o=document.getElementById('login');if(o)o.remove();render();toast('Connecté : '+u.name+(u.admin?' (admin)':''));if(u.admin)setTimeout(()=>A.pwAll(true),400);setTimeout(chkNotifs,900);setTimeout(chkTips,4000);if(!u.admin)setTimeout(()=>A.autoSync(),700)}
+function enter(u){USER=u;try{localStorage.teamops_user=JSON.stringify(u)}catch(e){}PROF=getProf(u.name);applyTheme();if(PROF.home&&V[PROF.home])S.view=PROF.home;const o=document.getElementById('login');if(o)o.remove();render();toast('Connecté : '+u.name+(u.admin?' (admin)':''));if(u.admin)setTimeout(()=>A.pwAll(true),400);setTimeout(chkNotifs,900);setTimeout(chkTips,4000);if(!u.admin)setTimeout(()=>A.autoSync(),700);setTimeout(lvStart,1000)}
 function chkSession(){if(USER&&!USER.admin&&!USER.guest&&!S.players.some(q=>norm(q.name)==norm(USER.name))){toast('Ton pseudo n’est plus dans le roster : reconnecte-toi');A.logout()}else if(document.getElementById('login')){const u=$('lgu').value;showLogin();$('lgu').value=u}}
 function boot(){setBase();
  if(USER&&USER.as&&localStorage.teamops_asadm!='1')delete USER.as;
@@ -537,6 +554,7 @@ function verCheck(v){if(v&&vcmp(v,APP_VERSION)>0){NEWV=v;try{localStorage.teamop
 function verAlert(r,v){if(r=='new')setTimeout(()=>alert('Une nouvelle version du site est disponible (v'+v+', tu as la v'+APP_VERSION+').\n\nTa sauvegarde a bien été chargée et fonctionne, mais certaines nouveautés peuvent ne pas apparaître. Demande le dernier fichier à la personne qui t’a partagé le site. Les nouveautés sont dans l’onglet Patch notes.'),80)}
 const verBanner=()=>hasNew()?'<div class="c" style="border-left:3px solid var(--r);margin-bottom:12px"><b>Nouvelle version disponible : v'+esc(NEWV)+'</b> <span class="m">(tu utilises la v'+APP_VERSION+')</span><div class="m">Ta sauvegarde fonctionne normalement. Pour profiter des nouveautés, récupère le dernier fichier auprès de la personne qui t’a partagé le site.</div></div>':'';
 /* ===== ÉTAT & STOCKAGE ===== */
+const GHI=(()=>{const m=location.hash.match(/^#ghh=([\w-]{20,})$/);if(!m)return false;try{localStorage.teamops_ghh_tok=m[1]}catch(e){return false}try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}return true})();
 const K='teamops_v1',def=()=>({name:'TWIXX HQ',pts:{win:100,loss:25,goal:600},rank:[],players:[],maps:[...MAPS],matches:[],strats:[],comps:[],w:{m:40,c:25,s:20,h:15},staff:[],coach:null,preps:[],must:'',ban:'',sel:'Bind',gp:[],view:'dash',col:false,ign:[],opps:[],planning:[],wmaps:{},push:{api:'',pub:'',tz:'Europe/Paris'},mascots:{bloom:true,bijou:true,auto:true,pos:'dash'}});
 let S;try{S=Object.assign(def(),JSON.parse(localStorage[K]||'{}'))}catch(e){S=def()}
 if(S.name==='TEAM OPS — VALORANT')S.name='TWIXX HQ';S.pts=Object.assign({win:100,loss:25,goal:600},S.pts||{});if(!Array.isArray(S.rank))S.rank=[];
@@ -773,7 +791,7 @@ function advice(r,all){if(r.n<3)return null;const ok=[],ko=[],tips=[],ent=['Duel
 /* [clé, libellé, icône, description, visible dans la barre mobile, titre de groupe] */
 const svgI=p=>`<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block">${p}</svg>`;
 const IC_MAP=svgI('<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>'),IC_OPP=svgI('<polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" x2="19" y1="19" y2="13"/><line x1="16" x2="20" y1="16" y2="20"/><line x1="19" x2="21" y1="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" x2="9" y1="14" y2="18"/><line x1="7" x2="4" y1="17" y2="20"/><line x1="3" x2="5" y1="19" y2="21"/>'),IC_STA=svgI('<path d="M5 20V11M12 20V4M19 20v-6"/>'),IC_HOUSE=svgI('<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/>');
-const NAV=[['dash','Dashboard','⌂','Vue d’ensemble de l’équipe',1,'Équipe'],['roster','Roster','♟','Joueurs, remplaçants et staff',1],['plan','Planning','◷','Calendrier des matchs, entraînements et réunions',1],['gen','Compositions','✦','Créer, générer et sauvegarder des compos',0,'Jeu'],['maps','Maps',IC_MAP,'Plans stratégiques par map',0],['matches','Matchs','⚑','Résultats, stats et débriefs',1],['stats','Statistiques',IC_STA,'Classements, meilleurs joueurs et conseils',0,'Analyse'],['opps','Adversaires',IC_OPP,'Équipes déjà affrontées : maps, scores et compos',0],['prep','Préparation','☰','Checklist avant match et comparateur de compos',0],['house','La Gaming House',IC_HOUSE,'Mascottes Bloom et Bijou, coin détente de l’équipe',0,'Détente'],['chk','Vérifications','✔','Cohérence de vos données',0,'Outils'],['data','Données','⛁','Sauvegarde, import et réglages',0],['patch','Patch notes','✎','Nouveautés et versions du site',0]];
+const NAV=[['dash','Dashboard','⌂','Vue d’ensemble de l’équipe',1,'Équipe'],['roster','Roster','♟','Joueurs, remplaçants et staff',1],['plan','Planning','◷','Calendrier des matchs, entraînements et réunions',1],['gen','Compositions','✦','Créer, générer et sauvegarder des compos',0,'Jeu'],['maps','Maps',IC_MAP,'Plans stratégiques par map',0],['matches','Matchs','⚑','Résultats, stats et débriefs',1],['stats','Statistiques',IC_STA,'Classements, meilleurs joueurs et conseils',0,'Analyse'],['opps','Adversaires',IC_OPP,'Équipes déjà affrontées : maps, scores et compos',0],['prep','Préparation','☰','Checklist avant match et comparateur de compos',0],['house','La Gaming House',IC_HOUSE,'Salon en direct, pronostics, Bloom et Bijou',0,'Détente'],['chk','Vérifications','✔','Cohérence de vos données',0,'Outils'],['data','Données','⛁','Sauvegarde, import et réglages',0],['patch','Patch notes','✎','Nouveautés et versions du site',0]];
 const GV=['dash','roster','matches','patch'],navOK=k=>!isGuest()||GV.includes(k),NAVV=()=>NAV.filter(n=>navOK(n[0]));
 const BD=()=>({plan:plSoon()||'',chk:(issues().length+(isMob()?NQ.length:0))||'',prep:S.preps.length||'',roster:S.players.filter(p=>p.active).length+'/5',gen:S.comps.length||'',matches:S.matches.length||'',opps:S.opps.length||'',patch:hasNew()?'!':''});
 let HG=0;
@@ -1141,7 +1159,7 @@ ptheme(t){PEND.theme=t;pSched()},
 theme(){A.ptheme(PROF.theme=='light'?'dark':'light')},
 pav(){const e=$('pva');if(e&&USER)e.innerHTML=av({name:USER.name},64);const c=document.querySelector('.acct');if(c&&USER)c.outerHTML=acctChip();const l=$('th-light'),k=$('th-dark');if(l&&k){l.className=PROF.theme=='light'?'p':'';k.className=PROF.theme=='light'?'':'p'}},
 pref(){A.pav();pflush()},
-logout(){const d=$('dlg');if(d&&d.open)d.close();USER=null;PROF={};NF.keys={};const nb=$('notifs');if(nb)nb.innerHTML='';try{localStorage.removeItem('teamops_user');localStorage.removeItem('teamops_asadm')}catch(e){}applyTheme();render();showLogin()},
+logout(){const d=$('dlg');if(d&&d.open)d.close();try{lvStop()}catch(e){}USER=null;PROF={};NF.keys={};const nb=$('notifs');if(nb)nb.innerHTML='';try{localStorage.removeItem('teamops_user');localStorage.removeItem('teamops_asadm')}catch(e){}applyTheme();render();showLogin()},
 act(id){const q=S.players.find(x=>x.id==id);if(!q)return;q.active=!q.active;save();render(1);toast(q.name+' : '+(q.active?'actif':'remplaçant'))},
 selMap(i){if(S.maps[i]){S.sel=S.maps[i];save();render(1)}},
 dupS(id){const q=S.strats.find(x=>x.id==id);if(!q)return;S.strats.push({...q,id:uid(),name:q.name+' (copie)'});save();render(1);toast('Plan dupliqué')},
@@ -1523,11 +1541,190 @@ function masCard(w,view,c,L,full){
  else body=`<div class="mas-t" aria-live="polite">${esc(m.t)}</div><div class="mas-act">${L.length>1?`<button onclick="A.masNext('${w}','${view}')">Autre conseil <span class="m">${i+1}/${L.length}</span></button>`:''}${m.go&&m.go!=view&&V[m.go]&&navOK(m.go)?`<button class="p" onclick="navTo('${m.go}')">Voir</button>`:''}${full&&!c.auto?`<button class="x" onclick="A.masAsk('${w}',0)">Masquer</button>`:''}${!full?`<button class="x" onclick="A.masTog('${w}')">Fermer</button>`:''}</div>`;
  return`<div class="c mas${cp?' cp':''}${rev&&m&&m.lvl=='alert'?' al':''}" style="border-left-color:${M.c}"><div class="mas-av">${masSVG(w,view=='house'&&MAS_PET[w]&&Date.now()-MAS_PET[w]<2500?'ok':rev?masMood(m):'neutral',cp?44:60)}</div><div class="mas-bd"><div class="mas-h"><b>${M.n}</b><span class="tag">${M.r}</span></div>${body}${view=='house'?`<div class="mas-act" style="margin-top:8px"><button onclick="A.masPet('${w}')">🐾 Caresser ${M.n}</button></div>`:''}</div></div>`;
 }
+/* ===== Gaming House connectée : gist partagé (1.7.4) ===== */
+const GHH_FILE='gaminghouse.json',GHH_DEFAULT='https://gist.githubusercontent.com/MijeMije18/74d35fa12e6efd0acef1258294c1ab16/raw/gaminghouse.json',GHU='teamops_ghh_url',GHT='teamops_ghh_tok';
+const lsg=k=>{try{return localStorage[k]||''}catch(e){return''}};
+const ghhId=()=>{const u=String(lsg(GHU)||(S.gh&&S.gh.url)||GHH_DEFAULT||'').trim(),m=u.match(/(?:^|\/)([0-9a-f]{20,40})(?=\/|$|[?#])/i);if(!m)return null;const f=u.match(/\/raw\/(?:[0-9a-f]{40}\/)?([^/?#]+)/i);return{id:m[1].toLowerCase(),file:f?decodeURIComponent(f[1]):GHH_FILE}};
+const GHH={d:null,etag:'',ts:0,err:'',busy:false,gid:''},GHF={};
+const ghhEmpty=()=>({v:1,preds:{},games:{}});
+const ghhParse=t=>{try{const d=JSON.parse(t);if(!d||typeof d!='object'||!d.preds||typeof d.preds!='object')return ghhEmpty();if(!d.games||typeof d.games!='object'||Array.isArray(d.games))d.games={};return d}catch(e){return ghhEmpty()}};
+const ghhErr=r=>r.status==401?'jeton invalide ou expiré':r.status==403?'accès refusé ou limite GitHub atteinte (permission « gist » manquante ?)':r.status==404?'gist introuvable (il doit appartenir au compte du jeton)':'HTTP '+r.status;
+async function ghhGet(force){
+ const g=ghhId();if(!g)return null;
+ if(GHH.gid!=g.id){GHH.gid=g.id;GHH.etag='';GHH.d=null}
+ const h={Accept:'application/vnd.github+json'},t=lsg(GHT);if(t)h.Authorization='Bearer '+t;if(GHH.etag&&!force&&GHH.d)h['If-None-Match']=GHH.etag;
+ const r=await fetch('https://api.github.com/gists/'+g.id,{headers:h,cache:'no-store'});
+ if(r.status==304&&GHH.d)return GHH.d;
+ if(!r.ok)throw new Error(ghhErr(r));
+ GHH.etag=r.headers.get('ETag')||'';
+ const j=await r.json(),f=(j.files||{})[g.file];let txt=f?f.content:'';
+ if(f&&f.truncated&&f.raw_url)txt=await(await fetch(f.raw_url)).text();
+ return ghhParse(txt)}
+async function ghhMut(fn,ver){
+ const g=ghhId(),t=lsg(GHT);if(!g)throw new Error('lien du gist manquant');if(!t)throw new Error('jeton manquant');
+ ver=ver||((c,cur)=>JSON.stringify(c.games)==JSON.stringify(cur.games));
+ for(let n=0;n<3;n++){
+  const cur=(await ghhGet(true))||ghhEmpty();cur.v=1;cur.preds=cur.preds||{};cur.games=cur.games||{};fn(cur);
+  const r=await fetch('https://api.github.com/gists/'+g.id,{method:'PATCH',headers:{Authorization:'Bearer '+t,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({files:{[g.file]:{content:JSON.stringify(cur)}}})});
+  if(!r.ok)throw new Error(ghhErr(r));
+  GHH.etag='';
+  const chk=await ghhGet(true);
+  if(chk&&ver(chk,cur)){GHH.d=chk;GHH.ts=Date.now();GHH.err='';try{lvPing()}catch(e){}return chk}
+ }
+ throw new Error('écriture simultanée, réessaie dans un instant')}
+const ghhMe=()=>{if(!USER||isGuest())return null;const p=S.players.find(x=>norm(x.name)==norm(USER.name));return p?{id:p.id,name:p.name}:{id:'u:'+norm(USER.name),name:USER.name}};
+const ghhEv=(back,fwd)=>{const a=ymd(new Date(Date.now()-back*864e5)),b=ymd(new Date(Date.now()+fwd*864e5));return(S.planning||[]).filter(e=>e.type=='Match'||e.type=='Tournoi').flatMap(e=>plOcc(e,a,b).map(k=>({k:e.id+'@'+k,e,date:k}))).sort((x,y)=>x.date<y.date?-1:x.date>y.date?1:0)};
+const ghhG=()=>Object.values(((GHH.d||ghhEmpty()).games)||{});
+const ghhMatch=g=>S.matches.find(m=>m.date==g.date);
+const ghhMvp=m=>{const st=(m.stats||[]).filter(s=>s.k!=null);if(!st.length)return null;return st.map(s=>({n:s.n,v:(+s.k||0)/Math.max(1,+s.d||0),k:+s.k||0})).sort((a,b)=>b.v-a.v||b.k-a.k)[0].n};
+const ghhRes=g=>{const m=ghhMatch(g);if(g.r&&g.r.w)return{w:g.r.w,s:g.r.s||(m&&m.score)||'',m:g.r.m||(m?ghhMvp(m):null),man:1};return m?{w:m.res,s:m.score||'',m:ghhMvp(m)}:null};
+const ghhStart=g=>{const n=new Date(),t=ymd(n);return g.date<t||(g.date==t&&!!g.time&&g.time<=n.toTimeString().slice(0,5))};
+const ghhOpen=g=>{if(g.closed||ghhRes(g))return false;return g.o?true:!ghhStart(g)};
+const ghhPts=(pr,r)=>{let p=0;if(pr.w&&pr.w==r.w)p+=3;if(pr.m&&r.m&&norm(pr.m)==norm(r.m))p+=2;if(pr.s&&r.s&&String(pr.s).replace(/\s/g,'')==String(r.s).replace(/\s/g,''))p+=3;return p};
+const ghhPreds=k=>Object.values(((GHH.d||ghhEmpty()).preds)).filter(v=>v.e==k&&!v.x);
+const ghhAgo=ts=>{const s=Math.round((Date.now()-ts)/1000);return s<5?'à l’instant':s<60?'il y a '+s+' s':'il y a '+Math.round(s/60)+' min'};
+const ghhBoard=()=>{const T={};ghhG().forEach(g=>{const r=ghhRes(g);if(!r)return;ghhPreds(g.id).forEach(pr=>{const o=T[pr.p]||(T[pr.p]={n:pr.pn,pts:0,nb:0,ok:0});o.pts+=ghhPts(pr,r);o.nb++;if(pr.w==r.w)o.ok++})});return Object.values(T).sort((a,b)=>b.pts-a.pts||b.ok-a.ok||String(a.n).localeCompare(String(b.n)))};
+A.ghhRefresh=async force=>{if(GHH.busy||!ghhId()||!USER||isGuest())return;GHH.busy=true;try{const prev=GHH.d,d=await ghhGet(force);if(d){GHH.d=d;GHH.err='';if(prev){const me=ghhMe();Object.entries(d.preds).forEach(([k,v])=>{if(!prev.preds[k]&&!v.x&&(!me||v.p!=me.id)&&S.view=='house')toast((v.pn||'Quelqu’un')+' vient de pronostiquer')})}}}catch(e){GHH.err=e.message}finally{GHH.busy=false;GHH.ts=Date.now();const a=document.activeElement;if(S.view=='house'&&!(a&&a.closest&&a.closest('.gh-pred,.lv-f')))render(1)}};
+const ghhStale=()=>Date.now()-GHH.ts>(lsg(GHT)?45000:90000);
+setInterval(()=>{if(S.view=='house'&&!document.hidden&&USER&&!isGuest()&&ghhId()&&ghhStale())A.ghhRefresh()},15000);
+window.addEventListener('focus',()=>{if(S.view=='house'&&USER&&!isGuest()&&ghhId()&&ghhStale())A.ghhRefresh()});
+A.ghhF=(k,f,v)=>{(GHF[k]=GHF[k]||{})[f]=v};
+A.ghhCfg=()=>{window.GHCFG=!window.GHCFG;render(1)};
+A.ghhSave=()=>{if(!USER||isGuest())return;const u=(($('ghh_u')||{}).value||'').trim(),t=(($('ghh_t')||{}).value||'').trim();
+ if(u){if(!/[0-9a-f]{20,40}/i.test(u))return toast('Lien de gist non reconnu');try{localStorage[GHU]=u}catch(e){}if(isAdmin()){S.gh={url:u};save()}}
+ if(t){try{localStorage[GHT]=t}catch(e){return toast('Stockage local impossible')}}
+ GHH.d=null;GHH.etag='';GHH.ts=0;GHH.err='';window.GHCFG=false;setTimeout(lvStart,100);render(1);toast(isAdmin()&&u?'Enregistré · republie le JSON pour que les joueurs reçoivent le lien':'Connexion enregistrée')};
+A.ghhInvite=()=>{const t=lsg(GHT);if(!t||!isAdmin())return;const u=location.origin+location.pathname+'#ghh='+t;if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(()=>toast('Lien d’invitation copié'),()=>prompt('Copie ce lien d’invitation :',u));else prompt('Copie ce lien d’invitation :',u)};
+A.ghhDel=()=>{try{localStorage.removeItem(GHT)}catch(e){}setTimeout(lvStart,50);render(1);toast('Jeton retiré de cet appareil')};
+A.ghhVote=async k=>{const me=ghhMe(),g=ghhG().find(x=>x.id==k),F=GHF[k]||{};if(!me)return;
+ if(USER&&USER.as)return toast('Vue en lecture seule');
+ if(!lsg(GHT))return alert('Ajoute d’abord ton jeton dans les réglages de connexion.');
+ if(!g||!ghhOpen(g))return alert('Les pronostics sont fermés pour ce match.');
+ if(!F.w)return toast('Choisis d’abord Victoire ou Défaite');
+ const sc=String(F.s||'').trim();if(sc&&!/^\d{1,2}-\d{1,2}$/.test(sc))return toast('Score au format 13-9');
+ const rec={e:k,p:me.id,pn:me.name,w:F.w,t:Date.now()};if(F.m)rec.m=F.m;if(sc)rec.s=sc;const pk=k+'|'+me.id;
+ try{toast('Envoi…');await ghhMut(c=>{if(!c.games[k])throw new Error('ce pronostic a été supprimé');c.preds[pk]=rec},c=>c.preds[pk]&&c.preds[pk].t==rec.t);toast('Pronostic enregistré pour toute la maison');render(1)}catch(e){alert('Impossible d’enregistrer le pronostic ('+e.message+').')}};
+const ghhSetup=first=>`<div class="c" style="border-left:3px solid #4aa8ff;margin:0 0 14px"><b>${first?'Connecter la Gaming House':'Réglages de connexion'}</b>
+ ${first?`<div class="m" style="margin:6px 0 8px;line-height:1.6">Les pronostics sont partagés grâce à un gist GitHub dédié : dès qu’un joueur enregistre un pronostic, il apparaît chez tout le monde.</div><ol style="margin:0 0 10px;padding-left:20px;line-height:1.7"><li>Crée un <b>compte GitHub dédié</b> à la Gaming House (pas ton compte principal).</li><li>Sur ce compte, crée un gist nommé <b>gaminghouse.json</b> avec ce contenu : <code>{"v":1,"preds":{}}</code></li><li>Crée un jeton classique (Settings › Developer settings › Tokens (classic)) avec <b>uniquement la permission « gist »</b>.</li><li>Colle ci-dessous le lien du gist et le jeton. Donne ensuite ce même jeton aux joueurs <b>en privé</b> : chacun le colle une fois sur son appareil.</li></ol>`:`<div class="m" style="margin:6px 0 8px;line-height:1.6">Le lien du gist est partagé avec l’équipe. Le jeton, lui, reste sur cet appareil : demande-le à ton admin si tu ne l’as pas.</div>`}
+ <label class="m" style="display:block">Lien du gist</label><input id="ghh_u" value="${esc(lsg(GHU)||(S.gh&&S.gh.url)||'')}" placeholder="https://gist.github.com/…">
+ <label class="m" style="display:block;margin-top:8px">Jeton GitHub (reste sur cet appareil) ${lsg(GHT)?'<span class="ok">· enregistré</span>':''}</label>${A.pwEye('ghh_t')}
+ <div class="row" style="margin-top:10px"><button class="p" onclick="A.ghhSave()">Enregistrer</button>${lsg(GHT)?'<button class="x" onclick="A.ghhDel()">Retirer mon jeton</button>':''}${isAdmin()&&lsg(GHT)?'<button onclick="A.ghhInvite()">Copier le lien d’invitation</button>':''}</div>${isAdmin()&&lsg(GHT)?'<div class="m" style="margin-top:8px;line-height:1.5">Le lien d’invitation contient le jeton : les joueurs l’ouvrent une fois et leur appareil est connecté. Envoie-le en message privé, jamais dans un salon public.</div>':''}
+ <div class="m" style="margin-top:8px;line-height:1.5">Le jeton permet d’écrire dans ce gist : ne le donne qu’à tes coéquipiers. Les pronostics reposent sur la confiance entre joueurs.</div></div>`;
+function ghhCard(g,me,tok){
+ const k=g.id,open=ghhOpen(g),r=ghhRes(g),P=ghhPreds(k),mine=me&&P.find(x=>x.p==me.id),
+  F=GHF[k]||(GHF[k]={w:mine?mine.w:'',m:mine?mine.m||'':'',s:mine?mine.s||'':''}),
+  adm=isAdmin()&&tok,
+  ctl=adm?`<div class="row" style="margin:10px 0 0"><button onclick="A.ghhRes('${k}')">Résultat</button><button onclick="A.ghhEdit('${k}')">Modifier</button>${open?`<button onclick="A.ghhClose('${k}',1)">Clôturer</button>`:r?'':`<button onclick="A.ghhClose('${k}',0)">Rouvrir</button>`}<button class="x" onclick="A.ghhDelG('${k}')">Supprimer</button></div>`:'',
+  head=`<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>${esc(g.title)}</b><span class="m">${esc(plLong(g.date))}${g.time?' · '+esc(g.time):''}</span></div>`,
+  ro0=S.players.filter(p=>p.active&&!p.demo),roster=ro0.length?ro0:S.players.filter(p=>!p.demo),
+  choice=pr=>(pr.w=='V'?'Victoire':pr.w=='D'?'Défaite':'Nul')+(pr.m?' · MVP '+esc(pr.m):'')+(pr.s?' · '+esc(pr.s):'');
+ if(open){
+  const who=P.map(x=>esc(x.pn)).join(', '),miss=roster.filter(p=>!P.some(x=>x.p==p.id)).map(p=>esc(p.name)).join(', ');
+  return`<div class="c" style="border-left-color:#46d39a">${head}<div class="m" style="margin-top:4px">Pronostics ouverts ${g.time?'jusqu’à '+esc(g.time):'jusqu’au début du match'}</div>
+  ${me&&tok?`<div class="gh-pred" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
+   <label class="m">Résultat<select onchange="A.ghhF('${k}','w',this.value)"><option value="">—</option><option value="V" ${F.w=='V'?'selected':''}>Victoire</option><option value="D" ${F.w=='D'?'selected':''}>Défaite</option></select></label>
+   <label class="m">MVP (meilleur K/D)<select onchange="A.ghhF('${k}','m',this.value)"><option value="">—</option>${roster.map(p=>`<option value="${esc(p.name)}" ${norm(F.m)==norm(p.name)?'selected':''}>${esc(p.name)}</option>`).join('')}</select></label>
+   <label class="m">Score exact (optionnel)<input value="${esc(F.s)}" placeholder="13-9" maxlength="5" onchange="A.ghhF('${k}','s',this.value)"></label></div>
+   <div class="row" style="margin-top:8px"><button class="p" onclick="A.ghhVote('${k}')">${mine?'Modifier mon pronostic':'Valider mon pronostic'}</button></div>`:`<div class="m" style="margin-top:8px">${me?'Ajoute ton jeton dans les réglages de connexion pour pronostiquer.':''}</div>`}
+  <div class="m" style="margin-top:8px;line-height:1.6">${P.length?'✔ A pronostiqué : '+who+'. ':'Personne n’a encore pronostiqué. '}${miss?'Pas encore : '+miss+'.':''}<br>Les choix de chacun sont révélés quand le match commence.</div>${ctl}</div>`}
+ const rows=P.map(pr=>`<tr><td>${esc(pr.pn)}</td><td>${choice(pr)}</td><td>${r?'<b>+'+ghhPts(pr,r)+'</b>':'—'}</td></tr>`).join('');
+ return`<div class="c" style="border-left-color:${r?(r.w=='V'?'#46d39a':'#ff4655'):'#8d93a5'}">${head}
+  <div class="m" style="margin:4px 0 8px">${r?`Résultat : <span class="rb ${esc(r.w)}">${esc(r.w)}</span> ${esc(r.s||'')}${r.m?' · MVP : '+esc(r.m):''}`:'Pronostics fermés · le résultat n’est pas encore enregistré.'}</div>
+  ${P.length?`<div style="overflow-x:auto"><table><tr><th>Joueur</th><th>Pronostic</th><th>Points</th></tr>${rows}</table></div>`:'<div class="m">Aucun pronostic pour ce match.</div>'}${ctl}</div>`}
+const ghhAdmin=()=>{const have=(GHH.d&&GHH.d.games)||{},cand=ghhEv(0,120).filter(x=>!have[x.k]),td=ymd(new Date());
+ return`<details class="c gh-pred" style="margin:0 0 14px;border-left-color:var(--r)" ${window.GHAO===false?'':'open'} ontoggle="GHAO=this.open"><summary style="cursor:pointer"><b>＋ Créer un pronostic</b> <span class="m">· réservé à l’admin</span></summary>
+ <div class="m" style="margin:10px 0 6px;line-height:1.6">1. Depuis le planning : un clic crée le pronostic d’un match ou d’un tournoi (titre, date et heure repris automatiquement).</div>
+ ${cand.length?`<div style="overflow-x:auto"><table>${cand.slice(0,8).map(x=>`<tr><td><b>${esc(x.e.title)}</b></td><td class="m">${esc(plLong(x.date))}${x.e.time?' · '+esc(x.e.time):''}</td><td><button class="p" onclick="A.ghhNew('${x.k}')">Créer</button></td></tr>`).join('')}</table></div>${cand.length>1?`<div class="row" style="margin:8px 0 0"><button onclick="A.ghhNewAll()">Tout créer (${cand.length})</button></div>`:''}`:'<div class="m">Aucun match ni tournoi du planning sans pronostic.</div>'}
+ <div class="m" style="margin:14px 0 6px;line-height:1.6">2. Un pronostic libre (match amical, scrim, événement…).</div>
+ <div class="row" style="margin:0"><input id="ghc_t" placeholder="Titre (ex. TWIXX vs Aurora)" style="flex:2;min-width:180px"><input id="ghc_d" type="date" value="${td}"><input id="ghc_h" type="time"><button class="p" onclick="A.ghhNewMan()">Créer</button></div>
+ <div class="m" style="margin-top:8px;line-height:1.5">Les joueurs reçoivent le pronostic en quelques secondes. Il se ferme au début du match (ou avec « Clôturer »). Entre le résultat avec « Résultat », ou il est repris tout seul du match saisi à la même date.</div></details>`};
+async function ghhAdm(fn,msg){if(!isAdmin())return deny();try{await ghhMut(fn);render(1);toast(msg||'Enregistré')}catch(e){alert('Action impossible ('+e.message+').')}}
+A.ghhNew=k=>{const ev=ghhEv(0,120).find(x=>x.k==k);if(!ev)return;ghhAdm(c=>{if(!c.games[k])c.games[k]={id:k,title:ev.e.title,date:ev.date,time:ev.e.time||'',pl:1,ts:Date.now()}},'Pronostic créé')};
+A.ghhNewAll=()=>{const L=ghhEv(0,120);if(!L.length)return;ghhAdm(c=>{L.forEach(ev=>{if(!c.games[ev.k])c.games[ev.k]={id:ev.k,title:ev.e.title,date:ev.date,time:ev.e.time||'',pl:1,ts:Date.now()}})},'Pronostics créés')};
+A.ghhNewMan=()=>{const t=(($('ghc_t')||{}).value||'').trim(),d=($('ghc_d')||{}).value,h=($('ghc_h')||{}).value||'';if(!t)return toast('Donne un titre');if(!d)return toast('Choisis une date');const id='g'+uid();ghhAdm(c=>{c.games[id]={id,title:t.slice(0,80),date:d,time:h,ts:Date.now()}},'Pronostic créé')};
+A.ghhEdit=id=>{const g=ghhG().find(x=>x.id==id);if(!g)return;modal('Modifier le pronostic',[{k:'title',l:'Titre',req:1},{k:'date',l:'Date',t:'date',req:1},{k:'time',l:'Heure (optionnelle)',t:'time'}],g,o=>{ghhAdm(c=>{const x=c.games[id];if(x){x.title=o.title.slice(0,80);x.date=o.date;x.time=o.time}},'Pronostic modifié')})};
+A.ghhRes=id=>{const g=ghhG().find(x=>x.id==id);if(!g)return;const names=['—',...S.players.filter(p=>!p.demo).map(p=>p.name)],r=g.r||{};modal('Résultat du match',[{k:'w',l:'Résultat (— pour effacer et reprendre celui du match saisi)',t:'sel',o:['—','V','D','N']},{k:'s',l:'Score (ex. 13-9)'},{k:'m',l:'MVP',t:'sel',o:names}],{w:r.w||'—',s:r.s||'',m:r.m||'—'},o=>{if(o.s&&!/^\d{1,2}-\d{1,2}$/.test(o.s)){toast('Score au format 13-9');return false}ghhAdm(c=>{const x=c.games[id];if(!x)return;if(o.w=='—'){delete x.r}else{x.r={w:o.w};if(o.s)x.r.s=o.s;if(o.m!='—')x.r.m=o.m}},'Résultat enregistré')})};
+A.ghhClose=(id,on)=>ghhAdm(c=>{const x=c.games[id];if(!x)return;if(on){x.closed=true;delete x.o}else{x.closed=false;x.o=true}},on?'Pronostic clôturé':'Pronostic rouvert');
+A.ghhDelG=id=>{if(!isAdmin())return deny();if(!confirm('Supprimer ce pronostic et le retirer du classement ?'))return;ghhAdm(c=>{delete c.games[id]},'Pronostic supprimé')};
+function ghhPanel(){
+ const g=ghhId(),tok=lsg(GHT),me=ghhMe();
+ if(GHF._u!==(me?me.id:'')){Object.keys(GHF).forEach(k=>delete GHF[k]);GHF._u=me?me.id:''}
+ if(GHI&&!window.GHIs){window.GHIs=1;setTimeout(()=>toast('Jeton de la Gaming House enregistré sur cet appareil'),300)}
+ if(!g)return`<h3>Pronostics entre potes</h3>${ghhSetup(true)}`;
+ if(ghhStale()&&!GHH.busy)setTimeout(()=>A.ghhRefresh(),0);
+ const st=GHH.err?`<span class="bad">${esc(GHH.err)}</span>`:GHH.d?`<span class="ok">● Connectée</span> · mise à jour ${ghhAgo(GHH.ts)}`:'Connexion à la Gaming House…';
+ const G=ghhG().sort((a,b)=>String(a.date+(a.time||'')).localeCompare(String(b.date+(b.time||'')))),up=G.filter(ghhOpen),past=G.filter(x=>!ghhOpen(x)).reverse().slice(0,6),bd=ghhBoard();
+ return`<h3>Pronostics entre potes</h3>
+ <div class="c" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 14px"><div class="m" style="flex:1;min-width:200px">${st}</div><button onclick="A.ghhRefresh(true)">⟳ Actualiser</button>${isAdmin()&&tok?'<button onclick="A.ghhInvite()" title="Contient le jeton : à envoyer en privé">Copier le lien d’invitation</button>':''}<button onclick="A.ghhCfg()">Réglages</button></div>
+ ${window.GHCFG||!tok?ghhSetup(false):''}
+ ${isAdmin()&&tok?ghhAdmin():''}
+ <div class="m" style="margin-bottom:10px;line-height:1.6">${isAdmin()?'Tu crées les pronostics, les joueurs répondent. ':'Les pronostics sont créés par l’admin. '}Résultat +3 points, MVP +2 (meilleur K/D du match), score exact +3.</div>
+ ${up.length?`<div class="g">${up.map(e=>ghhCard(e,me,tok)).join('')}</div>`:`<div class="c m">Aucun pronostic ouvert.${isAdmin()?' Crée-en un avec le bloc ci-dessus.':' L’admin les crée : reviens bientôt.'}</div>`}
+ ${past.length?`<h3 style="margin-top:18px">Derniers pronostics</h3><div class="g">${past.map(e=>ghhCard(e,me,tok)).join('')}</div>`:''}
+ <h3 style="margin-top:18px">Classement des pronostics</h3>
+ ${bd.length?`<div class="c" style="overflow-x:auto"><table><tr><th>#</th><th>Joueur</th><th>Points</th><th>Bons résultats</th></tr>${bd.map((r,i)=>`<tr><td>${i+1}</td><td>${av(r.n,22)} ${esc(r.n)}</td><td><b>${r.pts}</b></td><td>${r.ok}/${r.nb}</td></tr>`).join('')}</table></div>`:'<div class="c m">Le classement apparaîtra après le premier pronostic dont le résultat est connu.</div>'}`}
+
+/* ===== Salon en direct (1.7.5) : présence + chat à bulles via ntfy.sh (pub/sub temps réel, sujet secret dérivé du jeton) ===== */
+const LV={es:null,topic:'',users:{},log:[],bub:{},seen:{},ok:false,hb:0,lastSend:0,stick:1},NTFY='https://ntfy.sh',LVQ=['GG 🎮','🔥','😂','👍','Qui est chaud ?'];
+const lvTopic=()=>{const t=lsg(GHT);return t?'twixx-'+sha256('ghh-live|'+t).slice(0,30):''};
+function lvUsers(){const me=ghhMe(),now=Date.now();return Object.values(LV.users).filter(u=>now-u.ts<100000).sort((a,b)=>(me&&a.i==me.id?-1:me&&b.i==me.id?1:String(a.n).localeCompare(String(b.n))))}
+const lvStatus=()=>{const n=lvUsers().length;return(LV.topic?(LV.ok?'<span class="ok">● En direct</span>':'Connexion au salon…'):'<span class="bad">Salon hors ligne : jeton manquant</span>')+(LV.topic?' · '+n+' connecté'+(n>1?'s':'')+' en ce moment':'')};
+function lvStageHtml(){
+ if(!lsg(GHT))return'<div class="m">Ajoute ton jeton dans les réglages de connexion (bloc Pronostics ci-dessous) pour rejoindre le salon.</div>';
+ const L=lvUsers(),now=Date.now(),ids=new Set(L.map(u=>norm(u.n))),off=S.players.filter(p=>!p.demo&&!ids.has(norm(p.name))).map(p=>esc(p.name));
+ return(L.length?`<div class="lv-stage">${L.map(u=>{const b=LV.bub[u.i],bb=b&&b.until>now?`<div class="lv-b">${esc(masCut(b.x,90))}</div>`:'';return`<div class="lv-u">${bb}${av(u.n,56)}<span class="lv-n">${esc(u.n)}</span></div>`}).join('')}</div>`:'<div class="m">Connexion en cours…</div>')+(off.length?`<div class="m" style="margin-top:6px">Hors ligne : ${off.join(', ')}</div>`:'')}
+function lvLogHtml(){const me=ghhMe();return LV.log.length?LV.log.map(m=>`<div class="lv-m${me&&m.i==me.id?' me':''}">${av(m.n,26)}<div><b>${esc(m.n)}</b> <span class="m">${new Date(m.ts).toTimeString().slice(0,5)}</span><div>${esc(m.x)}</div></div></div>`).join(''):'<div class="m">Aucun message récent. Dis bonjour !</div>'}
+function lvRender(){const s=$('gh-stage'),l=$('gh-log'),st=$('gh-st');if(!s)return;s.innerHTML=lvStageHtml();if(st)st.innerHTML=lvStatus();if(l){const bot=l.scrollTop+l.clientHeight>=l.scrollHeight-30;l.innerHTML=lvLogHtml();if(bot||LV.stick)l.scrollTop=l.scrollHeight;LV.stick=0}}
+function lvPost(o,cache){if(!LV.topic)return;fetch(NTFY+'/'+LV.topic+(cache?'':'?cache=no'),{method:'POST',body:JSON.stringify(o)}).catch(()=>{})}
+function lvBeat(hi){const me=ghhMe();if(!me||!LV.topic||(USER&&USER.as))return;LV.users[me.id]={i:me.id,n:me.name,ts:Date.now()};lvPost({t:'p',i:me.id,n:me.name,hi:hi?1:undefined},false)}
+function lvPing(){const me=ghhMe();if(LV.topic&&me&&!(USER&&USER.as))lvPost({t:'r',i:me.id},false)}
+function lvBye(){const me=ghhMe();if(!LV.topic||!me||(USER&&USER.as))return;try{navigator.sendBeacon(NTFY+'/'+LV.topic+'?cache=no',JSON.stringify({t:'b',i:me.id}))}catch(e){}}
+function lvIn(ev){
+ if(!ev||ev.event!='message'||!ev.message)return;
+ if(ev.id){if(LV.seen[ev.id])return;LV.seen[ev.id]=1}
+ let m;try{m=JSON.parse(ev.message)}catch(e){return}
+ if(!m||typeof m!='object')return;
+ const me=ghhMe(),mine=!!me&&m.i==me.id,now=Date.now(),hist=(ev.time||0)*1000<now-20000;
+ if(m.t=='p'){if(m.n&&m.i)LV.users[m.i]={i:m.i,n:String(m.n).slice(0,30),ts:now};if(m.hi&&!mine)setTimeout(()=>lvBeat(),300+Math.random()*1500);lvRender()}
+ else if(m.t=='b'){if(!mine)delete LV.users[m.i];lvRender()}
+ else if(m.t=='r'){if(!mine&&S.view=='house')A.ghhRefresh(true)}
+ else if(m.t=='m'){
+  if(m.u){if(LV.seen['u'+m.u])return;LV.seen['u'+m.u]=1}
+  const x=String(m.x||'').slice(0,200);if(!x)return;
+  LV.log.push({i:m.i,n:String(m.n||'?').slice(0,30),x,ts:(ev.time||0)*1000||now});if(LV.log.length>60)LV.log.shift();
+  if(!hist){LV.bub[m.i]={x,until:now+9000};setTimeout(lvRender,9100);if(!mine&&S.view!='house')toast('💬 '+m.n+' : '+masCut(x,60))}
+  lvRender()}}
+function lvStop(){if(LV.es){lvBye();try{LV.es.close()}catch(e){}}LV.es=null;clearInterval(LV.hb);LV.ok=false;LV.topic='';LV.users={}}
+function lvStart(){
+ if(!USER||isGuest()||USER.as||!ghhMe()){if(LV.es)lvStop();return}
+ const tp=lvTopic();if(!tp){if(LV.es)lvStop();return}
+ if(LV.es&&LV.topic==tp)return;
+ lvStop();LV.topic=tp;LV.seen={};LV.log=[];
+ try{const es=new EventSource(NTFY+'/'+tp+'/sse?since=6h');LV.es=es;
+  es.onopen=()=>{LV.ok=true;lvBeat(true);lvRender()};
+  es.onerror=()=>{LV.ok=false;lvRender()};
+  es.onmessage=e=>{try{lvIn(JSON.parse(e.data))}catch(x){}}}catch(e){LV.ok=false}
+ clearInterval(LV.hb);LV.hb=setInterval(()=>{lvBeat();const n=Date.now();Object.keys(LV.users).forEach(k=>{if(n-LV.users[k].ts>100000)delete LV.users[k]});lvRender()},25000)}
+addEventListener('pagehide',lvBye);
+A.lvSay=txt=>{const inp=$('gh-in'),x=String(txt!=null?txt:(inp?inp.value:'')).trim().slice(0,200),me=ghhMe();if(!x||!me)return;
+ if(USER&&USER.as)return toast('Vue en lecture seule');
+ if(!LV.topic)return toast('Ajoute ton jeton pour rejoindre le salon');
+ if(Date.now()-LV.lastSend<900)return toast('Doucement…');LV.lastSend=Date.now();
+ const u=uid()+uid(),o={t:'m',i:me.id,n:me.name,x,u};
+ lvIn({event:'message',id:'l'+u,time:Math.floor(Date.now()/1000),message:JSON.stringify(o)});lvPost(o,true);
+ if(txt==null&&inp){inp.value='';window.GHD='';inp.focus()}};
+A.lvQ=i=>A.lvSay(LVQ[i]);
 V.house=function(){
  if(!USER||isGuest())return'<h2>La Gaming House</h2><div class="c m">Cet espace est réservé aux membres connectés.</div>';
+ lvStart();LV.stick=1;setTimeout(()=>{const l=$('gh-log');if(l)l.scrollTop=l.scrollHeight},0);
  const c=masCfg(),ws=['bloom','bijou'].filter(w=>c[w]),cards=ws.map(w=>{const rev=c.auto||MAS_R[w],L=rev?masMsgs(w,'house'):null;return masCard(w,'house',c,L,true)}).join('');
- return`<h2>La Gaming House</h2><div class="c gh-hero"><div style="flex:1;min-width:220px"><h3>Bienvenue dans la Gaming House</h3><div class="m" style="line-height:1.6">Le coin détente de ${esc(S.name||'l’équipe')}. Pas de stats à saisir ici : c’est la maison de l’équipe. Bloom et Bijou y habitent, et d’autres surprises arriveront dans cet onglet.</div></div></div>
- <h3>Le salon</h3><div class="m" style="margin-bottom:10px;line-height:1.6">Bloom (le coach) et Bijou (l’analyste) donnent des conseils calculés à partir des données du site. Elles ne modifient jamais rien.</div>
+ return`<h2>La Gaming House</h2><div class="c gh-hero"><div style="flex:1;min-width:220px"><h3>Bienvenue dans la Gaming House</h3><div class="m" style="line-height:1.6">Le coin détente de ${esc(S.name||'l’équipe')}. Retrouve ici les coéquipiers connectés en direct, discute avec eux (ta photo envoie une bulle), fais tes pronostics entre potes et croise Bloom et Bijou.</div></div></div>
+ <h3>Le salon en direct</h3><div class="c" style="margin:0 0 18px"><div id="gh-st" class="m">${lvStatus()}</div><div id="gh-stage">${lvStageHtml()}</div>
+ <div class="lv-q row" style="margin:10px 0 0">${LVQ.map((q,i)=>`<button type="button" onclick="A.lvQ(${i})">${esc(q)}</button>`).join('')}</div>
+ <div id="gh-log" class="lv-log">${lvLogHtml()}</div>
+ <form class="lv-f" onsubmit="A.lvSay();return false"><input id="gh-in" maxlength="200" placeholder="Écris un message…" autocomplete="off" value="${esc(window.GHD||'')}" oninput="window.GHD=this.value"><button class="p" type="submit">Envoyer</button></form></div>
+ ${ghhPanel()}
+ <h3>Bloom et Bijou</h3><div class="m" style="margin-bottom:10px;line-height:1.6">Bloom (le coach) et Bijou (l’analyste) donnent des conseils calculés à partir des données du site. Elles ne modifient jamais rien.</div>
  ${cards?`<div class="mas-g">${cards}</div>`:`<div class="c m">Bloom et Bijou sont désactivés pour toi. Tu peux les réactiver dans Mon profil › Options.<div class="row" style="margin:10px 0 0"><button onclick="A.profile()">Ouvrir Mon profil</button></div></div>`}`};
 A.masPet=w=>{MAS_PET[w]=Date.now();toast(w=='bloom'?'Bloom ronronne, les yeux mi-clos.':'Bijou cligne de ses yeux bleus, un peu louches.');render(1);setTimeout(()=>{if(S.view=='house')render(1)},2600)};
 
@@ -1546,7 +1743,7 @@ A.masTog=w=>{MAS_O[w]=!MAS_O[w];render(1)};
 function masFix(){const d={bloom:true,bijou:true,auto:true,pos:'dash'},m=S.mascots;if(!m||typeof m!='object'||Array.isArray(m)){S.mascots=d;return}['bloom','bijou','auto'].forEach(k=>{if(typeof m[k]!='boolean')m[k]=d[k]});if(!['dash','ctx','mini'].includes(m.pos))m.pos='dash'}
 
 boot();
-setTimeout(()=>A.autoSync(),500);
+setTimeout(()=>A.autoSync(),500);setTimeout(lvStart,1200);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&USER&&!USER.admin&&!USER.as&&(!SYNC.ts||Date.now()-SYNC.ts>3e5))A.autoSync()});
 try{window.matchMedia('(max-width:760px)').addEventListener('change',()=>{applyTheme();A.mm(0);render(1)})}catch(e){}
 </script></body></html>
