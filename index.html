@@ -469,6 +469,83 @@ body.mob #fab{width:auto;height:52px;padding:0 20px;border-radius:999px;display:
 body.mob #asb{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 body.mob #mdr .mi,body.mob #mdr .mt{border-radius:16px;border-left-width:0}
 
+/* ===== v1.7.8 : menu Plus moderne + bulle sur l'onglet actif ===== */
+body.mob nav a{z-index:0}
+body.mob nav a.on::before{content:"";position:absolute;inset:1px 3px;border-radius:19px;z-index:-1;background:color-mix(in srgb,var(--r) 24%,transparent);border:1px solid color-mix(in srgb,var(--r) 60%,transparent);box-shadow:0 0 18px color-mix(in srgb,var(--r) 35%,transparent);animation:navpop .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes navpop{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
+body.mob nav a.on i{background:transparent;color:var(--r)}
+body.mob nav a.on span{color:var(--t);font-weight:700}
+body.mob #mdr.on{animation:mdrin .25s ease-out}
+@keyframes mdrin{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+body.mob #mdr .mh{margin-bottom:6px}
+body.mob #mdr .mht{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.15}
+body.mob #mdr .mht b{flex:none;font-size:24px;font-weight:800}
+body.mob #mdr .mht small{color:var(--m);font-size:13px;margin-top:3px}
+body.mob #mdr .mh button{width:46px;height:46px;border-radius:50%;background:var(--p2);border:1px solid var(--bd)}
+body.mob #mdr .msec{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--m);margin:22px 4px 10px}
+body.mob #mdr .mgrid{gap:10px;margin:0}
+body.mob #mdr .mt{min-height:120px;padding:14px;gap:14px;border:1px solid var(--bd);border-radius:22px;background:linear-gradient(160deg,var(--p2),var(--p));color:var(--t);font-size:15px;font-weight:700;box-shadow:0 6px 18px #0003;transition:transform .12s,border-color .2s}
+body.mob #mdr .mt:active{transform:scale(.97)}
+body.mob #mdr .mt i{width:44px;height:44px;border-radius:15px;background:color-mix(in srgb,var(--r) 16%,transparent);color:var(--r);font-size:20px}
+body.mob #mdr .mt .mtl{display:block;line-height:1.2}
+body.mob #mdr .mt small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;font-size:11.5px;font-weight:400;line-height:1.3;color:var(--m)}
+body.mob #mdr .mt em{top:12px;right:12px;min-width:24px;padding:2px 7px;border-radius:999px;text-align:center;font-weight:700;background:var(--r);color:#fff}
+body.mob #mdr .mt.on{border-color:var(--r);background:linear-gradient(160deg,color-mix(in srgb,var(--r) 22%,var(--p2)),var(--p));box-shadow:0 0 0 1px var(--r) inset,0 8px 22px color-mix(in srgb,var(--r) 25%,transparent)}
+body.mob #mdr .mt.on i{background:var(--r);color:#fff}
+body.mob #mdr .mi{min-height:62px;padding:12px 14px;border:1px solid var(--bd);border-radius:20px;background:var(--p);font-weight:600}
+body.mob #mdr .mi i{width:40px;height:40px;border-radius:13px;background:color-mix(in srgb,var(--r) 16%,transparent);color:var(--r)}
+html[data-theme=light] body.mob #mdr .mt{background:#fff;box-shadow:0 4px 14px #1b1e2914}
+/* ===== v1.7.8 : profil plus doux et moderne ===== */
+.acct{border-radius:14px;background:var(--p);border:1px solid var(--bd);gap:10px;padding:8px 10px;transition:border-color .15s,background .15s}
+.acct:hover{border-color:color-mix(in srgb,var(--r) 55%,var(--bd))}
+.acct .av{border-width:2px}
+.acct span.nt.acct-t{display:flex;flex-direction:column;line-height:1.2;white-space:normal}
+.acct .acct-t b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acct .acct-t small{color:var(--m);font-size:11.5px;font-weight:400}
+.acct span.nt.acct-go{flex:none;color:var(--m);font-size:20px;line-height:1}
+body.mob #mtop .mpf{width:44px;height:44px;padding:3px;border-radius:50%;background:var(--p2);border:1px solid var(--bd);box-shadow:0 2px 10px #0003}
+body.mob #mtop .mpf .av{margin:0;border-width:2px}
+body.mob #mtop button:not(.mpf){background:var(--p2);border:1px solid var(--bd)}
+body:not(.mob) #dlg:has(.pf-seg){width:min(640px,94vw);border:1px solid var(--bd);border-radius:24px;padding:22px 24px 20px}
+#dlg:has(.pf-seg) h3.pf-h{margin:0 0 4px;font-size:21px;font-weight:800}
+#dlg:has(.pf-seg) .c{clip-path:none;border-radius:18px}
+.pf-segw{position:sticky;top:-12px;z-index:4;margin:0 -24px 12px;padding:12px 24px 8px;background:#12141b}
+html[data-theme=light] .pf-segw{background:#fff}
+body.mob .pf-segw{top:-16px;margin:0 -14px 10px;padding:8px 14px;background:var(--p)}
+html[data-theme=light] body.mob .pf-segw{background:#fff}
+#dlg .pf-seg{display:flex;gap:4px;padding:4px;border-radius:16px;background:color-mix(in srgb,var(--bg) 80%,transparent);border:1px solid var(--bd)}
+#dlg .pf-seg button{flex:1 1 0;min-width:0;min-height:40px;padding:8px 4px;border:0;border-radius:12px;background:transparent;color:var(--m);font-weight:600;font-size:14px;clip-path:none;white-space:nowrap}
+#dlg .pf-seg button.on{background:var(--p2);color:var(--t);box-shadow:0 1px 6px #0004,inset 0 0 0 1px color-mix(in srgb,var(--r) 45%,transparent)}
+.pf-hero{display:flex;align-items:center;gap:16px;padding:16px;margin:0 0 12px;border-radius:22px;border:1px solid var(--bd);background:linear-gradient(135deg,color-mix(in srgb,var(--r) 13%,var(--p2)),var(--p2))}
+#dlg .pf-av{position:relative;display:block;margin:0;cursor:pointer;flex:none;line-height:0}
+.pf-av .av{margin:0;border-width:3px}
+.pf-cam{position:absolute;right:-3px;bottom:-3px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--r);color:#fff;border:3px solid var(--p2)}
+.pf-id{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+.pf-id b{font-size:21px;line-height:1.15;overflow-wrap:anywhere}
+.pf-role{font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:color-mix(in srgb,var(--r) 18%,transparent);color:var(--t)}
+.pf-id small{color:var(--m);font-size:12.5px;line-height:1.4}
+#dlg .pf-link{min-height:0!important;padding:0!important;border:0;background:none!important;color:var(--m);font-size:12.5px;text-decoration:underline;clip-path:none}
+.pf-card{margin:0 0 12px;padding:14px;border-radius:18px;border:1px solid var(--bd);background:var(--p2)}
+.pf-card>.c{margin-bottom:0}
+.pf-t{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--m);margin:0 0 10px}
+.pf-r{display:flex;align-items:center;justify-content:space-between;gap:10px 14px;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--bd)}
+.pf-t+.pf-r{border-top:0;padding-top:0}.pf-r:last-child{padding-bottom:0}
+.pf-l{font-size:14px;font-weight:600;color:var(--t)}
+body.mob .pf-r{flex-direction:column;align-items:stretch;gap:8px}
+#dlg .pf-opts .row{display:flex;flex-wrap:wrap;gap:4px;padding:4px;margin:0;border-radius:14px;background:color-mix(in srgb,var(--bg) 70%,transparent);border:1px solid var(--bd)}
+#dlg .pf-opts .row>button{flex:1 1 auto;min-height:36px;padding:6px 12px;border:0;border-radius:10px;background:transparent;color:var(--m);font-size:13px;font-weight:600;clip-path:none;box-shadow:none}
+#dlg .pf-opts .row>button.p{background:color-mix(in srgb,var(--r) 22%,var(--p2));color:var(--t);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--r) 60%,transparent)}
+#dlg .pf-card .av-col{gap:8px}
+#dlg .pf-card .av-col button.sw{width:30px;height:30px;min-height:0;padding:0}
+#dlg .pf-row{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:10px 12px;margin:0 0 8px;border:1px solid var(--bd);border-radius:14px;background:var(--p);text-align:left;font-weight:600;clip-path:none}
+#dlg .pf-row:last-child{margin:0}
+#dlg .pf-row>span{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:color-mix(in srgb,var(--r) 14%,transparent);flex:none}
+#dlg .pf-row>b{flex:1;font-weight:600}
+#dlg .pf-row>i{font-style:normal;color:var(--m);font-size:20px}
+#dlg .pf-row.pf-out{color:#ff7b86}#dlg .pf-row.pf-out>span{background:#ff465518}
+html[data-theme=light] #dlg .pf-row{background:#fff}
+.pf-note{margin:6px 2px 4px;color:var(--m);font-size:12.5px;line-height:1.6}
+#dlg .pf-foot button.p{flex:1}
 /* ===== v1.7.5 : salon en direct ===== */
 .lv-stage{display:flex;flex-wrap:wrap;gap:22px 18px;padding:74px 8px 6px;min-height:110px}
 .lv-u{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:64px}
@@ -494,8 +571,9 @@ const MAPS=['Bind','Haven','Split','Ascent','Icebox','Lotus','Sunset','Abyss','P
 /* ===== SYNCHRO PARTAGÉE : le propriétaire colle ici le lien de son JSON (GitHub raw ou Google Drive) avant de partager le fichier ===== */
 const SYNC_DEFAULT='https://gist.githubusercontent.com/MijeMije17/6328dd4fdd380b24d7046bc8da59ca44/raw/teamops.json',SYNC_KEY_DEFAULT='';
 /* ===== VERSION DU SITE : à chaque nouvelle version du fichier, augmenter APP_VERSION et ajouter une entrée EN HAUT de PATCHES ===== */
-const APP_VERSION='1.7.7';
+const APP_VERSION='1.7.8';
 const PATCHES=[
+ {v:'1.7.8',d:'2026-10-25',t:['Mobile : le menu « Plus » est refait, plus moderne : les pages sont rangées par catégorie (Jeu, Analyse, Détente, Outils), en grandes cartes arrondies avec une courte description, une icône dans une pastille et des badges bien visibles. La page ouverte est mise en valeur.','Mobile : la barre du bas montre maintenant clairement la page active grâce à une bulle colorée derrière l’icône et le nom, qui apparaît avec une petite animation. Quand tu es sur une page du menu « Plus » (Statistiques, Maps…), c’est le bouton « Plus » qui s’illumine.','Profil : l’onglet « Mon profil » est refait, plus doux et plus clair (mobile et ordinateur) : grande carte avec ta photo (toucher la photo pour la changer), onglets en bloc arrondi, réglages rangés en cartes par thème avec des choix en boutons discrets, bouton « Se déconnecter » dans une section Compte. Le rond de profil en haut à droite sur mobile et la puce de profil du menu sur ordinateur sont redessinés : rond propre dans une pastille, nom et rôle lisibles, sans gros badge rouge.']},
  {v:'1.7.7',d:'2026-10-25',t:['Détail d’un match : un joueur qui n’est pas titulaire dans le Roster (remplaçant) reçoit maintenant une étiquette « Remplaçant » à côté de son pseudo dans le tableau de stats. Le statut est mémorisé à l’enregistrement du match, il ne change pas si le joueur devient titulaire plus tard.','Mobile : les encadrés « Comment ça marche ? » sont supprimés.','Mobile : affichage plus arrondi et plus moderne : cartes aux coins arrondis, boutons et champs arrondis, onglets en pastilles, barre du bas flottante avec pastille sur la page active.','Mobile : ambiance plus douce, moins agressive : fond plus clair, plus de quadrillage ni de lueur rouge, rouge réservé aux actions principales, pastilles et badges adoucis, ombres légères.','Mobile : navigation plus intuitive : la barre du haut affiche le titre de la page avec une courte description, le bouton d’ajout est devenu « ＋ Ajouter » avec son libellé, boutons plus grands pour le doigt.','Tuto d’installation : une carte « Installe l’application » apparaît sur le Dashboard mobile (masquable), et un bouton « Installer l’application » est dans le menu Plus et dans Mon profil › Notifs. Le tuto explique d’ouvrir le site dans Chrome, puis les étapes Android (menu ⋮ › Installer l’application) et iPhone (Partager › Sur l’écran d’accueil).']},
  {v:'1.7.6',d:'2026-10-25',t:['Gaming House : les cases « Lien du gist » et « Jeton GitHub » ne sont plus remplies par le gestionnaire de mots de passe du navigateur (qui y mettait l’ancien identifiant ou mot de passe de connexion). Elles restent vides tant que tu ne colles rien.']},
  {v:'1.7.5',d:'2026-10-25',t:['Gaming House : c’est toi, l’admin, qui crées les pronostics. Un nouveau bloc « Créer un pronostic » liste les matchs et tournois du planning : un clic sur « Créer » (ou « Tout créer ») génère le pronostic avec le titre, la date et l’heure déjà remplis. Tu peux aussi créer un pronostic libre (scrim, match amical…) avec un titre, une date et une heure.','Chaque pronostic peut être modifié, clôturé, rouvert ou supprimé par l’admin. Le bouton « Résultat » permet de saisir à la main le résultat, le score et le MVP ; sinon ils sont repris du match saisi à la même date. Les pronostics se ferment au début du match et les choix de chacun sont alors révélés. Les pronostics sont stockés dans le gist de la Gaming House, les joueurs les reçoivent sans republier.','Nouveau « Salon en direct » : tu vois en temps quasi réel qui est connecté en même temps que toi (avatars, compteur, liste des hors ligne) et tu peux discuter. Quand quelqu’un écrit, une bulle de dialogue apparaît au-dessus de sa photo de profil pendant quelques secondes, et l’historique des messages (6 dernières heures) reste en dessous. Des boutons rapides (GG, 🔥, 😂…) envoient un message en un clic.','Fonctionnement : le salon utilise le service gratuit ntfy.sh. Le canal est secret : son nom est calculé à partir du jeton de la Gaming House, donc seuls ceux qui ont le jeton y accèdent. Aucun message n’est enregistré dans tes données ni dans le gist. Un nouveau pronostic ou un résultat déclenche aussi une mise à jour immédiate chez les joueurs connectés.']},
@@ -571,7 +649,7 @@ const applyTheme=()=>{const h=document.documentElement,P=USER?PROF:{},st=h.style
 const pPills=(k,L)=>`<div class="row" style="margin:0">${L.map(([v,l])=>`<button type="button" class="${(PROF[k]||'')==v?'p':''}" onclick="A.pset('${k}','${v}',1,this)">${l}</button>`).join('')}</div>`;
 const lum=c=>{const m=/^#([0-9a-f]{6})$/i.exec(c||'');if(!m)return 0;const v=parseInt(m[1],16);return(.299*(v>>16)+.587*((v>>8)&255)+.114*(v&255))/255};
 const viewAsBlock=()=>{const P=S.players.filter(p=>!p.demo);return`<div class="c" style="margin:14px 0 0"><h3>Voir le site comme un joueur</h3><div class="m" style="margin-bottom:8px;line-height:1.6">Te connecte sans mot de passe, en lecture seule, pour voir ce que voit le joueur. Un bouton « Retour à mon profil » reste affiché.</div><div class="row" style="margin:0"><select id="vas">${P.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('')}<option value="guest">👤 Invité</option></select><button class="p" onclick="A.viewAs($('vas').value)">Voir comme ce joueur</button></div></div>`};
-const acctChip=()=>USER?`<button class="acct" onclick="A.profile('p')" title="Mon profil et réglages visuels">${av({name:USER.name,main:(S.players.find(p=>norm(p.name)==norm(USER.name))||{}).main},30)}<span class="nt">${esc(USER.name)}</span><em class="nt" title="${isAdmin()?'Tous les droits':'Consultation + réglages visuels'}">${isAdmin()?'Admin':isGuest()?'Invité':'Joueur'}</em></button>`:'';
+const acctChip=()=>USER?`<button class="acct" onclick="A.profile('p')" title="Mon profil et réglages visuels">${av({name:USER.name,main:(S.players.find(p=>norm(p.name)==norm(USER.name))||{}).main},34)}<span class="nt acct-t"><b>${esc(USER.name)}</b><small>${isAdmin()?'Administrateur':isGuest()?'Invité':'Joueur'}</small></span><span class="nt acct-go">›</span></button>`:'';
 function showLogin(){let o=document.getElementById('login');if(!o){o=document.createElement('div');o.id='login';document.body.appendChild(o)}
  o.innerHTML=`<div class="lg-box"><div class="logo lg-logo">◆</div><h1>${esc(S.name)}</h1><div class="m">Connecte-toi avec ton pseudo et ton mot de passe.</div><input id="lgu" placeholder="Ton pseudo" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="lgIn()"><input id="lgp" type="password" placeholder="Mot de passe" autocomplete="off" style="display:none"><div id="lge" class="lg-err"></div><button class="p" onclick="doLogin()">Se connecter</button>
  ${S.players.length?`<div class="m" style="margin-top:16px">Ou clique sur ton pseudo :</div><div class="lg-chips">${S.players.map((q,i)=>`<button onclick="loginAs(${i})">${av(q,22)}${esc(q.name)}</button>`).join('')}</div>`:`<div class="m" style="margin-top:16px">Le roster est vide. ${SYNC.url?'<button onclick="A.sync()">Charger les données partagées</button>':'Seule l’admin peut se connecter pour l’instant.'}</div>`}${SYNC.url&&S.players.length?'<div class="m" style="margin-top:16px">Données pas à jour ou bug d’affichage ?</div><div class="lg-chips"><button onclick="A.sync()">⟳ Importer la sauvegarde partagée</button></div>':''}<div class="m" style="margin-top:16px">Pas de compte ?</div><div class="lg-chips"><button onclick="loginGuest()">👤 Entrer en invité</button></div></div>`;
@@ -1125,7 +1203,7 @@ run(){A.readP();GT='gen';GS=0;LAST={...LAST,r:generate(S.sel),map:S.sel};render(
 prac(){A.readP();GT='prac';LAST.pr={r:pracIdeas(S.sel),map:S.sel};render(1)},
 gt(k){GT=k;render(1)},
 more(){isMob()?A.mm(1):pal()},
-mm(o){const d=$('mdr');if(!d)return;if(!o){d.classList.remove('on');return}const bd=BD();d.innerHTML=`<div class="mh"><b>${esc(S.name)}</b><button onclick="A.mm(0)" aria-label="Fermer">✕</button></div><div class="mgrid">`+NAV.filter(n=>!n[4]).map(([k,l,ic])=>`<button class="mt ${S.view==k?'on':''}" onclick="A.mmgo('${k}')"><i>${ic}</i><span>${l}</span>${bd[k]?`<em>${bd[k]}</em>`:''}</button>`).join('')+`</div>`+(isAdmin()?`<button class="mi" onclick="A.mm(0);A.pub()"><i>⬆</i><span>Publier sur GitHub</span></button>`:'')+(isStandalone()?'':`<button class="mi" onclick="A.mm(0);A.installHelp()"><i>📲</i><span>Installer l’application</span></button>`);d.classList.add('on');d.scrollTop=0},
+mm(o){const d=$('mdr');if(!d)return;if(!o){d.classList.remove('on');return}const bd=BD();const secs=[];NAV.filter(n=>!n[4]).forEach(n=>{if(n[5]||!secs.length)secs.push({g:n[5]||'Pages',l:[]});secs[secs.length-1].l.push(n)});const tile=([k,l,ic,ds])=>`<button class="mt ${S.view==k?'on':''}" onclick="A.mmgo('${k}')"><i>${ic}</i>${bd[k]?`<em>${bd[k]}</em>`:''}<span class="mtl">${l}<small>${esc(ds||'')}</small></span></button>`;const rows=(isAdmin()?`<button class="mi" onclick="A.mm(0);A.pub()"><i>⬆</i><span>Publier sur GitHub</span></button>`:'')+(isStandalone()?'':`<button class="mi" onclick="A.mm(0);A.installHelp()"><i>📲</i><span>Installer l’application</span></button>`);d.innerHTML=`<div class="mh"><div class="mht"><b>${esc(S.name)}</b><small>Toutes les pages</small></div><button onclick="A.mm(0)" aria-label="Fermer">✕</button></div>`+secs.map(x=>`<div class="msec">${esc(x.g)}</div><div class="mgrid">${x.l.map(tile).join('')}</div>`).join('')+(rows?`<div class="msec">Application</div>${rows}`:'');d.classList.add('on');d.scrollTop=0},
 mmgo(k){A.mm(0);navTo(k)},
 
 px(k){PX=k;render(1)},
@@ -1176,27 +1254,28 @@ editM(id){const m=S.matches.find(x=>x.id==id)||{date:new Date().toISOString().sl
 delM(id){if(confirm('Supprimer ce match ?')){S.matches=S.matches.filter(x=>x.id!=id);save();render()}},
 profile(t){const d=$('dlg'),u=USER;if(!u)return;d.style.width='';d.dataset.bd='1';const pr=PROF;
  const TB=[['p','Profil'],['a','Apparence'],...(u.guest?[]:[['n','Notifs']]),['o','Options']];if(t)window.PTAB=t;if(!TB.some(x=>x[0]==window.PTAB))window.PTAB='p';const ptb=window.PTAB;
- d.innerHTML=DX+`<h3>Mon profil</h3><div class="gx-tabs ptabs" role="tablist">${TB.map(([k,l])=>`<button type="button" role="tab" aria-selected="${ptb==k}" class="${ptb==k?'on':''}" onclick="A.ptab('${k}')">${l}</button>`).join('')}</div><div class="pp${ptb=='p'?' on':''}" data-t="p"><div class="av-ed"><span id="pva">${av({name:u.name},64)}</span><div><b>${esc(u.name)}</b> <span class="tag">${u.admin?'Admin':'Joueur'}</span><div class="m" style="margin:6px 0">Photo de profil</div><input type="file" accept="image/*" onchange="A.pph(this)"><button type="button" onclick="A.pph(null)">Retirer</button><div class="m" style="margin:8px 0 5px">Couleur de la photo (contour)</div><div class="av-col">${AVSW.map(c=>`<button type="button" class="sw" style="background:${c}" title="${c}" onclick="A.pcol('${c}')"></button>`).join('')}<input type="color" value="${/^#[0-9a-f]{6}$/i.test(pr.color||'')?pr.color:'#ff4655'}" oninput="A.pcol(this.value)" title="Couleur personnalisée"><button type="button" onclick="A.pcol('')">Par défaut</button></div></div></div>
- ${msgBlock()}${u.admin?viewAsBlock():''}${!u.admin&&!u.guest?'<div class="row" style="margin-top:14px"><button onclick="A.pwChange()">🔑 Changer mon mot de passe</button></div>':''}</div><div class="pp${ptb=='a'?' on':''}" data-t="a"><div class="m" style="margin:2px 0 6px">Thème du site</div><div class="row" style="margin:0"><button id="th-dark" class="${pr.theme=='light'?'':'p'}" onclick="A.ptheme('dark')">☾ Sombre</button><button id="th-light" class="${pr.theme=='light'?'p':''}" onclick="A.ptheme('light')">☀ Clair</button></div>
- <div class="m" style="margin:8px 0 5px">Couleur d’accent du site</div><div class="av-col">${RSW.map(c=>`<button type="button" class="sw" style="background:${c}" title="${c}" onclick="A.pset('accent','${c}',1)"></button>`).join('')}<input type="color" value="${/^#[0-9a-f]{6}$/i.test(pr.accent||'')?pr.accent:'#ff4655'}" oninput="A.pset('accent',this.value,1)" title="Couleur personnalisée"><button type="button" onclick="A.pset('accent','',1)">Par défaut</button></div>
- <div class="m" style="margin:10px 0 5px">Taille du texte</div>${pPills('size',[['s','Petit'],['','Normal'],['l','Grand']])}
- <div class="pcx"><div class="m" style="margin:10px 0 5px">Taille du menu latéral <span title="Le bouton « Réduire le menu » en bas du menu le passe en icônes seules.">ⓘ</span></div>${pPills('menu',[['','Petit (condensé)'],['lg','Grand (plus aéré)']])}</div>
- <div class="m" style="margin:10px 0 5px">Densité des cartes</div>${pPills('dens',[['','Confortable'],['c','Compacte']])}
- <div class="m" style="margin:10px 0 5px">Police</div>${pPills('font',[['','Par défaut'],['sys','Classique'],['mono','Monospace']])}
- <div class="m" style="margin:10px 0 5px">Coins des cartes</div>${pPills('sq',[['','Coupés'],['round','Arrondis']])}
- <div class="m" style="margin:10px 0 5px">Animations</div>${pPills('anim',[['','Activées'],['off','Réduites']])}
-  <div class="m" style="margin:10px 0 5px">Fond du site (thème sombre)</div>${pPills('bg',[['','Standard'],['oled','Noir pur']])}
-  <div class="pcx"><div class="m" style="margin:10px 0 5px">Largeur du contenu</div>${pPills('wid',[['','Pleine largeur'],['n','Centrée']])}</div>
-  <div class="pcx"><div class="m" style="margin:10px 0 5px">Icônes du menu</div>${pPills('ico',[['','Avec fond'],['flat','Sans fond']])}</div>
-  <div class="pcx"><div class="m" style="margin:10px 0 5px">Compteurs du menu</div>${pPills('bdg',[['','Affichés'],['off','Masqués']])}</div>
-  <div class="m" style="margin:10px 0 5px">Forme des photos</div>${pPills('avs',[['','Rondes'],['sq','Carrées']])}
- </div><div class="pp${ptb=='n'?' on':''}" data-t="n">${isGuest()?'':`<div class="m" style="margin:2px 0 5px">Conseils en notification</div>${pPills('tips',[['','Activés'],['off','Désactivés']])}<div class="row" style="margin:8px 0 0"><button type="button" onclick="A.tipsReset()">Réafficher les conseils déjà vus</button></div>`}
- ${isGuest()?'':pushBlock()}</div><div class="pp${ptb=='o'?' on':''}" data-t="o">${u.guest?'':masProf()}<div class="m nog" style="margin:2px 0 5px">Page affichée à la connexion</div><select class="nog" onchange="A.pset('home',this.value,1)"><option value="">Dernière page visitée</option>${NAVV().map(n=>`<option value="${n[0]}" ${pr.home==n[0]?'selected':''}>${n[1]}</option>`).join('')}</select>
- ${isGuest()?'':`<div class="m" style="margin:10px 0 5px">Map de la semaine dans le planning</div>${pPills('plmap',[['','Affichée'],['off','Masquée']])}`}
- <div class="row" style="margin-top:10px"><button type="button" onclick="A.pset('reset')">Réinitialiser l’affichage</button></div>
- <div class="m" style="margin-top:14px;line-height:1.6">Ces réglages (photo, couleurs, thème, affichage) restent <b>uniquement sur cet appareil</b> : ils ne sont ni exportés, ni partagés avec les autres joueurs.<br>${u.admin?'Compte admin : tous les droits.':u.guest?'Compte invité : consultation limitée (résultats, classement, roster) et réglages visuels.':'Compte joueur : consultation, mise à jour depuis le lien partagé et réglages visuels. Les modifications des données sont réservées à l’admin.'}</div>
- </div><div class="row" style="margin-top:14px"><button class="p" id="mno">Fermer</button>${u.as?'<button onclick="A.viewBack()">↩ Retour à mon profil</button>':''}<button class="x" onclick="A.logout()">Se déconnecter</button></div>`;if(!d.open)d.showModal();$('mno').onclick=()=>d.close()},
-ptab(k){window.PTAB=k;const d=$('dlg');d.querySelectorAll('.ptabs button').forEach(b=>{const on=b.getAttribute('onclick')=="A.ptab('"+k+"')";b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});d.querySelectorAll('.pp').forEach(p=>p.classList.toggle('on',p.dataset.t==k));d.scrollTop=0},
+ const role=u.admin?'Admin':u.guest?'Invité':'Joueur';
+ const op=(k,L)=>`<div class="pf-opts">${pPills(k,L)}</div>`;
+ const R=(l,b,c)=>`<div class="pf-r${c?' '+c:''}"><div class="pf-l">${l}</div>${b}</div>`;
+ const C=(ti,b,c)=>`<div class="pf-card${c?' '+c:''}">${ti?`<div class="pf-t">${ti}</div>`:''}${b}</div>`;
+ const swa=(L,mk,cur,reset)=>`<div class="av-col">${L.map(c=>`<button type="button" class="sw" style="background:${c}" title="${c}" onclick="${mk("'"+c+"'")}"></button>`).join('')}<input type="color" value="${/^#[0-9a-f]{6}$/i.test(cur||'')?cur:'#ff4655'}" oninput="${mk('this.value')}" title="Couleur personnalisée"><button type="button" onclick="${reset}">Par défaut</button></div>`;
+ const hero=`<div class="pf-hero"><label class="pf-av" title="Changer la photo"><span id="pva" data-sz="84">${av({name:u.name},84)}</span><span class="pf-cam"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><input type="file" accept="image/*" style="display:none" onchange="A.pph(this)"></label><div class="pf-id"><b>${esc(u.name)}</b><span class="pf-role">${role}</span><small>Touche la photo pour la changer.</small><button type="button" id="pf-rm" class="pf-link" style="${pr.photo?'':'display:none'}" onclick="A.pph(null)">Retirer la photo</button></div></div>`;
+ const account=C('Compte',(!u.admin&&!u.guest?`<button type="button" class="pf-row" onclick="A.pwChange()"><span>🔑</span><b>Changer mon mot de passe</b><i>›</i></button>`:'')+`<button type="button" class="pf-row pf-out" onclick="A.logout()"><span>⏻</span><b>Se déconnecter</b><i>›</i></button>`);
+ d.innerHTML=DX+`<h3 class="pf-h">Mon profil</h3><div class="pf-segw"><div class="pf-seg" role="tablist">${TB.map(([k,l])=>`<button type="button" role="tab" aria-selected="${ptb==k}" class="${ptb==k?'on':''}" onclick="A.ptab('${k}')">${l}</button>`).join('')}</div></div>
+ <div class="pp${ptb=='p'?' on':''}" data-t="p">${hero}${msgBlock()}${C('Couleur du contour de la photo',swa(AVSW,e=>`A.pcol(${e})`,pr.color,"A.pcol('')"))}${u.admin?viewAsBlock():''}${account}</div>
+ <div class="pp${ptb=='a'?' on':''}" data-t="a">${C('Thème',`<div class="pf-opts"><div class="row" style="margin:0"><button id="th-dark" type="button" class="${pr.theme=='light'?'':'p'}" onclick="A.ptheme('dark')">☾ Sombre</button><button id="th-light" type="button" class="${pr.theme=='light'?'p':''}" onclick="A.ptheme('light')">☀ Clair</button></div></div>`)}
+ ${C('Couleur d’accent',swa(RSW,e=>`A.pset('accent',${e},1)`,pr.accent,"A.pset('accent','',1)"))}
+ ${C('Texte et cartes',R('Taille du texte',op('size',[['s','Petit'],['','Normal'],['l','Grand']]))+R('Densité des cartes',op('dens',[['','Confortable'],['c','Compacte']]))+R('Police',op('font',[['','Par défaut'],['sys','Classique'],['mono','Monospace']])))}
+ ${C('Style',R('Coins des cartes',op('sq',[['','Coupés'],['round','Arrondis']]))+R('Forme des photos',op('avs',[['','Rondes'],['sq','Carrées']]))+R('Animations',op('anim',[['','Activées'],['off','Réduites']]))+R('Fond du site (thème sombre)',op('bg',[['','Standard'],['oled','Noir pur']])))}
+ ${C('Ordinateur · menu et largeur',R('Taille du menu latéral <span title="Le bouton « Réduire le menu » en bas du menu le passe en icônes seules.">ⓘ</span>',op('menu',[['','Petit (condensé)'],['lg','Grand (aéré)']]))+R('Largeur du contenu',op('wid',[['','Pleine largeur'],['n','Centrée']]))+R('Icônes du menu',op('ico',[['','Avec fond'],['flat','Sans fond']]))+R('Compteurs du menu',op('bdg',[['','Affichés'],['off','Masqués']])),'pcx')}
+ </div>
+ <div class="pp${ptb=='n'?' on':''}" data-t="n">${isGuest()?'':C('Conseils en notification',op('tips',[['','Activés'],['off','Désactivés']])+`<div class="row" style="margin:10px 0 0"><button type="button" onclick="A.tipsReset()">Réafficher les conseils déjà vus</button></div>`)}${isGuest()?'':C('Notifications sur cet appareil',pushBlock())}</div>
+ <div class="pp${ptb=='o'?' on':''}" data-t="o">${u.guest?'':masProf()}${C('Au démarrage',`<select onchange="A.pset('home',this.value,1)"><option value="">Dernière page visitée</option>${NAVV().map(n=>`<option value="${n[0]}" ${pr.home==n[0]?'selected':''}>${n[1]}</option>`).join('')}</select>`,'nog')}
+ ${isGuest()?'':C('Planning',R('Map de la semaine',op('plmap',[['','Affichée'],['off','Masquée']])))}
+ ${C('Réinitialisation',`<button type="button" onclick="A.pset('reset')">Réinitialiser l’affichage</button>`)}
+ <div class="pf-note">Ces réglages (photo, couleurs, thème, affichage) restent <b>uniquement sur cet appareil</b> : ils ne sont ni exportés, ni partagés avec les autres joueurs.<br>${u.admin?'Compte admin : tous les droits.':u.guest?'Compte invité : consultation limitée (résultats, classement, roster) et réglages visuels.':'Compte joueur : consultation, mise à jour depuis le lien partagé et réglages visuels. Les modifications des données sont réservées à l’admin.'}</div>
+ </div><div class="row pf-foot"><button class="p" id="mno">Fermer</button>${u.as?'<button onclick="A.viewBack()">↩ Retour à mon profil</button>':''}</div>`;if(!d.open)d.showModal();$('mno').onclick=()=>d.close()},
+ptab(k){window.PTAB=k;const d=$('dlg');d.querySelectorAll('.pf-seg button').forEach(b=>{const on=b.getAttribute('onclick')=="A.ptab('"+k+"')";b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});d.querySelectorAll('.pp').forEach(p=>p.classList.toggle('on',p.dataset.t==k));d.scrollTop=0},
 pph(inp){if(!USER)return;if(!inp){delete PROF.photo;putProf();return A.pref()}const f=inp.files&&inp.files[0];if(!f)return;const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),z=192,s=Math.min(im.width,im.height);c.width=c.height=z;c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,z,z);PROF.photo=c.toDataURL('image/jpeg',.82);putProf();A.pref()};im.onerror=()=>toast('Image illisible');im.src=fr.result};fr.readAsDataURL(f)},
 menu(){if(!USER)return;if(PROF.col=='1')delete PROF.col;else PROF.col='1';putProf();applyTheme();render(1)},
 pset(k,v,quiet,el){if(!USER)return;
@@ -1205,7 +1284,7 @@ pset(k,v,quiet,el){if(!USER)return;
 pcol(c){PEND.color=c||'';pSched()},
 ptheme(t){PEND.theme=t;pSched()},
 theme(){A.ptheme(PROF.theme=='light'?'dark':'light')},
-pav(){const e=$('pva');if(e&&USER)e.innerHTML=av({name:USER.name},64);const c=document.querySelector('.acct');if(c&&USER)c.outerHTML=acctChip();const l=$('th-light'),k=$('th-dark');if(l&&k){l.className=PROF.theme=='light'?'p':'';k.className=PROF.theme=='light'?'':'p'}},
+pav(){const e=$('pva');if(e&&USER)e.innerHTML=av({name:USER.name},+e.dataset.sz||64);const c=document.querySelector('.acct');if(c&&USER)c.outerHTML=acctChip();const mp=document.querySelector('#mtop .mpf');if(mp&&USER)mp.innerHTML=av({name:USER.name,main:(S.players.find(p=>norm(p.name)==norm(USER.name))||{}).main},36);const rm=$('pf-rm');if(rm)rm.style.display=PROF.photo?'':'none';const l=$('th-light'),k=$('th-dark');if(l&&k){l.className=PROF.theme=='light'?'p':'';k.className=PROF.theme=='light'?'':'p'}},
 pref(){A.pav();pflush()},
 logout(){const d=$('dlg');if(d&&d.open)d.close();try{lvStop()}catch(e){}USER=null;PROF={};NF.keys={};const nb=$('notifs');if(nb)nb.innerHTML='';try{localStorage.removeItem('teamops_user');localStorage.removeItem('teamops_asadm')}catch(e){}applyTheme();render();showLogin()},
 act(id){const q=S.players.find(x=>x.id==id);if(!q)return;q.active=!q.active;save();render(1);toast(q.name+' : '+(q.active?'actif':'remplaçant'))},
@@ -1283,8 +1362,8 @@ function fabGo(){const f=FABS[S.view];if(f&&canEdit())f()}
 function render(keep){if(S.view=='cmp'){PT='cmp';S.view='prep'}if(!navOK(S.view))S.view='dash';const y=scrollY,fe=document.activeElement,fid=fe&&fe.id,fs=fe&&fe.selectionStart,bd=BD();
  const cur=NAV.find(n=>n[0]==S.view)||NAV[0],cg=NAV.slice(0,NAV.indexOf(cur)+1).reduce((g,n)=>n[5]||g,'');
  document.body.classList.toggle('navcol',!!(USER&&PROF.col=='1'));document.body.classList.toggle('menu-lg',!!(USER&&PROF.menu=='lg'));document.body.classList.toggle('mob',isMob());document.body.classList.toggle('ro',!canEdit());document.body.classList.toggle('guest',isGuest());document.body.classList.toggle('nofab',!(canEdit()&&FABS[S.view]));
- $('nav').innerHTML=`<h1><span class="logo">◆</span><span class="nt">${esc(S.name)}</span></h1>${acctChip()}<button class="ks" onclick="pal()" title="Recherche rapide (Ctrl+K)"><span>⌕</span><span class="nt">Rechercher…</span><kbd class="nt">Ctrl K</kbd></button>`+NAVV().map(([k,l,ic,ds,pr,gr],i)=>(gr?`<div class="gl">${gr}</div>`:'')+`<a tabindex="0" class="${S.view==k?'on':''}${pr||isGuest()?'':' sec'}" title="${l}${i<10?' (touche '+(i==9?0:i+1)+')':''}" onclick="navTo('${k}')" onkeydown="if(event.key=='Enter')navTo('${k}')"><i>${ic}</i><span>${l}</span>${bd[k]?`<em>${bd[k]}</em>`:''}</a>`).join('')+`<a tabindex="0" class="more-m" onclick="A.more()"><i>⋯</i><span>Plus</span>${isMob()&&(NQ.length||issues().length)?`<em>${NQ.length+issues().length}</em>`:''}</a><button class="tg" onclick="A.menu()" title="Réduire ou agrandir le menu">${USER&&PROF.col=='1'?'»':'« Réduire le menu'}</button>`;
- $('mtop').innerHTML=isMob()?`${PREV&&PREV!=S.view&&V[PREV]?'<button class="bk2" onclick="go(PREV)" aria-label="Page précédente">←</button>':''}<b><i>${cur[2]}</i><span>${esc(cur[1])}<small>${esc(cur[3])}</small></span></b><button onclick="pal()" aria-label="Rechercher">⌕</button>${USER?`<button class="mpf" onclick="A.profile('p')" aria-label="Mon profil">${av({name:USER.name,main:(S.players.find(p=>norm(p.name)==norm(USER.name))||{}).main},32)}</button>`:''}`:'';
+ $('nav').innerHTML=`<h1><span class="logo">◆</span><span class="nt">${esc(S.name)}</span></h1>${acctChip()}<button class="ks" onclick="pal()" title="Recherche rapide (Ctrl+K)"><span>⌕</span><span class="nt">Rechercher…</span><kbd class="nt">Ctrl K</kbd></button>`+NAVV().map(([k,l,ic,ds,pr,gr],i)=>(gr?`<div class="gl">${gr}</div>`:'')+`<a tabindex="0" class="${S.view==k?'on':''}${pr||isGuest()?'':' sec'}" title="${l}${i<10?' (touche '+(i==9?0:i+1)+')':''}" onclick="navTo('${k}')" onkeydown="if(event.key=='Enter')navTo('${k}')"><i>${ic}</i><span>${l}</span>${bd[k]?`<em>${bd[k]}</em>`:''}</a>`).join('')+`<a tabindex="0" class="more-m${isMob()&&!NAV.some(n=>n[4]&&n[0]==S.view)?' on':''}" onclick="A.more()"><i>⋯</i><span>Plus</span>${isMob()&&(NQ.length||issues().length)?`<em>${NQ.length+issues().length}</em>`:''}</a><button class="tg" onclick="A.menu()" title="Réduire ou agrandir le menu">${USER&&PROF.col=='1'?'»':'« Réduire le menu'}</button>`;
+ $('mtop').innerHTML=isMob()?`${PREV&&PREV!=S.view&&V[PREV]?'<button class="bk2" onclick="go(PREV)" aria-label="Page précédente">←</button>':''}<b><i>${cur[2]}</i><span>${esc(cur[1])}<small>${esc(cur[3])}</small></span></b><button onclick="pal()" aria-label="Rechercher">⌕</button>${USER?`<button class="mpf" onclick="A.profile('p')" aria-label="Mon profil">${av({name:USER.name,main:(S.players.find(p=>norm(p.name)==norm(USER.name))||{}).main},36)}</button>`:''}`:'';
  document.title=S.name+' · '+cur[1];
  $('asb').innerHTML=USER&&USER.as?`<span>👁 Vue de <b>${esc(USER.name)}</b></span><button class="p" onclick="A.viewBack()">↩ Retour à mon profil</button>`:'';
  if(window.TV!==S.view){TV=S.view;NVIS=(window.NVIS||0)+1;setTimeout(chkTips,1600)}
