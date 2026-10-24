@@ -620,6 +620,85 @@ dialog .mst-a input{width:52px;margin:0;text-align:center;padding:5px 2px;flex:n
 @media(prefers-reduced-motion:reduce){.lv-b{animation:none}}
 html[data-anim=off] .lv-b{animation:none}
 
+
+/* ===== v1.8.7 : Gaming House (connexion, pronostics, mini-jeux, centre du staff) ===== */
+.ghh-cn{margin:0 0 16px}.ghh-it{margin:0 0 10px;padding:12px 14px;background:linear-gradient(135deg,rgba(74,168,255,.14),rgba(255,70,85,.08));border:1px solid var(--bd);border-left:3px solid #4aa8ff}
+.ghh-cn>.c{margin:0}.ghh-ok{padding:10px 14px;margin:0 0 14px;border-left-color:var(--ok)}.ghh-r{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ghp-f{display:grid;gap:6px;margin-top:10px}.ghp-f .gx-pills{margin:0}.ghp-f input{max-width:140px}
+.ghp-l{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--m);font-weight:600;margin-top:6px}
+body.mob .ghp-f .gx-pills button{min-height:44px;flex:1 1 auto}body.mob .ghp-f input{max-width:none;min-height:46px}
+body.mob .gh-pred .row>button,body.mob .ghh-cn .row>button{min-height:46px;flex:1 1 auto}
+/* mini-jeux : thème du site */
+.mg-hero{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:16px 20px;margin:0 0 16px;background:linear-gradient(135deg,rgba(255,70,85,.16),rgba(74,168,255,.08)),var(--p);border:1px solid var(--bd);border-left:3px solid var(--r);clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.mg-hero .eb,.stf-hero .eb{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--r);font-weight:700}
+.mg-hero h3{margin:2px 0 4px;font-size:24px}
+.mg-hs{display:flex;gap:10px;margin-left:auto}.mg-hs div{padding:8px 14px;background:#0f1118;border:1px solid var(--bd);border-top:2px solid var(--r);min-width:96px}
+.mg-hs b{display:block;font-size:22px;line-height:1.15;font-variant-numeric:tabular-nums}.mg-hs span{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--m)}
+.mg-grid{grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.mg-c{position:relative;display:flex;align-items:center;gap:14px;padding:16px;border-radius:0;border:1px solid var(--bd);border-left:3px solid var(--r);background:linear-gradient(180deg,var(--p),#12141b);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);overflow:hidden;min-height:92px}
+.mg-c::after{content:attr(data-n);position:absolute;right:10px;bottom:-8px;font-size:58px;font-weight:800;color:rgba(255,255,255,.045);pointer-events:none;font-variant-numeric:tabular-nums}
+.mg-c:hover{background:var(--p2);border-color:#3a3f50;border-left-color:var(--r)}
+.mg-c>i{width:52px;height:52px;border-radius:0;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);background:rgba(var(--rr),.16);border:1px solid rgba(var(--rr),.4)}
+.mg-ct b{font-size:16px;letter-spacing:.02em}.mg-ft{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:5px}
+.mg-ft em{margin:0}.mg-pill{padding:1px 9px;background:#262b38;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--m)}
+#gmd{border-radius:0;border:1px solid #3a3f50;border-top:3px solid var(--r);background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px) 0 0/100% 38px,linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px) 0 0/38px 100%,#12141b;clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);padding:16px 20px 20px}
+body:not(.mob) #gmd{border-radius:0}
+.mg-h b{font-size:14px;letter-spacing:.18em;text-transform:uppercase}.mg-h b::before{content:"◆";color:var(--r);margin-right:10px;font-size:12px}
+#gmd .mg-x{border-radius:0;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,0 100%);background:var(--p2);width:42px;height:42px}
+.mg-hud{gap:10px}.mg-hud span{border-radius:0;background:#0f1118;border:1px solid var(--bd);border-top:2px solid var(--r);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:8px 12px}
+.mg-hud b{font-size:24px;letter-spacing:0;text-transform:none;font-variant-numeric:tabular-nums}
+.mg-arena{border-radius:0;border-color:rgba(var(--rr),.35);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)}
+.mg-arena::before,.mg-arena::after{content:"";position:absolute;width:20px;height:20px;pointer-events:none;z-index:3;border:2px solid var(--r)}
+.mg-arena::before{left:8px;top:8px;border-right:0;border-bottom:0}.mg-arena::after{right:8px;bottom:8px;border-left:0;border-top:0}
+.mg-ov{background:rgba(8,9,13,.74)}
+.mg-pad{border-radius:0;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);border-left:3px solid var(--r)}
+.mg-pad b{text-transform:uppercase;letter-spacing:.06em}
+.mg-list span{border-radius:0;background:#0f1118;border-left:2px solid var(--r)}
+#gmd .mg-card{border-radius:0;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,0 100%);border-left:2px solid var(--r)}
+.mg-card.up{border-color:var(--r)}.mg-fr{border-radius:0}
+.mg-qt{border-left:3px solid var(--r);padding-left:12px}
+.mg-opts{counter-reset:mgo}
+#gmd .mg-op{border-radius:0;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);border-left:3px solid var(--bd);display:flex;align-items:center;gap:12px}
+#gmd .mg-op::before{counter-increment:mgo;content:counter(mgo,upper-alpha);flex:none;width:26px;height:26px;display:grid;place-items:center;background:#0f1118;border:1px solid var(--bd);font-size:12px;font-weight:700;color:var(--m)}
+#gmd .mg-op.good{border-left-color:#46d39a}#gmd .mg-op.bad{border-left-color:#ff4655}
+.mg-st div{border-radius:0;border-top:2px solid var(--r);background:#0f1118}
+.mg-nb{border-radius:0;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);text-transform:uppercase;letter-spacing:.12em;font-size:11px}
+.mg-end h3{text-transform:uppercase;letter-spacing:.1em;font-size:20px}
+.mg-dl{border-radius:0;border-left:3px solid var(--r);background:#0f1118}
+html[data-theme=light] #gmd{background:#fff}html[data-theme=light] .mg-hud span,html[data-theme=light] .mg-hs div,html[data-theme=light] .mg-dl,html[data-theme=light] .mg-st div{background:var(--p2)}
+body.mob #gmd{width:100%;max-width:none;height:100dvh;max-height:none;margin:0;border:0;clip-path:none;padding:calc(10px + env(safe-area-inset-top,0px)) 14px calc(18px + env(safe-area-inset-bottom,0px))}
+body.mob .mg-h{position:sticky;top:calc(-10px - env(safe-area-inset-top,0px));z-index:6;margin:0 -14px 12px;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;background:#12141b;border-bottom:1px solid var(--bd)}
+html[data-theme=light] body.mob .mg-h{background:#fff}
+body.mob .mg-arena{height:clamp(280px,54dvh,480px)}body.mob .mg-pad{height:clamp(240px,42dvh,340px)}
+body.mob .mg-hero{padding:14px 16px}body.mob .mg-hs{margin-left:0;width:100%}body.mob .mg-hs div{flex:1}
+body.mob .mg-grid{grid-template-columns:1fr}body.mob .mg-c{min-height:88px}
+body.mob #gmd .mg-op{min-height:56px}body.mob .mg-btns button,body.mob .mg-end button{min-height:48px;flex:1 1 40%}
+/* centre du staff */
+.stf-hero{display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:20px 22px;margin:0 0 16px;background:linear-gradient(135deg,rgba(255,70,85,.16),rgba(74,168,255,.1)),var(--p);border:1px solid var(--bd);border-left:3px solid var(--r);clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.stf-hero h3{font-size:26px;margin:2px 0 6px}
+.stf-av{display:flex;margin-left:auto}.stf-av span{margin-left:-14px;border-radius:50%;background:#0f1118;border:2px solid var(--bg);padding:2px;line-height:0}.stf-av span:first-child{margin-left:0}
+.stf-t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--m);margin:0 0 10px}
+.stf-pr{display:grid;gap:8px}
+.stf-p{display:flex;gap:12px;align-items:center;padding:10px 14px;background:var(--p);border:1px solid var(--bd);border-left:3px solid var(--sc)}
+.stf-pa{border-radius:50%;background:#0f1118;padding:2px;line-height:0;flex:none}
+.stf-p .t{flex:1;min-width:0;font-size:13.5px;line-height:1.5;overflow-wrap:anywhere}.stf-p .t b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sc);margin-bottom:1px}
+.stf-ok{border-left-color:#46d39a}
+.stf-ch{margin-bottom:14px}
+.stf-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.stf-c{display:flex;flex-direction:column;gap:12px;padding:0 0 16px;background:linear-gradient(180deg,var(--p),#12141b);border:1px solid var(--bd);border-top:3px solid var(--sc);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)}
+.stf-top{display:flex;gap:14px;align-items:center;padding:16px 18px 0}
+.stf-ring{border-radius:50%;padding:3px;background:#0f1118;border:2px solid var(--sc);line-height:0;flex:none}
+.stf-nm{min-width:0}.stf-nm b{font-size:20px;margin-right:6px}.stf-sp{color:var(--m);font-size:12.5px;line-height:1.4;margin-top:2px}
+.stf-msg{margin:0 18px;padding:12px 14px;background:#0f1118;border:1px solid var(--bd);border-left:3px solid var(--lc,var(--sc));line-height:1.6;font-size:14px;overflow-wrap:anywhere}
+.stf-msg .lv{display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.stf-act{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px}.stf-act button{padding:6px 12px}
+.stf-hu{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}.stf-h{padding:12px 14px;background:var(--p);border:1px solid var(--bd);border-left:3px solid #f1ede6}
+html[data-theme=light] .stf-msg,html[data-theme=light] .stf-pa,html[data-theme=light] .stf-ring{background:var(--p2)}
+body.mob .stf-hero{padding:16px}body.mob .stf-hero h3{font-size:22px}body.mob .stf-av{margin-left:0}
+body.mob .stf-g{grid-template-columns:1fr}body.mob .stf-act button{flex:1 1 auto;min-height:44px}
+body.mob .stf-ch{flex-wrap:nowrap;overflow-x:auto;margin-right:-14px;padding-right:14px;scrollbar-width:none}body.mob .stf-ch button{flex:none;min-height:40px}
+body.mob .stf-p{align-items:flex-start;flex-wrap:wrap}body.mob .stf-p .t{flex:1 1 60%}body.mob .stf-p>button{width:100%;min-height:42px}
+body.mob .stf-top{padding:14px 14px 0}body.mob .stf-msg{margin:0 14px}body.mob .stf-act{padding:0 14px}
 </style></head><body>
 <nav id="nav"></nav><div id="mtop"></div><main id="app"></main><dialog id="dlg"></dialog><dialog id="pal"></dialog><button id="top" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Haut de page">↑</button><button id="fab" class="p" aria-label="Ajouter" onclick="fabGo()"><span class="fp">＋</span><span class="fl">Ajouter</span></button><div id="toast"></div><div id="notifs" aria-live="polite"></div><div id="asb"></div><div id="mdr"></div>
 <script>
@@ -630,8 +709,9 @@ const MAPS=['Bind','Haven','Split','Ascent','Icebox','Lotus','Sunset','Abyss','P
 /* ===== SYNCHRO PARTAGÉE : le propriétaire colle ici le lien de son JSON (GitHub raw ou Google Drive) avant de partager le fichier ===== */
 const SYNC_DEFAULT='https://gist.githubusercontent.com/MijeMije17/6328dd4fdd380b24d7046bc8da59ca44/raw/teamops.json',SYNC_KEY_DEFAULT='';
 /* ===== VERSION DU SITE : à chaque nouvelle version du fichier, augmenter APP_VERSION et ajouter une entrée EN HAUT de PATCHES ===== */
-const APP_VERSION='1.8.6';
+const APP_VERSION='1.8.7';
 const PATCHES=[
+ {v:'1.8.7',d:'2026-10-25',t:['Gaming House › Salon en direct : si ton appareil n’est pas encore connecté, une carte te demande tout de suite le jeton (et le lien du gist) pour pouvoir discuter en direct, répondre aux pronostics et partager tes records. Sur mobile, une barre « Appareil connecté » avec un bouton « Réglages de connexion » reste disponible en haut du salon.','Pronostics, correction sur mobile : on ne pouvait pas répondre. Le résultat et le MVP se choisissent maintenant avec de gros boutons (au lieu des menus déroulants qui se refermaient quand la page se rafraîchissait), le score se saisit sans devoir quitter le champ, la page ne se rafraîchit plus pendant que tu réponds, et si ton appareil n’est pas connecté un bouton « Connecter cet appareil » t’amène directement aux réglages.','Mini-jeux : nouveau design aux couleurs du site (angles coupés, accent rouge, titres en majuscules espacées). Bandeau d’accueil avec tes records et tes défis relevés, cartes numérotées avec leur durée, fenêtre de jeu plein écran sur mobile avec en-tête fixe, zone de jeu avec repères d’angle, compteurs plus lisibles, réponses du quiz repérées par une lettre A B C D, cartes de mémoire et écran de fin dans le même style.','Centre du staff entièrement revu, sur ordinateur et sur téléphone : bandeau d’accueil, indicateurs (à traiter, conseils, bonnes nouvelles, prochain rendez-vous), liste des priorités de tout le staff avec bouton « Voir », puis une fiche par membre (Bloom, Bijou, Naya, Bady) avec son rôle, sa spécialité, son message du moment, « Autre conseil », « Voir » et « Caresser ». Des pastilles permettent de n’afficher qu’un membre, et les membres du staff saisis dans le Roster apparaissent en dessous.']},
  {v:'1.8.6',d:'2026-10-25',t:['Bady est redessiné pour mieux lui ressembler, d’après ses photos et l’illustration : poil long et joues touffues, grandes oreilles noires, calotte noire avec le liseré blanc qui descend entre les yeux, œil gauche dans la tache noire, museau, menton et poitrail blancs. Il porte maintenant une cape bleu nuit et le pendentif à pierre bleue de l’illustration, à la place de la cravate.']},
  {v:'1.8.5',d:'2026-10-25',t:['Bady est redessiné : il est maintenant noir et blanc (plus de brun). Les deux oreilles, le haut de la tête, la joue droite et tout le tour de l’œil gauche sont noirs, si bien que son œil gauche est plongé dans le noir. Le museau, la poitrine et la cravate sont inchangés.']},
  {v:'1.8.4',d:'2026-10-25',t:['Centre du staff : Bady rejoint l’équipe comme manager d’équipe. Chat à poil long, noir et blanc, il est le gérant du club et dit les choses directement. Il est là pour « clasher » : ses messages sont francs et sans détour, calculés à partir des données du site. Il relève par exemple un roster qui n’est pas à 5 joueurs actifs, une préparation incomplète avant un match proche, une défaite sans débrief, une map qui perd trop souvent, des matchs sans statistiques, une série de défaites ou un planning vide, et il félicite sèchement après une victoire.','Bady vise les problèmes, jamais une personne en particulier, et il ne modifie rien. Comme les autres, tu peux le caresser (bouton « Caresser Bady »), l’activer ou le masquer dans Mon profil › Options, et l’admin règle son activation par défaut dans Données › Mascottes (avec son aperçu). Il est activé par défaut ; les réglages déjà faits ne changent pas.']},
@@ -1862,7 +1942,8 @@ const ghhPts=(pr,r,g)=>{if(g&&g.kd)return pr.a&&r.a&&norm(pr.a)==norm(r.a)?(+g.p
 const ghhPreds=k=>Object.values(((GHH.d||ghhEmpty()).preds)).filter(v=>v.e==k&&!v.x);
 const ghhAgo=ts=>{const s=Math.round((Date.now()-ts)/1000);return s<5?'à l’instant':s<60?'il y a '+s+' s':'il y a '+Math.round(s/60)+' min'};
 const ghhBoard=()=>{const T={};ghhG().forEach(g=>{const r=ghhRes(g);if(!r)return;ghhPreds(g.id).forEach(pr=>{const o=T[pr.p]||(T[pr.p]={n:pr.pn,pts:0,nb:0,ok:0});o.pts+=ghhPts(pr,r,g);o.nb++;if(g.kd?(pr.a&&norm(pr.a)==norm(r.a)):pr.w==r.w)o.ok++})});return Object.values(T).sort((a,b)=>b.pts-a.pts||b.ok-a.ok||String(a.n).localeCompare(String(b.n)))};
-A.ghhRefresh=async force=>{if(GHH.busy||!ghhId()||!USER||isGuest())return;GHH.busy=true;try{const prev=GHH.d,d=await ghhGet(force);if(d){GHH.d=d;GHH.err='';if(prev){const me=ghhMe();Object.entries(d.preds).forEach(([k,v])=>{if(!prev.preds[k]&&!v.x&&(!me||v.p!=me.id)&&S.view=='house')toast((v.pn||'Quelqu’un')+' vient de pronostiquer')})}}}catch(e){GHH.err=e.message}finally{GHH.busy=false;GHH.ts=Date.now();const a=document.activeElement;if(S.view=='house'&&!(a&&a.closest&&a.closest('.gh-pred,.lv-f')))render(1)}};
+A.ghhRefresh=async force=>{if(GHH.busy||!ghhId()||!USER||isGuest())return;GHH.busy=true;try{const prev=GHH.d,d=await ghhGet(force);if(d){GHH.d=d;GHH.err='';if(prev){const me=ghhMe();Object.entries(d.preds).forEach(([k,v])=>{if(!prev.preds[k]&&!v.x&&(!me||v.p!=me.id)&&S.view=='house')toast((v.pn||'Quelqu’un')+' vient de pronostiquer')})}}}catch(e){GHH.err=e.message}finally{GHH.busy=false;GHH.ts=Date.now();const a=document.activeElement;if(S.view=='house'&&!(a&&a.closest&&a.closest('.gh-pred,.lv-f,.ghh-cn'))&&Date.now()-(window.GHTA||0)>8000)render(1)}};
+document.addEventListener('pointerdown',e=>{if(e.target&&e.target.closest&&e.target.closest('.gh-pred,.lv-f,.ghh-cn'))window.GHTA=Date.now()},true);
 const ghhStale=()=>Date.now()-GHH.ts>(lsg(GHT)?45000:90000);
 setInterval(()=>{if(S.view=='house'&&!document.hidden&&USER&&!isGuest()&&ghhId()&&ghhStale())A.ghhRefresh()},15000);
 window.addEventListener('focus',()=>{if(S.view=='house'&&USER&&!isGuest()&&ghhId()&&ghhStale())A.ghhRefresh()});
@@ -1874,9 +1955,9 @@ A.ghhSave=()=>{if(!USER||isGuest())return;const u=(($('ghh_u')||{}).value||'').t
  GHH.d=null;GHH.etag='';GHH.ts=0;GHH.err='';window.GHCFG=false;setTimeout(lvStart,100);render(1);toast(isAdmin()&&u?'Enregistré · republie le JSON pour que les joueurs reçoivent le lien':'Connexion enregistrée')};
 A.ghhInvite=()=>{const t=lsg(GHT);if(!t||!isAdmin())return;const u=location.origin+location.pathname+'#ghh='+t;if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(()=>toast('Lien d’invitation copié'),()=>prompt('Copie ce lien d’invitation :',u));else prompt('Copie ce lien d’invitation :',u)};
 A.ghhDel=()=>{try{localStorage.removeItem(GHT)}catch(e){}setTimeout(lvStart,50);render(1);toast('Jeton retiré de cet appareil')};
-A.ghhVote=async k=>{const me=ghhMe(),g=ghhG().find(x=>x.id==k),F=GHF[k]||{};if(!me)return;
+A.ghhVote=async k=>{const me=ghhMe(),g=ghhG().find(x=>x.id==k),F=GHF[k]||{};if(!me)return toast('Connecte-toi avec ton profil pour répondre');
  if(USER&&USER.as)return toast('Vue en lecture seule');
- if(!lsg(GHT))return alert('Ajoute d’abord ton jeton dans les réglages de connexion.');
+ if(!lsg(GHT)){toast('Ajoute d’abord ton jeton');return A.ghhGoSetup()}
  if(!g||!ghhOpen(g))return alert('Les pronostics sont fermés pour ce match.');
  if(g.kd){if(!F.a||!ghhOpts(g).includes(F.a))return toast('Choisis une réponse')}else if(!F.w)return toast('Choisis d’abord Victoire ou Défaite');
  const sc=String(F.s||'').trim();if(sc&&!/^\d{1,2}-\d{1,2}$/.test(sc))return toast('Score au format 13-9');
@@ -1888,7 +1969,13 @@ const ghhSetup=first=>`<div class="c" style="border-left:3px solid #4aa8ff;margi
  <label class="m" style="display:block;margin-top:8px">Jeton GitHub (reste sur cet appareil) ${lsg(GHT)?'<span class="ok">· enregistré</span>':''}</label><span class="pwf"><input id="ghh_t" name="ghh-token" type="password" autocomplete="new-password" autocapitalize="off" spellcheck="false" placeholder="Colle le jeton donné par ton admin"><button type="button" class="pwe" title="Afficher / masquer" aria-label="Afficher ou masquer le jeton" onclick="A.eye('ghh_t',this)">👁</button></span>
  <div class="row" style="margin-top:10px"><button class="p" onclick="A.ghhSave()">Enregistrer</button>${lsg(GHT)?'<button class="x" onclick="A.ghhDel()">Retirer mon jeton</button>':''}${isAdmin()&&lsg(GHT)?'<button onclick="A.ghhInvite()">Copier le lien d’invitation</button>':''}</div>${isAdmin()&&lsg(GHT)?'<div class="m" style="margin-top:8px;line-height:1.5">Le lien d’invitation contient le jeton : les joueurs l’ouvrent une fois et leur appareil est connecté. Envoie-le en message privé, jamais dans un salon public.</div>':''}
  <div class="m" style="margin-top:8px;line-height:1.5">Le jeton permet d’écrire dans ce gist : ne le donne qu’à tes coéquipiers. Les pronostics reposent sur la confiance entre joueurs.</div></div>`;
+const ghhConn=()=>{const tok=lsg(GHT);
+ if(!tok)return`<div class="ghh-cn"><div class="ghh-it"><b>Connecte cet appareil à la Gaming House</b><div class="m" style="margin-top:4px;line-height:1.6">Sans jeton, tu ne peux ni discuter en direct, ni répondre aux pronostics, ni partager tes records. Demande-le à ton admin (ou ouvre son lien d’invitation), puis colle-le ci-dessous : une seule fois par appareil.</div></div>${ghhSetup(false)}</div>`;
+ if(!isMob())return'';
+ return`<div class="c ghh-ok"><div class="ghh-r"><span class="ok">● Appareil connecté</span><button onclick="A.ghhCfg()">${window.GHCFG?'Fermer':'Réglages de connexion'}</button></div>${window.GHCFG?`<div style="margin-top:12px">${ghhSetup(false)}</div>`:''}</div>`};
+A.ghhGoSetup=()=>{HT='salon';try{localStorage.teamops_ht='salon'}catch(e){}window.GHCFG=true;render(1);setTimeout(()=>scrollTo({top:0,behavior:'smooth'}),30)};
 const ghhLeft=g=>{const d=new Date(g.date+'T'+(g.time||'23:59')+':00').getTime()-Date.now();if(isNaN(d)||d<=0)return'';const m=Math.floor(d/6e4),j=Math.floor(m/1440),h=Math.floor(m%1440/60);return j>=1?j+' j'+(h?' '+h+' h':''):h>=1?h+' h '+String(m%60).padStart(2,'0')+' min':m+' min'};
+const ghhRos=()=>{const r=S.players.filter(p=>p.active&&!p.demo);return r.length?r:S.players.filter(p=>!p.demo)};
 const ghhOpts=g=>g.kd=='y'?['Oui','Non']:(g.opts||[]);
 function ghhCard(g,me,tok){
  const k=g.id,open=ghhOpen(g),r=ghhRes(g),P=ghhPreds(k),mine=me&&P.find(x=>x.p==me.id),poll=!!g.kd,O=ghhOpts(g),
@@ -1896,18 +1983,17 @@ function ghhCard(g,me,tok){
   adm=isAdmin()&&tok,lf=open&&poll?ghhLeft(g):'',
   ctl=adm?`<div class="row" style="margin:10px 0 0"><button onclick="A.ghhRes('${k}')">${poll?'Bonne réponse':'Résultat'}</button><button onclick="A.ghhEdit('${k}')">Modifier</button>${open?`<button onclick="A.ghhClose('${k}',1)">Clôturer</button>`:r?'':`<button onclick="A.ghhClose('${k}',0)">Rouvrir</button>`}<button class="x" onclick="A.ghhDelG('${k}')">Supprimer</button></div>`:'',
   head=`<div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><b>${esc(g.title)}</b><span class="m">${poll?'Fin : ':''}${esc(plLong(g.date))}${g.time?' · '+esc(g.time):''}</span></div>${poll?`<div style="margin-top:4px"><span class="tag">${g.kd=='y'?'Oui / Non':'Choix multiple'}</span> <span class="tag">${+g.pts||3} pts</span>${lf?` <span class="tag" style="color:#e6b84a">se termine dans ${lf}</span>`:''}</div>`:''}`,
-  ro0=S.players.filter(p=>p.active&&!p.demo),roster=ro0.length?ro0:S.players.filter(p=>!p.demo),
+  roster=ghhRos(),
   choice=pr=>poll?esc(pr.a||'—'):(pr.w=='V'?'Victoire':pr.w=='D'?'Défaite':'Nul')+(pr.m?' · MVP '+esc(pr.m):'')+(pr.s?' · '+esc(pr.s):'');
  if(open){
   const who=P.map(x=>esc(x.pn)).join(', '),miss=roster.filter(p=>!P.some(x=>x.p==p.id)).map(p=>esc(p.name)).join(', '),
    form=poll?`<div class="gx-pills gh-pred" style="margin:10px 0 0">${O.map((o,i)=>`<button type="button" class="${F.a==o?'on':''}" onclick="A.ghhA('${k}',${i})">${esc(o)}</button>`).join('')}</div>
-   <div class="row" style="margin-top:8px"><button class="p" onclick="A.ghhVote('${k}')">${mine?'Modifier ma réponse':'Valider ma réponse'}</button></div>`:`<div class="gh-pred" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
-   <label class="m">Résultat<select onchange="A.ghhF('${k}','w',this.value)"><option value="">—</option><option value="V" ${F.w=='V'?'selected':''}>Victoire</option><option value="D" ${F.w=='D'?'selected':''}>Défaite</option></select></label>
-   <label class="m">MVP (meilleur K/D)<select onchange="A.ghhF('${k}','m',this.value)"><option value="">—</option>${roster.map(p=>`<option value="${esc(p.name)}" ${norm(F.m)==norm(p.name)?'selected':''}>${esc(p.name)}</option>`).join('')}</select></label>
-   <label class="m">Score exact (optionnel)<input value="${esc(F.s)}" placeholder="13-9" maxlength="5" onchange="A.ghhF('${k}','s',this.value)"></label></div>
-   <div class="row" style="margin-top:8px"><button class="p" onclick="A.ghhVote('${k}')">${mine?'Modifier mon pronostic':'Valider mon pronostic'}</button></div>`;
+   <div class="row" style="margin-top:8px"><button class="p" onclick="A.ghhVote('${k}')">${mine?'Modifier ma réponse':'Valider ma réponse'}</button></div>`:`<div class="gh-pred ghp-f"><div class="ghp-l">Résultat</div><div class="gx-pills"><button type="button" class="${F.w=='V'?'on':''}" onclick="A.ghhP('${k}','w','V')">Victoire</button><button type="button" class="${F.w=='D'?'on':''}" onclick="A.ghhP('${k}','w','D')">Défaite</button></div>
+   <div class="ghp-l">MVP, meilleur K/D <span class="m" style="text-transform:none;letter-spacing:0">· optionnel, touche à nouveau pour retirer</span></div><div class="gx-pills">${roster.map((p,i)=>`<button type="button" class="${norm(F.m)==norm(p.name)?'on':''}" onclick="A.ghhPm('${k}',${i})">${esc(p.name)}</button>`).join('')||'<span class="m">Aucun joueur au roster</span>'}</div>
+   <div class="ghp-l">Score exact <span class="m" style="text-transform:none;letter-spacing:0">· optionnel</span></div><input inputmode="numeric" autocomplete="off" value="${esc(F.s)}" placeholder="13-9" maxlength="5" oninput="A.ghhF('${k}','s',this.value)"></div>
+   <div class="row" style="margin-top:10px"><button class="p" onclick="A.ghhVote('${k}')">${mine?'Modifier mon pronostic':'Valider mon pronostic'}</button></div>`;
   return`<div class="c" style="border-left-color:#46d39a">${head}<div class="m" style="margin-top:4px">${poll?'Sondage ouvert jusqu’à la date de fin.':'Pronostics ouverts '+(g.time?'jusqu’à '+esc(g.time):'jusqu’au début du match')}</div>
-  ${me&&tok?form:`<div class="m" style="margin-top:8px">${me?'Ajoute ton jeton dans les réglages de connexion pour pronostiquer.':''}</div>`}
+  ${me&&tok?form:`<div class="m" style="margin-top:8px;line-height:1.6">${me?'Cet appareil n’est pas encore connecté : ajoute ton jeton pour pronostiquer.':''}</div>${me?'<div class="row" style="margin-top:8px"><button class="p" onclick="A.ghhGoSetup()">Connecter cet appareil</button></div>':''}`}
   <div class="m" style="margin-top:8px;line-height:1.6">${P.length?'✔ A répondu : '+who+'. ':'Personne n’a encore répondu. '}${miss?'Pas encore : '+miss+'.':''}<br>Les choix de chacun sont révélés ${poll?'à la fin du sondage':'quand le match commence'}.</div>${ctl}</div>`}
  const rows=P.map(pr=>`<tr><td>${esc(pr.pn)}</td><td>${choice(pr)}</td><td>${r?'<b>+'+ghhPts(pr,r,g)+'</b>':'—'}</td></tr>`).join(''),
   dist=poll&&P.length?`<div class="m" style="margin:0 0 8px">${O.map(o=>esc(o)+' : <b>'+P.filter(x=>norm(x.a)==norm(o)).length+'</b>').join(' · ')}</div>`:'';
@@ -1934,6 +2020,8 @@ A.ghhNewPoll=()=>{const q=(($('ghc_q')||{}).value||'').trim(),kd=($('ghc_k')||{}
  const id='g'+uid(),o={id,title:q.slice(0,120),date:d,time:h,kd,pts,ts:Date.now()};if(kd=='c')o.opts=opts;ghhAdm(c=>{c.games[id]=o},'Sondage créé')};
 A.ghhDays=n=>{const e=$('ghc_pd');if(e)e.value=ymd(new Date(Date.now()+n*864e5))};
 A.ghhRoster=()=>{const e=$('ghc_o'),k=$('ghc_k'),L=S.players.filter(p=>p.active&&!p.demo),M=L.length?L:S.players.filter(p=>!p.demo);if(e)e.value=M.map(p=>p.name).join(', ');if(k)k.value='c'};
+A.ghhP=(k,f,v)=>{const F=GHF[k]=GHF[k]||{};F[f]=F[f]===v&&f=='m'?'':v;render(1)};
+A.ghhPm=(k,i)=>{const p=ghhRos()[i];if(p)A.ghhP(k,'m',p.name)};
 A.ghhA=(k,i)=>{const g=ghhG().find(x=>x.id==k);if(!g)return;(GHF[k]=GHF[k]||{}).a=ghhOpts(g)[i]||'';render(1)};
 A.ht=k=>{HT=k;try{localStorage.teamops_ht=k}catch(e){}render(1)};
 A.ghhNewMan=()=>{const t=(($('ghc_t')||{}).value||'').trim(),d=($('ghc_d')||{}).value,h=($('ghc_h')||{}).value||'';if(!t)return toast('Donne un titre');if(!d)return toast('Choisis une date');const id='g'+uid();ghhAdm(c=>{c.games[id]={id,title:t.slice(0,80),date:d,time:h,ts:Date.now()}},'Pronostic créé')};
@@ -2086,7 +2174,8 @@ const mgToday=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMon
 MGG.daily=()=>{agiLoad();const day=mgToday(),sd=mgSeed('d'+day),maps=S.maps.length?S.maps:MAPS,map=maps[sd%maps.length],ch=MGD[(sd>>>3)%MGD.length],ags=Object.keys(AG),me=ags[mgSeed(day+(USER?USER.name:''))%ags.length],dd=mgLoad().dd||[],done=dd.includes(day),rc=RC[AG[me][0]];
  mgB(`<div class="mg-day"><div class="m" style="text-transform:capitalize">${new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}</div><div class="mg-dl"><span>Map du jour</span><b>${esc(map)}</b></div><div class="mg-dl"><span>Défi d’équipe · ${ch[1]}</span><b>${esc(ch[0])}</b></div><div class="mg-dl"><span>Ton agent du jour</span>${AGI[me]?`<img src="${esc(AGI[me])}" alt="" style="width:72px;height:72px;object-fit:contain;justify-self:start">`:''}<b style="color:${rc}">${esc(me)}</b><small>${RN[AG[me][0]]}</small></div>${done?'<div class="mg-nb" style="justify-self:start">Défi relevé aujourd’hui</div>':'<button type="button" class="p" onclick="A.mgDone()">On l’a fait !</button>'}<div class="m">Défis relevés : ${dd.length}</div></div>`)};
 
-const mgHub=()=>{const o=mgLoad();return`<h3>Mini-jeux</h3><div class="m" style="margin-bottom:10px;line-height:1.6">Pour décompresser entre deux scrims. Tes records restent sur cet appareil.</div><div class="mg-grid">${MGL.map(([k,n,ds,ic])=>`<button type="button" class="mg-c" onclick="A.mg('${k}')"><i>${ic}</i><span class="mg-ct"><b>${n}</b><small>${ds}</small><em>${k=='daily'?'Défis relevés : '+(o.dd||[]).length:mgRecTxt(k)}</em></span></button>`).join('')}</div>`};
+const MGM={aim:['30 s','01'],rx:['5 essais','02'],mem:['8 paires','03'],quiz:['10 questions','04'],daily:['1 par jour','05']};
+const mgHub=()=>{const o=mgLoad(),nr=['aim','rx','mem','quiz'].filter(k=>o[k]!=null).length;return`<div class="mg-hero"><div style="flex:1;min-width:200px"><div class="eb">Arcade de la Gaming House</div><h3>Mini-jeux</h3><div class="m" style="line-height:1.6">Pour décompresser entre deux scrims. Tes records restent sur cet appareil et alimentent le classement.</div></div><div class="mg-hs"><div><b>${nr}/4</b><span>Records</span></div><div><b>${(o.dd||[]).length}</b><span>Défis relevés</span></div></div></div><div class="mg-grid">${MGL.map(([k,n,ds,ic])=>`<button type="button" class="mg-c" data-n="${(MGM[k]||[])[1]||''}" onclick="A.mg('${k}')"><i>${ic}</i><span class="mg-ct"><b>${n}</b><small>${ds}</small><span class="mg-ft"><span class="mg-pill">${(MGM[k]||[])[0]||''}</span><em>${k=='daily'?'Défis relevés : '+(o.dd||[]).length:mgRecTxt(k)}</em></span></span></button>`).join('')}</div>`};
 
 /* --- Classement des mini-jeux : les meilleurs records de chacun sont partagés dans le gist de la Gaming House (scores) --- */
 const MGD2=[['aim','Aim Lab',1,v=>v+' pts'],['rx','Réflexes',0,v=>v+' ms'],['mem','Mémoire',0,v=>v+' coups'],['quiz','Quiz',1,v=>v+' / 10']];
@@ -2123,17 +2212,38 @@ V.house=function(){
  const tabs=`<div class="gx-tabs" role="tablist">${T.map(([k,l,c])=>`<button role="tab" aria-selected="${HT==k}" class="${HT==k?'on':''}" onclick="A.ht('${k}')">${l}${c!==''?`<em>${c}</em>`:''}</button>`).join('')}</div>`;
  let body='';
  if(HT=='salon'){LV.stick=1;setTimeout(()=>{const l=$('gh-log');if(l)l.scrollTop=l.scrollHeight},0);
-  body=`<div class="c gh-hero"><div style="flex:1;min-width:220px"><h3>Bienvenue dans la Gaming House</h3><div class="m" style="line-height:1.6">Le coin détente de ${esc(S.name||'l’équipe')}. Retrouve ici les coéquipiers connectés en direct et discute avec eux (ta photo envoie une bulle). Les autres onglets donnent accès aux pronostics, aux mini-jeux et au centre du staff (Bloom, Bijou, Naya et Bady).</div></div></div>
+  body=`${ghhConn()}<div class="c gh-hero"><div style="flex:1;min-width:220px"><h3>Bienvenue dans la Gaming House</h3><div class="m" style="line-height:1.6">Le coin détente de ${esc(S.name||'l’équipe')}. Retrouve ici les coéquipiers connectés en direct et discute avec eux (ta photo envoie une bulle). Les autres onglets donnent accès aux pronostics, aux mini-jeux et au centre du staff (Bloom, Bijou, Naya et Bady).</div></div></div>
  <h3>Le salon en direct</h3><div class="c" style="margin:0 0 18px"><div id="gh-st" class="m">${lvStatus()}</div><div id="gh-stage">${lvStageHtml()}</div>
  <div class="lv-q row" style="margin:10px 0 0">${LVQ.map((q,i)=>`<button type="button" onclick="A.lvQ(${i})">${esc(q)}</button>`).join('')}</div>
  <div id="gh-log" class="lv-log">${lvLogHtml()}</div>
  <form class="lv-f" onsubmit="A.lvSay();return false"><input id="gh-in" maxlength="200" placeholder="Écris un message…" autocomplete="off" value="${esc(window.GHD||'')}" oninput="window.GHD=this.value"><button class="p" type="submit">Envoyer</button></form></div>`}
  else if(HT=='pron')body=ghhPanel();
  else if(HT=='jeux')body=mgHub()+mgBoard();
- else{const c=masCfg(),ws=['bloom','bijou','naya','bady'].filter(w=>c[w]),cards=ws.map(w=>{const rev=c.auto||MAS_R[w],L=rev?masMsgs(w,'house'):null;return masCard(w,'house',c,L,true)}).join('');
-  body=`<h3>Centre du staff</h3><div class="m" style="margin-bottom:10px;line-height:1.6">Bloom (le coach), Bijou (l’analyste), Naya (la psychologue du sport, mental coach) et Bady (le manager d’équipe) donnent des conseils calculés à partir des données du site. Ils ne modifient jamais rien.</div>
- ${cards?`<div class="mas-g">${cards}</div>`:`<div class="c m">Les mascottes du staff sont désactivées pour toi. Tu peux les réactiver dans Mon profil › Options.<div class="row" style="margin:10px 0 0"><button onclick="A.profile()">Ouvrir Mon profil</button></div></div>`}`}
+ else body=masStaff();
  return`<h2>La Gaming House</h2>${tabs}${body}`};
+/* ----- Centre du staff v1.8.7 : page refaite (ordinateur et mobile) ----- */
+let SCV='all';try{SCV=localStorage.teamops_scv||'all'}catch(e){}
+const SCI={bloom:'Planning, préparation et objectifs de travail',bijou:'Résultats, compos, forme et qualité des données',naya:'Mental, pression, récupération et cohésion',bady:'Exigence, organisation et suivi du club'};
+const SCL={alert:['À traiter','#ff6672'],tip:['Conseil','#4aa8ff'],ok:['Bon à savoir','#46d39a']};
+A.scv=k=>{SCV=k;try{localStorage.teamops_scv=k}catch(e){}render(1)};
+function masStaff(){
+ const c=masCfg(),ws=['bloom','bijou','naya','bady'].filter(w=>c[w]);
+ if(!ws.length)return`<div class="c m">Les mascottes du staff sont désactivées pour toi. Tu peux les réactiver dans Mon profil › Options.<div class="row" style="margin:10px 0 0"><button onclick="A.profile()">Ouvrir Mon profil</button></div></div>`;
+ const D=ws.map(w=>{const rev=c.auto||!!MAS_R[w],L=rev?masMsgs(w,'house'):[];return{w,rev,L}}),cnt={alert:0,tip:0,ok:0},al=[];
+ const lv=m=>m.lvl=='alert'?'alert':m.lvl=='ok'?'ok':'tip';
+ D.forEach(d=>d.L.forEach(m=>{const l=lv(m);cnt[l]++;if(l=='alert'&&al.length<6)al.push({w:d.w,m})}));
+ const td=masToday(),hh=new Date().toTimeString().slice(0,5),nx=tqKeep(plX(td,ymd(new Date(Date.now()+60*864e5))).filter(e=>e.date>td||!e.time||e.time>=hh)).find(e=>e.type=='Match'||e.type=='Tournoi'||e.type=='Entraînement');
+ const kp=(l,v,sm,col)=>`<div class="kpi" style="${col?'border-top-color:'+col:''}"><span>${l}</span><b style="font-size:24px">${v}</b><small>${sm}</small></div>`;
+ const show=SCV!='all'&&ws.includes(SCV)?[SCV]:ws;
+ const chips=`<div class="gx-pills stf-ch"><button class="${SCV=='all'||!ws.includes(SCV)?'on':''}" onclick="A.scv('all')">Tout le staff<em>${ws.length}</em></button>${ws.map(w=>`<button class="${SCV==w?'on':''}" onclick="A.scv('${w}')">${MAS[w].n}</button>`).join('')}</div>`;
+ const prio=al.length?`<h3 class="stf-t">Priorités du staff</h3><div class="stf-pr">${al.map(({w,m})=>`<div class="stf-p" style="--sc:${MAS[w].c}"><span class="stf-pa">${masSVG(w,'alert',38)}</span><div class="t"><b>${MAS[w].n} · ${MAS[w].r}</b>${esc(m.t)}</div>${m.go&&V[m.go]&&navOK(m.go)?`<button class="p" onclick="navTo('${m.go}')">Voir</button>`:''}</div>`).join('')}</div>`:`<div class="c stf-ok"><b style="color:#46d39a">Rien d’urgent</b><div class="m" style="margin-top:2px">Aucune alerte du staff pour le moment. Continue à saisir matchs, plans et planning pour garder les conseils utiles.</div></div>`;
+ const cards=show.map(w=>{const d=D.find(x=>x.w==w),M=MAS[w],key=w+'|house',L=d.L,i=L.length?(MAS_I[key]||0)%L.length:0,m=L[i],pet=MAS_PET[w]&&Date.now()-MAS_PET[w]<2500,mood=pet?'ok':d.rev?masMood(m):'neutral',l=m?SCL[lv(m)]:null;
+  const msg=!d.rev?`<div class="stf-msg"><span class="m">Conseils automatiques désactivés.</span></div><div class="stf-act"><button class="p" onclick="A.masAsk('${w}')">Demander un conseil</button></div>`:!m?`<div class="stf-msg"><span class="lv" style="color:#8d93a5">Calme</span>Rien à signaler pour le moment.</div>`:`<div class="stf-msg" style="--lc:${l[1]}" aria-live="polite"><span class="lv" style="color:${l[1]}">${l[0]}</span>${esc(m.t)}</div><div class="stf-act">${L.length>1?`<button onclick="A.masNext('${w}','house')">Autre conseil <span class="m">${i+1}/${L.length}</span></button>`:''}${m.go&&V[m.go]&&navOK(m.go)?`<button class="p" onclick="navTo('${m.go}')">Voir</button>`:''}<button onclick="A.masPet('${w}')">🐾 Caresser</button>${!c.auto?`<button class="x" onclick="A.masAsk('${w}',0)">Masquer</button>`:''}</div>`;
+  return`<div class="stf-c" style="--sc:${M.c}"><div class="stf-top"><span class="stf-ring">${masSVG(w,mood,72)}</span><div class="stf-nm"><b>${M.n}</b><span class="tag">${M.r}</span><div class="stf-sp">${SCI[w]}</div></div></div>${msg}</div>`}).join('');
+ const hum=(S.staff||[]).length?`<h3 class="stf-t" style="margin-top:22px">Staff du club</h3><div class="stf-hu">${S.staff.map(x=>`<div class="stf-h"><b>${esc(x.name)}</b><span class="tag">${esc(x.role)}</span><div class="m">Dispo : ${esc(x.dispo)||'—'}</div></div>`).join('')}</div><div class="row" style="margin:10px 0 0"><button onclick="RT='s';navTo('roster')">Gérer dans le Roster</button></div>`:'';
+ return`<div class="stf-hero"><div style="flex:1;min-width:220px"><div class="eb">État-major</div><h3>Centre du staff</h3><div class="m" style="line-height:1.6">Bloom, Bijou, Naya et Bady lisent les données du site et te disent ce qui compte : préparation, résultats, mental et exigence. Ils ne modifient jamais rien.</div></div><div class="stf-av">${ws.map(w=>`<span>${masSVG(w,'neutral',46)}</span>`).join('')}</div></div>
+ <div class="kpis">${kp('À traiter',cnt.alert,cnt.alert?'à regarder en premier':'rien d’urgent','#ff6672')}${kp('Conseils',cnt.tip,'pistes du staff','#4aa8ff')}${kp('Bonnes nouvelles',cnt.ok,'à garder','#46d39a')}${kp('Prochain rendez-vous',nx?esc(masCut(nx.title,22)):'—',nx?masRel(nx.date)+(nx.time?' à '+esc(nx.time):''):'rien au planning')}</div>
+ ${prio}<h3 class="stf-t" style="margin-top:22px">L’équipe de direction</h3>${chips}<div class="stf-g">${cards}</div>${hum}`}
 A.masPet=w=>{MAS_PET[w]=Date.now();toast(w=='bloom'?'Bloom ronronne, les yeux mi-clos.':w=='naya'?'Naya plisse ses yeux verts et ronronne doucement.':w=='bady'?'Bady tolère la caresse, puis te rappelle qu’il y a du travail.':'Bijou cligne de ses yeux bleus, un peu louches.');render(1);setTimeout(()=>{if(S.view=='house')render(1)},2600)};
 
 /* ----- Réglages (Données › Mascottes) : admin uniquement ----- */
