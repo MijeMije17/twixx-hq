@@ -855,14 +855,18 @@ body.mob .stf-pr{display:flex;gap:10px;overflow-x:auto;margin:0 -12px 14px;paddi
 body.mob .stf-pr::-webkit-scrollbar{display:none}
 body.mob .stf-p{flex:0 0 82%;scroll-snap-align:start;flex-direction:column;align-items:stretch;gap:8px;padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(255,70,85,.08),transparent),var(--p);position:relative}
 body.mob .stf-p .stf-pa{position:absolute;top:10px;right:10px}
-body.mob .stf-p .t{padding-right:46px;font-size:13px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+body.mob .stf-p .t{padding-right:46px;font-size:13px;flex:1 1 auto;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
 body.mob .stf-p button{width:100%;min-height:40px}
 body.mob .stf-ok{border-radius:12px}
 body.mob .stf-ch{position:sticky;top:calc(116px + env(safe-area-inset-top,0px));z-index:11;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;margin:0 -12px 12px;padding:8px 12px;background:var(--bg);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);scrollbar-width:none;scroll-snap-type:x proximity;scroll-padding:0 12px}
 body.mob .stf-ch::-webkit-scrollbar{display:none}
 body.mob .stf-ch button{flex:none;white-space:nowrap;min-height:40px;scroll-snap-align:center}
 body.mob .stf-q{padding:0;margin:0 0 12px;border-radius:14px;overflow:hidden;clip-path:none;animation:stfIn .35s ease both}
-body.mob .stf-d>summary{padding:12px 12px}
+body.mob .stf-d>summary{padding:12px 12px;display:flex;align-items:center;gap:6px}body.mob .stf-d>summary .stf-qh{flex:1;min-width:0}
+body.mob .stf-ql,body.mob .stf-sp{display:none}
+body.mob .stf-q,body.mob .stf-dbd,body.mob .stf-g,body.mob .stf-c,body.mob .stf-g>*{min-width:0;max-width:100%;box-sizing:border-box}
+body.mob .stf-p button.p{position:static;transform:none;margin:0;width:100%;flex:none;display:flex;align-items:center;justify-content:center}
+body.mob .stf-p{overflow:hidden;min-height:0;justify-content:space-between}
 body.mob .stf-d .stf-qh{margin:0;flex-wrap:nowrap;gap:10px}
 body.mob .stf-qh .t b{font-size:15.5px}body.mob .stf-qh .t .m{font-size:12px;display:block}
 body.mob .stf-qb{font-size:10px;padding:3px 8px;border-radius:999px}
@@ -871,12 +875,12 @@ body.mob .stf-d[open]>summary .stf-chev{transform:rotate(-135deg)}
 body.mob .stf-d[open]>summary{border-bottom:1px solid var(--bd)}
 body.mob .stf-dbd{padding:10px 10px 12px}
 body.mob .stf-ql{font-size:12.5px;margin:0 0 10px;padding:4px 10px}
-body.mob .stf-g{grid-template-columns:1fr;gap:12px}
-body.mob .stf-c{gap:10px;padding:0 0 12px;border-radius:12px;clip-path:none;border-top-width:3px}
+body.mob .stf-g{grid-template-columns:minmax(0,1fr);gap:12px}
+body.mob .stf-c{gap:10px;padding:0 0 12px;border-radius:12px;clip-path:none;border-top-width:3px;overflow:hidden}
 body.mob .stf-top{padding:12px 12px 0;gap:12px}
 body.mob .stf-ring svg{width:56px;height:56px}
 body.mob .stf-nm b{font-size:17px}
-body.mob .stf-sp{font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
 body.mob .stf-msg{margin:0 12px;padding:10px 12px;font-size:14px;line-height:1.55;border-radius:10px}
 body.mob .stf-act{padding:0 12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:8px}
 body.mob .stf-act::-webkit-scrollbar{display:none}
@@ -925,7 +929,7 @@ const SYNC_DEFAULT='https://gist.githubusercontent.com/MijeMije17/6328dd4fdd380b
 /* ===== VERSION DU SITE : à chaque nouvelle version du fichier, augmenter APP_VERSION et ajouter une entrée EN HAUT de PATCHES ===== */
 const APP_VERSION='1.9.8';
 const PATCHES=[
- {v:'1.9.8',d:'2026-10-26',t:['La Gaming House sur ordinateur : onglets avec icônes et barre collante, filtres de quartier collants, priorités du staff en grille, indicateurs et cartes plus soignés (survol, accent de couleur par chat), apparition en douceur.','La Gaming House sur mobile : onglets collants avec icônes et Centre du staff repensé. Bandeau compact, indicateurs à faire glisser, priorités du staff en cartes swipables, filtres de quartier collants et centrés automatiquement, quartiers repliables (ceux avec des alertes s’ouvrent seuls), cartes plus compactes avec actions faciles à toucher. Version ordinateur inchangée.']},
+ {v:'1.9.8',d:'2026-10-26',t:['Mobile : correction des cartes du Centre du staff qui débordaient à droite et des priorités mal découpées, flèche des quartiers remise à côté du titre, et retrait des phrases de présentation (quartiers et chats) sur téléphone, elles restent sur ordinateur.','La Gaming House sur ordinateur : onglets avec icônes et barre collante, filtres de quartier collants, priorités du staff en grille, indicateurs et cartes plus soignés (survol, accent de couleur par chat), apparition en douceur.','La Gaming House sur mobile : onglets collants avec icônes et Centre du staff repensé. Bandeau compact, indicateurs à faire glisser, priorités du staff en cartes swipables, filtres de quartier collants et centrés automatiquement, quartiers repliables (ceux avec des alertes s’ouvrent seuls), cartes plus compactes avec actions faciles à toucher. Version ordinateur inchangée.']},
  {v:'1.9.7',d:'2026-10-26',t:['Centre du staff : Kiwi rejoint l’équipe comme préparatrice physique et kiné. Chatte écaille de tortue (orange, noir et crème) au visage clair, avec une grande tache noire autour de l’œil droit et des yeux jaune-vert, elle porte un collier vert avec une croix blanche. Elle s’occupe du corps : échauffement des poignets et des mains les jours de match ou de séance, étirements après un match, jours enchaînés sans repos, journées sans séance pour bouger doucement et un conseil physique du jour (posture, poignets, pauses).','Elle est rangée dans le Pôle bien-être avec Naya et Simba. Elle ne parle ni de mental ni de sommeil (Naya), ni d’alimentation ni d’eau (Simba), et elle ne pose aucun diagnostic : en cas de douleur qui dure, elle renvoie vers un médecin ou un kiné.','Comme les autres, tu peux la caresser, l’activer ou la masquer dans Mon profil › Options, et l’admin règle son activation dans Données › Mascottes (avec aperçu). Elle est activée par défaut.']},
  {v:'1.9.6',d:'2026-10-26',t:['Centre du staff : Whisky rejoint l’équipe comme analyste de données. Chat roux et blanc aux yeux ambrés, il porte un collier bleu avec un pendentif en forme de graphique. Il s’occupe des chiffres : bilan global avec fourchette réaliste, comparaison par type de match, écart moyen de rounds, moyennes d’équipe, tendances de K/D, forme sur 5 matchs, fiabilité et trous dans l’historique, vérifications à traiter.','Le quartier « Staff technique » est séparé en deux : Les coachs (Bloom, Platine, Mimine) et Les analystes (Bijou, Whisky). Le filtre en haut de la page propose chaque quartier.','Les chats se répètent moins. Bijou garde le jeu (maps, compos, adversaires, scouting) et passe à Whisky les chiffres, les tendances, la fiabilité et les données manquantes (les stats vides du dernier match restent à Bady). Mimine laisse les séries à Minouche et à Bady. Quand Bloom, Naya, Minouche et Mimine parlent du même prochain match, seuls les deux premiers l’affichent en tête, les autres passent à un autre message (le leur reste disponible avec « Autre conseil »). Bijou a aussi gagné un regard de l’analyste du jour.','Comme les autres, tu peux le caresser, l’activer ou le masquer dans Mon profil › Options, et l’admin règle son activation dans Données › Mascottes (avec aperçu). Il est activé par défaut.']},
  {v:'1.9.5',d:'2026-10-26',t:['Centre du staff : Mimine rejoint l’équipe comme coach adjoint. Chat noir et blanc à poil court et aux yeux jaune-vert, avec la liste blanche entre les yeux, le museau blanc et une petite tache noire sur le nez, il porte un sifflet autour du cou. Il s’occupe du moral du vestiaire à sa manière : une vanne les jours de match, une vanne après une victoire ou une défaite récente, une vanne sur les séries de victoires ou de défaites, et la vanne du jour. Sa spécialité : les deux trous du cul, qu’il place partout (« ils nous ont battus, et nous on leur fait le second »).','Il ne parle ni de stats, ni de plans, ni de planning, ni de mental, ni de nutrition : ça reste le travail des autres. Il est rangé dans le Staff technique, à côté de Bloom, Platine et Bijou.','Comme les autres, tu peux le caresser, l’activer ou le masquer dans Mon profil › Options, et l’admin règle son activation dans Données › Mascottes (avec aperçu). Il est activé par défaut.']},
