@@ -826,6 +826,93 @@ body.mob .op-b table,body.mob .c[style*="overflow-x"] table{min-width:560px}
 .ck-b{flex:1;min-width:220px}.ck-a{display:flex;gap:8px;flex-wrap:wrap}
 body.mob .ck-a{width:100%}body.mob .ck-a button{flex:1;min-height:42px}
 body.mob .ck-top{padding:12px 14px}
+
+/* ===== v1.9.8 : Gaming House mobile / Centre du staff ===== */
+.gx-ic{display:inline-block;font-style:normal;font-size:12px;color:var(--r);margin-right:8px}
+.stf-d>summary{list-style:none;cursor:pointer}.stf-d>summary::-webkit-details-marker{display:none}
+.stf-chev{display:none}
+@keyframes stfIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+body.mob .gx-tabs{position:sticky;top:calc(58px + env(safe-area-inset-top,0px));z-index:12;margin:0 -12px 12px;padding:8px 12px;gap:8px;background:var(--bg);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);scroll-snap-type:x proximity;scroll-padding:0 12px;border-bottom:1px solid var(--bd)}
+body.mob .gx-tabs>button[role=tab]{display:flex;align-items:center;gap:7px;min-height:42px;padding:0 15px;font-size:13.5px;scroll-snap-align:center;transition:background .2s,color .2s,transform .15s}
+body.mob .gx-tabs>button[role=tab]:active{transform:scale(.96)}
+body.mob .gx-ic{margin-right:0;opacity:.8}
+body.mob .gx-tabs .on .gx-ic{color:#fff;opacity:1}
+body.mob .gx-tabs em{margin-left:2px}
+body.mob .stf-hero{padding:14px 14px;gap:10px;margin:0 0 12px;flex-wrap:nowrap;align-items:center}
+body.mob .stf-hero>div:first-child{min-width:0}
+body.mob .stf-hero h3{font-size:21px;margin:0}
+body.mob .stf-hd{display:none}
+body.mob .stf-av{margin-left:auto;flex:none;max-width:44%;overflow:hidden}
+body.mob .stf-av span{margin-left:-22px}body.mob .stf-av span:nth-child(n+5){display:none}
+body.mob .stf-av svg{width:34px;height:34px}
+body.mob .kpis{display:flex;gap:10px;overflow-x:auto;margin:0 -12px 14px;padding:2px 12px 6px;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-padding:0 12px}
+body.mob .kpis::-webkit-scrollbar{display:none}
+body.mob .kpis .kpi{flex:0 0 128px;scroll-snap-align:start;padding:10px 12px}
+body.mob .kpis .kpi:last-child:nth-child(odd){grid-column:auto}
+body.mob .kpis .kpi:last-child{flex-basis:170px}
+body.mob .stf-t{margin:0 0 8px;font-size:10.5px}
+body.mob .stf-pr{display:flex;gap:10px;overflow-x:auto;margin:0 -12px 14px;padding:2px 12px 6px;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-padding:0 12px}
+body.mob .stf-pr::-webkit-scrollbar{display:none}
+body.mob .stf-p{flex:0 0 82%;scroll-snap-align:start;flex-direction:column;align-items:stretch;gap:8px;padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(255,70,85,.08),transparent),var(--p);position:relative}
+body.mob .stf-p .stf-pa{position:absolute;top:10px;right:10px}
+body.mob .stf-p .t{padding-right:46px;font-size:13px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+body.mob .stf-p button{width:100%;min-height:40px}
+body.mob .stf-ok{border-radius:12px}
+body.mob .stf-ch{position:sticky;top:calc(116px + env(safe-area-inset-top,0px));z-index:11;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;margin:0 -12px 12px;padding:8px 12px;background:var(--bg);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);scrollbar-width:none;scroll-snap-type:x proximity;scroll-padding:0 12px}
+body.mob .stf-ch::-webkit-scrollbar{display:none}
+body.mob .stf-ch button{flex:none;white-space:nowrap;min-height:40px;scroll-snap-align:center}
+body.mob .stf-q{padding:0;margin:0 0 12px;border-radius:14px;overflow:hidden;clip-path:none;animation:stfIn .35s ease both}
+body.mob .stf-d>summary{padding:12px 12px}
+body.mob .stf-d .stf-qh{margin:0;flex-wrap:nowrap;gap:10px}
+body.mob .stf-qh .t b{font-size:15.5px}body.mob .stf-qh .t .m{font-size:12px;display:block}
+body.mob .stf-qb{font-size:10px;padding:3px 8px;border-radius:999px}
+body.mob .stf-chev{display:block;flex:none;width:9px;height:9px;margin:0 4px 0 2px;border-right:2px solid var(--m);border-bottom:2px solid var(--m);transform:rotate(45deg);transition:transform .2s}
+body.mob .stf-d[open]>summary .stf-chev{transform:rotate(-135deg)}
+body.mob .stf-d[open]>summary{border-bottom:1px solid var(--bd)}
+body.mob .stf-dbd{padding:10px 10px 12px}
+body.mob .stf-ql{font-size:12.5px;margin:0 0 10px;padding:4px 10px}
+body.mob .stf-g{grid-template-columns:1fr;gap:12px}
+body.mob .stf-c{gap:10px;padding:0 0 12px;border-radius:12px;clip-path:none;border-top-width:3px}
+body.mob .stf-top{padding:12px 12px 0;gap:12px}
+body.mob .stf-ring svg{width:56px;height:56px}
+body.mob .stf-nm b{font-size:17px}
+body.mob .stf-sp{font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body.mob .stf-msg{margin:0 12px;padding:10px 12px;font-size:14px;line-height:1.55;border-radius:10px}
+body.mob .stf-act{padding:0 12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:8px}
+body.mob .stf-act::-webkit-scrollbar{display:none}
+body.mob .stf-act button{flex:none;white-space:nowrap;min-height:40px;padding:0 14px;border-radius:999px}
+body.mob .stf-hu{grid-template-columns:1fr 1fr}
+body.mob .stf-h{border-radius:12px}
+html[data-anim=off] .stf-q{animation:none}
+
+/* --- v1.9.8 : version ordinateur --- */
+body:not(.mob) .gx-tabs{position:sticky;top:0;z-index:12;margin:0 0 20px;padding:0 4px;background:var(--bg);background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+body:not(.mob) .gx-tabs>button[role=tab]{padding:14px 20px;transition:color .2s,border-color .2s,background .2s}
+body:not(.mob) .gx-tabs>button[role=tab].on .gx-ic{color:var(--r)}
+body:not(.mob) .stf-hero{padding:26px 30px;background:radial-gradient(circle at 92% 20%,rgba(74,168,255,.16),transparent 45%),linear-gradient(135deg,rgba(255,70,85,.2),rgba(74,168,255,.06)),var(--p)}
+body:not(.mob) .stf-hero h3{font-size:32px;letter-spacing:.01em}
+body:not(.mob) .stf-av span{transition:transform .2s}body:not(.mob) .stf-av span:hover{transform:translateY(-4px) scale(1.08);z-index:2}
+body:not(.mob) .kpis .kpi{transition:transform .2s,border-color .2s,box-shadow .2s}
+body:not(.mob) .kpis .kpi:hover{transform:translateY(-3px);box-shadow:0 10px 24px #0006}
+body:not(.mob) .stf-pr{grid-template-columns:repeat(auto-fit,minmax(380px,1fr));margin-bottom:6px}
+body:not(.mob) .stf-p{transition:transform .2s,box-shadow .2s;background:linear-gradient(90deg,color-mix(in srgb,var(--sc) 12%,transparent),transparent 60%),var(--p)}
+body:not(.mob) .stf-p:hover{transform:translateX(3px);box-shadow:0 8px 20px #0005}
+body:not(.mob) .stf-ch{position:sticky;top:50px;z-index:11;padding:10px 0;margin:0 0 14px;background:var(--bg);background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+body:not(.mob) .gx-pills button{transition:background .2s,transform .15s}body:not(.mob) .gx-pills button:hover{transform:translateY(-1px)}
+body:not(.mob) .stf-q{padding:18px 20px 20px;animation:stfIn .4s ease both}
+body:not(.mob) .stf-qh .t b{font-size:19px}
+body:not(.mob) .stf-qi{width:44px;height:44px;font-size:20px}
+body:not(.mob) .stf-g{grid-template-columns:repeat(auto-fit,minmax(380px,1fr))}
+body:not(.mob) .stf-c{transition:transform .22s,box-shadow .22s;background:radial-gradient(circle at 100% 0,color-mix(in srgb,var(--sc) 14%,transparent),transparent 55%),linear-gradient(180deg,var(--p),#12141b)}
+body:not(.mob) .stf-c:hover{transform:translateY(-4px);box-shadow:0 14px 30px #0007}
+body:not(.mob) .stf-ring{transition:transform .25s}body:not(.mob) .stf-c:hover .stf-ring{transform:scale(1.06) rotate(-3deg)}
+body:not(.mob) .stf-act button{transition:transform .15s}body:not(.mob) .stf-act button:hover{transform:translateY(-1px)}
+body:not(.mob) .stf-h{transition:transform .2s}body:not(.mob) .stf-h:hover{transform:translateY(-2px)}
+html[data-anim=off] body:not(.mob) .stf-q{animation:none}
+html[data-theme=light] body:not(.mob) .stf-c{background:linear-gradient(180deg,var(--p),var(--p2))}
+@media (prefers-reduced-motion:reduce){body:not(.mob) .stf-q{animation:none}body:not(.mob) .stf-c,body:not(.mob) .kpis .kpi,body:not(.mob) .stf-p{transition:none}}
+@media (prefers-reduced-motion:reduce){body.mob .stf-q{animation:none}body.mob .stf-chev{transition:none}}
+html[data-theme=light] body.mob .gx-tabs,html[data-theme=light] body.mob .stf-ch{background:color-mix(in srgb,var(--bg) 94%,transparent)}
 </style></head><body>
 <nav id="nav"></nav><div id="mtop"></div><main id="app"></main><dialog id="dlg"></dialog><dialog id="pal"></dialog><button id="top" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Haut de page">↑</button><button id="fab" class="p" aria-label="Ajouter" onclick="fabGo()"><span class="fp">＋</span><span class="fl">Ajouter</span></button><div id="toast"></div><div id="notifs" aria-live="polite"></div><div id="asb"></div><div id="mdr"></div>
 <script>
@@ -836,8 +923,9 @@ const MAPS=['Bind','Haven','Split','Ascent','Icebox','Lotus','Sunset','Abyss','P
 /* ===== SYNCHRO PARTAGÉE : le propriétaire colle ici le lien de son JSON (GitHub raw ou Google Drive) avant de partager le fichier ===== */
 const SYNC_DEFAULT='https://gist.githubusercontent.com/MijeMije17/6328dd4fdd380b24d7046bc8da59ca44/raw/teamops.json',SYNC_KEY_DEFAULT='';
 /* ===== VERSION DU SITE : à chaque nouvelle version du fichier, augmenter APP_VERSION et ajouter une entrée EN HAUT de PATCHES ===== */
-const APP_VERSION='1.9.7';
+const APP_VERSION='1.9.8';
 const PATCHES=[
+ {v:'1.9.8',d:'2026-10-26',t:['La Gaming House sur ordinateur : onglets avec icônes et barre collante, filtres de quartier collants, priorités du staff en grille, indicateurs et cartes plus soignés (survol, accent de couleur par chat), apparition en douceur.','La Gaming House sur mobile : onglets collants avec icônes et Centre du staff repensé. Bandeau compact, indicateurs à faire glisser, priorités du staff en cartes swipables, filtres de quartier collants et centrés automatiquement, quartiers repliables (ceux avec des alertes s’ouvrent seuls), cartes plus compactes avec actions faciles à toucher. Version ordinateur inchangée.']},
  {v:'1.9.7',d:'2026-10-26',t:['Centre du staff : Kiwi rejoint l’équipe comme préparatrice physique et kiné. Chatte écaille de tortue (orange, noir et crème) au visage clair, avec une grande tache noire autour de l’œil droit et des yeux jaune-vert, elle porte un collier vert avec une croix blanche. Elle s’occupe du corps : échauffement des poignets et des mains les jours de match ou de séance, étirements après un match, jours enchaînés sans repos, journées sans séance pour bouger doucement et un conseil physique du jour (posture, poignets, pauses).','Elle est rangée dans le Pôle bien-être avec Naya et Simba. Elle ne parle ni de mental ni de sommeil (Naya), ni d’alimentation ni d’eau (Simba), et elle ne pose aucun diagnostic : en cas de douleur qui dure, elle renvoie vers un médecin ou un kiné.','Comme les autres, tu peux la caresser, l’activer ou la masquer dans Mon profil › Options, et l’admin règle son activation dans Données › Mascottes (avec aperçu). Elle est activée par défaut.']},
  {v:'1.9.6',d:'2026-10-26',t:['Centre du staff : Whisky rejoint l’équipe comme analyste de données. Chat roux et blanc aux yeux ambrés, il porte un collier bleu avec un pendentif en forme de graphique. Il s’occupe des chiffres : bilan global avec fourchette réaliste, comparaison par type de match, écart moyen de rounds, moyennes d’équipe, tendances de K/D, forme sur 5 matchs, fiabilité et trous dans l’historique, vérifications à traiter.','Le quartier « Staff technique » est séparé en deux : Les coachs (Bloom, Platine, Mimine) et Les analystes (Bijou, Whisky). Le filtre en haut de la page propose chaque quartier.','Les chats se répètent moins. Bijou garde le jeu (maps, compos, adversaires, scouting) et passe à Whisky les chiffres, les tendances, la fiabilité et les données manquantes (les stats vides du dernier match restent à Bady). Mimine laisse les séries à Minouche et à Bady. Quand Bloom, Naya, Minouche et Mimine parlent du même prochain match, seuls les deux premiers l’affichent en tête, les autres passent à un autre message (le leur reste disponible avec « Autre conseil »). Bijou a aussi gagné un regard de l’analyste du jour.','Comme les autres, tu peux le caresser, l’activer ou le masquer dans Mon profil › Options, et l’admin règle son activation dans Données › Mascottes (avec aperçu). Il est activé par défaut.']},
  {v:'1.9.5',d:'2026-10-26',t:['Centre du staff : Mimine rejoint l’équipe comme coach adjoint. Chat noir et blanc à poil court et aux yeux jaune-vert, avec la liste blanche entre les yeux, le museau blanc et une petite tache noire sur le nez, il porte un sifflet autour du cou. Il s’occupe du moral du vestiaire à sa manière : une vanne les jours de match, une vanne après une victoire ou une défaite récente, une vanne sur les séries de victoires ou de défaites, et la vanne du jour. Sa spécialité : les deux trous du cul, qu’il place partout (« ils nous ont battus, et nous on leur fait le second »).','Il ne parle ni de stats, ni de plans, ni de planning, ni de mental, ni de nutrition : ça reste le travail des autres. Il est rangé dans le Staff technique, à côté de Bloom, Platine et Bijou.','Comme les autres, tu peux le caresser, l’activer ou le masquer dans Mon profil › Options, et l’admin règle son activation dans Données › Mascottes (avec aperçu). Il est activé par défaut.']},
@@ -2600,9 +2688,9 @@ V.house=function(){
  if(!USER||isGuest())return'<h2>La Gaming House</h2><div class="c m">Cet espace est réservé aux membres connectés.</div>';
  lvStart();
  const me=ghhMe(),op=ghhG().filter(ghhOpen),todo=me?op.filter(g=>!ghhPreds(g.id).some(x=>x.p==me.id)).length:op.length,
-  T=[['salon','Salon en direct',''],['pron','Pronostics',todo],['jeux','Mini-jeux',''],['mas','Centre du staff','']];
+  T=[['salon','Salon en direct','','◉'],['pron','Pronostics',todo,'◈'],['jeux','Mini-jeux','','▶'],['mas','Centre du staff','','✦']];
  if(!T.some(x=>x[0]==HT))HT='salon';
- const tabs=`<div class="gx-tabs" role="tablist">${T.map(([k,l,c])=>`<button role="tab" aria-selected="${HT==k}" class="${HT==k?'on':''}" onclick="A.ht('${k}')">${l}${c!==''?`<em>${c}</em>`:''}</button>`).join('')}</div>`;
+ const tabs=`<div class="gx-tabs" role="tablist">${T.map(([k,l,c,ic])=>`<button role="tab" aria-selected="${HT==k}" class="${HT==k?'on':''}" onclick="A.ht('${k}')"><i class="gx-ic" aria-hidden="true">${ic}</i>${l}${c!==''?`<em>${c}</em>`:''}</button>`).join('')}</div>`;
  let body='';
  if(HT=='salon'){LV.stick=1;setTimeout(()=>{const l=$('gh-log');if(l)l.scrollTop=l.scrollHeight},0);
   body=`${ghhConn()}<div class="c gh-hero"><div style="flex:1;min-width:220px"><h3>Bienvenue dans la Gaming House</h3><div class="m" style="line-height:1.6">Le coin détente de ${esc(S.name||'l’équipe')}. Retrouve ici les coéquipiers connectés en direct et discute avec eux (ta photo envoie une bulle). Les autres onglets donnent accès aux pronostics, aux mini-jeux et au centre du staff, avec tous les chats de la maison.</div></div></div>
@@ -2613,9 +2701,10 @@ V.house=function(){
  else if(HT=='pron')body=ghhPanel();
  else if(HT=='jeux')body=mgHub()+mgBoard();
  else body=masStaff();
+ setTimeout(()=>{try{document.querySelectorAll('.gx-tabs .on,.stf-ch .on').forEach(e=>e.scrollIntoView({inline:'center',block:'nearest'}))}catch(e){}},0);
  return`<h2>La Gaming House</h2>${tabs}${body}`};
 /* ----- Centre du staff v1.8.7 : page refaite (ordinateur et mobile) ----- */
-let SCV='all';try{SCV=localStorage.teamops_scv||'all'}catch(e){}
+let SCO={};let SCV='all';try{SCV=localStorage.teamops_scv||'all'}catch(e){}
 const SCI={bloom:'Planning, entraînements et préparation avant match',bijou:'Maps, compos jouées, adversaires et scouting',naya:'Mental, pression, récupération et cohésion',bady:'Exigence et responsabilités : il nomme ceux qui ne suivent pas',minouche:'Vie du salon, pronostics, défis, contenus à publier et célébrations',simba:'Repas, hydratation et énergie avant, pendant et après les matchs',iroise:'Vision sportive : qualification, structure du roster, staff et calendrier',platine:'Plans de jeu, compos, ajustements tactiques et variété du jeu',mimine:'Moral du vestiaire : vannes les jours de match, après un résultat et vanne du jour',whisky:'Chiffres : bilans, tendances, fiabilité et trous dans les données',kiwi:'Corps : échauffement, étirements, posture et récupération physique'};
 const SCL={alert:['À traiter','#ff6672'],tip:['Conseil','#4aa8ff'],ok:['Bon à savoir','#46d39a']};
 const SCQ=[
@@ -2642,12 +2731,14 @@ function masStaff(){
  const card=w=>{const d=D.find(x=>x.w==w),M=MAS[w],key=w+'|house',L=d.L,i=L.length?(MAS_I[key]||0)%L.length:0,m=L[i],pet=MAS_PET[w]&&Date.now()-MAS_PET[w]<2500,mood=pet?'ok':d.rev?masMood(m):'neutral',l=m?SCL[lv(m)]:null;
   const msg=!d.rev?`<div class="stf-msg"><span class="m">Conseils automatiques désactivés.</span></div><div class="stf-act"><button class="p" onclick="A.masAsk('${w}')">Demander un conseil</button></div>`:!m?`<div class="stf-msg"><span class="lv" style="color:#8d93a5">Calme</span>Rien à signaler pour le moment.</div>`:`<div class="stf-msg" style="--lc:${l[1]}" aria-live="polite"><span class="lv" style="color:${l[1]}">${l[0]}</span>${esc(m.t)}</div><div class="stf-act">${L.length>1?`<button onclick="A.masNext('${w}','house')">Autre conseil <span class="m">${i+1}/${L.length}</span></button>`:''}${m.go&&V[m.go]&&navOK(m.go)?`<button class="p" onclick="navTo('${m.go}')">Voir</button>`:''}${(MAS_CP[w]=m&&m.cp||'')?`<button onclick="A.masCopy('${w}')">Copier le texte</button>`:''}<button onclick="A.masPet('${w}')">🐾 Caresser</button>${!c.auto?`<button class="x" onclick="A.masAsk('${w}',0)">Masquer</button>`:''}</div>`;
   return`<div class="stf-c" style="--sc:${M.c}"><div class="stf-top"><span class="stf-ring">${masSVG(w,mood,72)}</span><div class="stf-nm"><b>${M.n}</b><span class="tag">${M.r}</span><div class="stf-sp">${SCI[w]}</div></div></div>${msg}</div>`};
- const sec=q=>{const na=q.w.reduce((z,w)=>z+((D.find(x=>x.w==w)||{L:[]}).L.filter(m=>m.lvl=='alert').length),0);return`<div class="stf-q" style="border-left-color:${MAS[q.w[0]].c}"><div class="stf-qh"><span class="stf-qi">${q.ic}</span><div class="t"><b>${q.n}</b><span class="m">${q.d}</span></div><span class="stf-qb${na?'':' ok'}">${na?na+' à traiter':'RAS'}</span></div><div class="stf-ql">${q.lk}</div><div class="stf-g">${q.w.map(card).join('')}</div></div>`};
+ const mb=isMob();const sec=(q,qi)=>{const na=q.w.reduce((z,w)=>z+((D.find(x=>x.w==w)||{L:[]}).L.filter(m=>m.lvl=='alert').length),0);const op=SCO[q.id]!=null?SCO[q.id]:(qs.length==1||na>0||qi==0);const hd=`<div class="stf-qh"><span class="stf-qi">${q.ic}</span><div class="t"><b>${q.n}</b><span class="m">${q.d}</span></div><span class="stf-qb${na?'':' ok'}">${na?na+' à traiter':'RAS'}</span></div>`,bd=`<div class="stf-ql">${q.lk}</div><div class="stf-g">${q.w.map(card).join('')}</div>`;
+  if(!mb)return`<div class="stf-q" style="border-left-color:${MAS[q.w[0]].c}">${hd}${bd}</div>`;
+  return`<details class="stf-q stf-d" style="border-left-color:${MAS[q.w[0]].c}"${op?' open':''} ontoggle="SCO['${q.id}']=this.open"><summary>${hd.replace('stf-qh"','stf-qh"')}<span class="stf-chev" aria-hidden="true"></span></summary><div class="stf-dbd">${bd}</div></details>`};
  const cards=qs.map(sec).join('');
  const hum=(S.staff||[]).length?`<h3 class="stf-t" style="margin-top:22px">Staff du club</h3><div class="stf-hu">${S.staff.map(x=>`<div class="stf-h"><b>${esc(x.name)}</b><span class="tag">${esc(x.role)}</span><div class="m">Dispo : ${esc(x.dispo)||'—'}</div></div>`).join('')}</div><div class="row" style="margin:10px 0 0"><button onclick="RT='s';navTo('roster')">Gérer dans le Roster</button></div>`:'';
- return`<div class="stf-hero"><div style="flex:1;min-width:220px"><div class="eb">État-major</div><h3>Centre du staff</h3><div class="m" style="line-height:1.6">Le staff est rangé par quartier, comme dans une vraie gaming house : direction, coachs, analystes, pôle bien-être et pôle communauté. Chaque quartier se complète et lit les données du site pour te dire ce qui compte. Ils ne modifient jamais rien.</div></div><div class="stf-av">${ws.map(w=>`<span>${masSVG(w,'neutral',46)}</span>`).join('')}</div></div>
+ return`<div class="stf-hero"><div style="flex:1;min-width:220px"><div class="eb">État-major</div><h3>Centre du staff</h3><div class="m stf-hd" style="line-height:1.6">Le staff est rangé par quartier, comme dans une vraie gaming house : direction, coachs, analystes, pôle bien-être et pôle communauté. Chaque quartier se complète et lit les données du site pour te dire ce qui compte. Ils ne modifient jamais rien.</div></div><div class="stf-av">${ws.map(w=>`<span>${masSVG(w,'neutral',46)}</span>`).join('')}</div></div>
  <div class="kpis">${kp('À traiter',cnt.alert,cnt.alert?'à regarder en premier':'rien d’urgent','#ff6672')}${kp('Conseils',cnt.tip,'pistes du staff','#4aa8ff')}${kp('Bonnes nouvelles',cnt.ok,'à garder','#46d39a')}${kp('Prochain rendez-vous',nx?esc(masCut(nx.title,22)):'—',nx?masRel(nx.date)+(nx.time?' à '+esc(nx.time):''):'rien au planning')}</div>
- ${syn}<h3 class="stf-t" style="margin-top:22px">La Gaming House par quartier</h3>${chips}${cards}${hum}`}
+ ${al.length?prio:''}${syn}<h3 class="stf-t" style="margin-top:22px">La Gaming House par quartier</h3>${chips}${cards}${hum}`}
 A.masPet=w=>{MAS_PET[w]=Date.now();toast(w=='kiwi'?'Kiwi se laisse caresser, puis te fait rouler les poignets dix fois et vérifie que tu as les épaules basses.':w=='whisky'?'Whisky se laisse caresser, puis te sort un graphique et t’explique que c’est statistiquement la meilleure caresse de la semaine.':w=='mimine'?'Mimine ronronne, se frotte à ta jambe, puis te rappelle qu’au prochain match, on fait le second trou du cul.':w=='platine'?'Platine se laisse caresser, puis étale un plan de jeu sur le canapé et t’explique pourquoi elle a raison.':w=='iroise'?'Iroise accepte la caresse avec dignité, puis te demande où en est le plan de saison.':w=='simba'?'Simba ronronne fort, puis te rappelle de boire un verre d’eau.':w=='minouche'?'Minouche attrape ta main, la mordille pour jouer, puis file sous le bureau.':w=='bloom'?'Bloom ronronne, les yeux mi-clos.':w=='naya'?'Naya plisse ses yeux verts et ronronne doucement.':w=='bady'?'Bady tolère la caresse, puis te rappelle qu’il y a du travail.':'Bijou cligne de ses yeux bleus, un peu louches.');render(1);setTimeout(()=>{if(S.view=='house')render(1)},2600)};
 
 /* ----- Réglages (Données › Mascottes) : admin uniquement ----- */
