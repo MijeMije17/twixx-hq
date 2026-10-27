@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Générer les clés VAPID</title>
+<style>body{font:16px/1.6 system-ui,Segoe UI,Arial,sans-serif;background:#0c0e13;color:#f1ede6;max-width:720px;margin:40px auto;padding:0 18px}h1{font-size:22px}button{font:inherit;background:#ff4655;color:#fff;border:0;padding:10px 18px;border-radius:4px;cursor:pointer;font-weight:600}textarea{width:100%;box-sizing:border-box;background:#151821;color:#f1ede6;border:1px solid #272b38;padding:10px;font:13px/1.4 ui-monospace,Consolas,monospace;border-radius:4px}label{display:block;margin:16px 0 4px;color:#8d93a5;font-size:13px}.w{background:#2c2010;border-left:3px solid #e0a63a;padding:10px 14px;margin:16px 0}</style></head><body>
+<h1>◆ Générer les clés VAPID (notifications)</h1>
+<p>Ces deux clés servent à prouver à Android et à iPhone que les notifications viennent bien de ton serveur. Tu les génères <b>une seule fois</b>, ici, sur ton appareil : rien n'est envoyé nulle part.</p>
+<button onclick="gen()">Générer mes clés</button>
+<div id="o" style="display:none">
+<label>Clé publique (à copier dans Cloudflare <b>VAPID_PUBLIC</b> et dans le site, Données › Notifications)</label><textarea id="pub" rows="3" readonly onclick="this.select()"></textarea>
+<label>Clé privée (à copier dans Cloudflare <b>VAPID_PRIVATE</b>, en « Secret »)</label><textarea id="prv" rows="2" readonly onclick="this.select()"></textarea>
+<div class="w"><b>Garde la clé privée pour toi.</b> Ne la partage pas et ne la mets ni dans le site, ni sur GitHub. Si tu changes de clés plus tard, chaque joueur devra réactiver ses notifications.</div></div>
+<script>
+const b64u=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+async function gen(){const k=await crypto.subtle.generateKey({name:'ECDSA',namedCurve:'P-256'},true,['sign']),raw=await crypto.subtle.exportKey('raw',k.publicKey),j=await crypto.subtle.exportKey('jwk',k.privateKey);
+ document.getElementById('pub').value=b64u(raw);document.getElementById('prv').value=j.d;document.getElementById('o').style.display='block'}
+</script></body></html>
