@@ -1451,6 +1451,21 @@ h2,h3{text-wrap:balance}
 tbody tr:hover td,table tr.r:hover td{background:rgba(255,255,255,.035)}
 details>summary{transition:background .15s}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* v2.2.14 : cartes mobile, une par ligne */
+body.mob .cd-gr{grid-template-columns:minmax(0,1fr);gap:22px;justify-items:center}
+body.mob .cd-gr .cd:not(.sm){width:100%;max-width:370px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2){min-height:430px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-f{padding:16px 18px;min-height:426px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-ov b{font-size:60px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-nm{font-size:22px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-ev{font-size:13px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-st{gap:16px 22px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-st b{font-size:24px;min-width:36px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-st span{font-size:13px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-ph .av{width:88px!important;height:88px!important}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-wm{font-size:64px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-bdg i{font-size:11px;padding:3px 9px}
+body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-ft span{font-size:11px;padding:3px 7px}
 </style></head><body>
 <nav id="nav"></nav><div id="mtop"></div><main id="app"></main><dialog id="dlg"></dialog><dialog id="pal"></dialog><button id="top" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Haut de page">↑</button><button id="fab" class="p" aria-label="Ajouter" onclick="fabGo()"><span class="fp">＋</span><span class="fl">Ajouter</span></button><div id="toast"></div><div id="notifs" aria-live="polite"></div><div id="mdr"></div>
 <script>
@@ -1461,7 +1476,7 @@ const MAPS=['Bind','Haven','Split','Ascent','Icebox','Lotus','Sunset','Abyss','P
 /* ===== SYNCHRO PARTAGÉE : le propriétaire colle ici le lien de son JSON (GitHub raw ou Google Drive) avant de partager le fichier ===== */
 const SYNC_DEFAULT='https://gist.githubusercontent.com/MijeMije17/6328dd4fdd380b24d7046bc8da59ca44/raw/teamops.json',SYNC_KEY_DEFAULT='';
 /* ===== VERSION DU SITE : à chaque nouvelle version du fichier, augmenter APP_VERSION et ajouter une entrée EN HAUT de PATCHES ===== */
-const APP_VERSION='2.2.13';
+const APP_VERSION='2.2.16';
 const LEGACYV=['2.2.6','2.2.7','2.2.8','2.3.0','2.4.0','2.4.1','2.4.2','2.4.3','2.4.4'];/* anciens numéros (avant remise à plat) : pas d’alerte « nouvelle version » */
 const ROAD=[
 ['Cartes joueur et note (façon FIFA)',[
@@ -1478,6 +1493,9 @@ const ROAD=[
 'Export PDF ou image d’un débrief ou d’une compo (les cartes ont déjà leur export image, les compos et les résumés de match se copient déjà pour Discord).','Notifications utiles : rappel de match, pronostic en attente, débrief manquant.','Rôles et droits : joueur, coach, admin.','Performance : rendu découpé des pages lourdes pour garder le mobile fluide.','Rappels de pracs et de tournois envoyés sur Discord via un webhook.','Mode hors ligne complet : saisie sans connexion, synchronisation au retour du réseau.',]],
 ['Design à tester plus tard',['Style Glass moderne (version sobre ou colorée), à comparer avec le néon cyber. À rappeler à l’utilisateur.']]];
 const PATCHES=[
+ {v:'2.2.16',d:'2026-10-27',t:['Cartes de maps : le rond affiche maintenant une image de la map (une vue artistique du jeu, pas la carte vue du dessus), récupérée sur valorant-api.com comme les images d’agents. Les images sont gardées sur l’appareil et rafraîchies une fois par semaine. Si une map n’a pas d’image (nouvelle map, hors ligne), le rond garde son emblème avec le nom.']},
+ {v:'2.2.15',d:'2026-10-27',t:['Cartes : nouvel onglet « Maps du mois ». Une carte par map jouée pendant le mois, calculée sur les stats de toute l’équipe sur cette map : taux de victoire, tir, impact, utilité, K/D et ADR. La note et la rareté (Bronze à Mythique) suivent le même barème que les autres cartes. Au verso : les meilleurs joueurs de l’équipe sur la map, les agents les plus joués et la liste des matchs du mois. Un sélecteur permet de revoir les mois précédents. Moins de 2 matchs sur une map : la carte est marquée provisoire.']},
+ {v:'2.2.14',d:'2026-10-27',t:['Cartes sur mobile : une carte par ligne au lieu de deux, centrée et plus grande. Les notes ne sont plus coupées, les badges (Roi de map, Série de victoires, Ace) s’affichent en entier, et la note, le nom, la photo et les barres de stats sont plus lisibles. Les cartes spéciales et les petites cartes de comparaison gardent leur taille.']},
  {v:'2.2.13',d:'2026-10-27',t:['Cartes spéciales : l’admin peut maintenant créer à la main des cartes Ace, comme les cartes Clutch. Bouton « + Carte ace » dans l’onglet des cartes spéciales : joueur, match (facultatif), nombre d’aces, round et description. Les cartes Ace créées se modifient et se suppriment depuis leur verso. Si une carte Ace existe déjà pour un joueur sur un match, celle générée automatiquement à partir des stats n’est pas affichée en double.']},
  {v:'2.2.12',d:'2026-10-27',t:['Cartes de match (Tournoi, Playoff, Compétition) : la note ne dépend plus de ta régularité ni de ta moyenne habituelle. Elle ne mesure que ton utilité sur ce match précis : tir, impact et utilité du match, plus un K/D comparé à celui de ton équipe sur ce même match (la barre MEN). Les cartes de Practice gardent le calcul précédent.']},
  {v:'2.2.11',d:'2026-10-27',t:['Cartes : titres et badges gagnés selon les stats, affichés sous le nom sur la carte générale (jusqu’à 2). « Roi de [map] » (meilleur K/D sur une map avec au moins 3 matchs et un K/D d’au moins 1,15), « Série de N victoires » (3 victoires d’affilée ou plus, sur les derniers matchs), « Ace × N » (3 aces ou plus), « Roi de l’entrée » (écart de premiers duels élevé sur 5 matchs ou plus). Les cartes réduites et les cartes de match n’en affichent pas.','Cartes : animation d’ouverture. La première fois qu’une carte s’affiche, elle se retourne en arrivant, en même temps que le décompte de la note. Coupée avec « Animations : Réduites » et le réglage système « réduire les animations ».','Patch notes : l’onglet À venir est mis à jour, ce qui est livré en est retiré.']},
@@ -3402,11 +3420,12 @@ function cdCard(c,o){o=o||{};const p=c.p,r=c.rar,rk=cdRK(p),id=p.id+(c.match?'|'
 const cdEmpty=p=>`<div class="cd cd-none" data-r="Bronze"><div class="cd-f cd-fr"><div class="cd-top"><div class="cd-ov"><b>—</b><span>${CD_AB[cdRK(p)]}</span></div><div class="cd-ph">${av(p,96)}</div></div><div class="cd-nm">${esc(p.name).toUpperCase()}</div><div class="cd-ev">Pas encore de stats</div><div class="m" style="padding:6px 12px;font-size:12px;text-align:center">Saisis le tableau de stats d’un match pour créer cette carte.</div></div></div>`;
 let CDT='team',CDP='',CDA='',CDB='';
 const cdTeam=()=>S.players.filter(p=>!p.demo||S.players.length<=1).map(p=>({p,c:cdCalc(p)}));
-let CDS='ovr';V.cards=function(){const T=[['team','Cartes de l’équipe'],['match','Matchs importants'],['special','Cartes spéciales'],['coll','Collection'],['vs','Comparer'],...(isAdmin()?[['preview','Aperçu admin']]:[]),['rules','Comment ça marche']];if(!T.some(x=>x[0]==CDT))CDT='team';
+let CDS='ovr';V.cards=function(){const T=[['team','Cartes de l’équipe'],['match','Matchs importants'],['maps','Maps du mois'],['special','Cartes spéciales'],['coll','Collection'],['vs','Comparer'],...(isAdmin()?[['preview','Aperçu admin']]:[]),['rules','Comment ça marche']];if(!T.some(x=>x[0]==CDT))CDT='team';
  const tabs=`<div class="gx-tabs" role="tablist">${T.map(([k,l])=>`<button role="tab" aria-selected="${CDT==k}" class="${CDT==k?'on':''}" onclick="CDT='${k}';render(1)">${l}</button>`).join('')}</div>`,L=cdTeam(),C=L.filter(x=>x.c);let b='';
  const sm=C.length?(()=>{const s=[...C].sort((a,z)=>z.c.ovr-a.c.ovr),mean=Math.round(C.reduce((a,x)=>a+x.c.ovr,0)/C.length),np=C.filter(x=>x.c.prov).length;return`<div class="c cd-sum"><b>${esc(s[0].p.name)}</b> a la meilleure carte (${s[0].c.ovr}). Note moyenne de l’équipe : <b>${mean}</b>.${np?` ${np} carte${np>1?'s':''} encore provisoire${np>1?'s':''} (moins de 5 matchs).`:''} <span class="m">Touche une carte pour la retourner.</span></div>`})():`<div class="c cd-sum m">Aucune carte pour le moment : saisis les stats d’un match (« + Match », tableau de stats) et les cartes se créent toutes seules.</div>`;
  if(CDT=='team'){const act=L.filter(x=>x.p.active),rep=L.filter(x=>!x.p.active),h=(a)=>[...a].sort((x,y)=>{const ox=x.c?x.c.ovr:-1,oy=y.c?y.c.ovr:-1;return CDS=='name'?x.p.name.localeCompare(y.p.name):CDS=='role'?String(cdRK(x.p)).localeCompare(String(cdRK(y.p)))||oy-ox:CDS=='trend'?((y.c&&cdTrend(y.c))||0)-((x.c&&cdTrend(x.c))||0):oy-ox}).map(x=>x.c?cdCard(x.c):cdEmpty(x.p)).join('');b=sm+`<div class="row"><span class="m">Trier par</span><select onchange="CDS=this.value;render(1)">${[['ovr','Note'],['trend','Évolution'],['role','Rôle'],['name','Nom']].map(([k,l])=>`<option value="${k}" ${CDS==k?'selected':''}>${l}</option>`).join('')}</select></div><h3 class="stf-t">Titulaires</h3><div class="cd-gr">${h(act)||'<div class="m">Aucun joueur.</div>'}</div>${rep.length?`<h3 class="stf-t" style="margin-top:20px">Remplaçants</h3><div class="cd-gr">${h(rep)}</div>`:''}`}
  else if(CDT=='match'){const ms=cdImpMatches(),tp=window.CDY||'',pl=S.players.filter(p=>!p.demo||S.players.length<=1);b=`<div class="row"><select onchange="CDP=this.value;render(1)"><option value="">Tous les joueurs</option>${pl.map(p=>`<option ${p.name==CDP?'selected':''}>${esc(p.name)}</option>`).join('')}</select><select onchange="window.CDY=this.value;render(1)"><option value="">Tournoi + Playoff</option><option ${tp=='Tournoi'?'selected':''}>Tournoi</option><option ${tp=='Playoff'?'selected':''}>Playoff</option></select><span class="m">Une carte est créée automatiquement pour chaque joueur à chaque match de tournoi ou de playoff, avec les stats de ce match.</span></div>`+(ms.filter(m=>!tp||mty(m)==tp).map(m=>{const cs=pl.filter(p=>!CDP||p.name==CDP).map(p=>cdMatch(p,m)).filter(Boolean).sort((x,y)=>y.ovr-x.ovr);if(!cs.length)return'';return`<div class="c cd-mh" style="border-left-color:${TC[mty(m)]||'var(--r)'}"><b>${esc(mty(m))} · vs ${esc(m.opp||'?')}</b> <span class="m">${esc(m.map||'')} · ${cdDate(m.date)} · ${esc(m.res||'')} ${esc(m.score||'')}</span> <span class="tag" style="margin-left:8px">★ ${esc((cs[0].p||{}).name||'')} · ${cs[0].ovr}</span></div><div class="cd-gr" style="margin-bottom:22px">${cs.map(c=>cdCard(c)).join('')}</div>`}).join('')||'<div class="c m">Aucun match de tournoi ou de playoff avec stats saisies. Renseigne le tableau de stats du match pour créer les cartes.</div>')}
+ else if(CDT=='maps')b=cdMapsTab();
  else if(CDT=='preview'&&isAdmin())b=cdPreviewTab();
  else if(CDT=='special')b=cdSpecialTab();
  else if(CDT=='coll')b=cdCollTab();
@@ -4348,6 +4367,46 @@ A.aceForm=id=>{if(!canEdit())return deny();const pl=cdTeam().map(x=>x.p);if(!pl.
    const q={id:mo.id||uid(),ace:1,pid:p.id,mid:m?m.id:'',n:Math.max(1,Math.min(20,parseInt(o.n)||1)),rnd:o.rnd,desc:o.desc,date:m?'':(mo.date||ymd(new Date()))};
    if(!Array.isArray(S.moments))S.moments=[];if(mo.id)S.moments=S.moments.map(x=>x.id==q.id?q:x);else S.moments.push(q);
    CDSPC=null;save();CDT='special';render(1);toast('Carte Ace enregistrée')})};
+})();
+
+/* ===== v2.2.15 : cartes des maps du mois ===== */
+(function(){
+const st=document.createElement('style');
+st.textContent='.cd-mapem{width:96px;height:96px;border-radius:50%;border:3px solid var(--c1);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:14px;letter-spacing:.06em;color:#fff;background:radial-gradient(circle,color-mix(in srgb,var(--c1) 35%,transparent),transparent 70%);padding:6px;word-break:break-word}body.mob .cd-gr .cd .cd-mapem{width:88px;height:88px}.cd-mapem{position:relative;overflow:hidden}.cd-mapem img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}';
+document.head.appendChild(st);
+window.CDMM='';
+const MIK='teamops_mapimg';let MI={};try{MI=JSON.parse(localStorage[MIK]||'{}')||{}}catch(e){MI={}}
+function loadMapImgs(){if(MI._t&&Date.now()-MI._t<6048e5||MI._f)return;MI._f=1;
+ fetch('https://valorant-api.com/v1/maps').then(r=>r.json()).then(j=>{const o={_t:Date.now()};(j.data||[]).forEach(m=>{const u=m.listViewIcon||m.splash;if(m.displayName&&u)o[norm(m.displayName)]=u});if(Object.keys(o).length<2)throw 0;MI=o;try{localStorage[MIK]=JSON.stringify(o)}catch(e){}if(typeof CDT!='undefined'&&CDT=='maps')render(1)}).catch(()=>{MI._f=0})}
+const mLab=k=>{const[y,m]=k.split('-');return new Date(+y,+m-1,1).toLocaleDateString('fr-FR',{month:'long',year:'numeric'})};
+function mapCard(map,ms){
+ const rows=[];ms.forEach(m=>(m.stats||[]).filter(x=>x.k!=null).forEach(s=>rows.push({m,s})));
+ const w=ms.filter(m=>m.res=='V').length,l=ms.filter(m=>m.res=='D').length,dn=w+l,wr=dn?w/dn:null,g=rows.length?cdSub(rows):null;
+ const sub={vic:cdSc(wr,.25,.8),tir:g?Math.round(g.tir):null,imp:g?Math.round(g.imp):null,uti:g?Math.round(g.uti):null};
+ const ovr=cdMix([[sub.vic,.4],[sub.tir,.2],[sub.imp,.2],[sub.uti,.2]]);if(ovr==null)return null;
+ const o=Math.max(1,Math.min(99,Math.round(ovr))),r=cdRar(o),prov=ms.length<2;
+ const by={};rows.forEach(x=>{(by[x.s.n]=by[x.s.n]||[]).push(x)});
+ const top=Object.keys(by).map(n=>({n,c:by[n].length,kd:cdSub(by[n]).kd})).sort((a,b)=>b.kd-a.kd).slice(0,3);
+ const ag={};rows.forEach(x=>{if(x.s.ag)ag[x.s.ag]=(ag[x.s.ag]||0)+1});const ags=Object.entries(ag).sort((a,b)=>b[1]-a[1]).slice(0,3);
+ const lst=[...ms].sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,6);
+ const nm=esc(map).toUpperCase();
+ const stt=[['VIC',sub.vic,'Taux de victoire sur cette map ce mois-ci',99],['TIR',sub.tir,CD_SL[0][2],99],['IMP',sub.imp,CD_SL[1][2],99],['UTI',sub.uti,CD_SL[2][2],99],['K/D',g?cdNum(g.kd,2):null,'K/D moyen de l’équipe sur cette map',1.6],['ADR',g&&g.adr!=null?Math.round(g.adr):null,'Dégâts moyens par round de l’équipe',200]];
+ const bk=`<div class="cd-bl"><b>${w}V – ${l}D</b> <span>${ms.length} match${ms.length>1?'s':''} ce mois-ci${dn?' · '+Math.round(wr*100)+' % de victoires':''}</span></div>`
+  +(top.length?`<div class="cd-bl"><b>Meilleurs joueurs</b> <span>${top.map(t=>esc(t.n)+' '+t.kd.toFixed(2)+' ('+t.c+')').join(' · ')}</span></div>`:'')
+  +(ags.length?`<div class="cd-bl"><b>Agents joués</b> <span>${ags.map(a=>esc(a[0])+' ×'+a[1]).join(' · ')}</span></div>`:'')
+  +lst.map(m=>`<div class="cd-bl">${esc(m.res||'·')} <b>${esc(m.score||'')}</b> <span>vs ${esc(m.opp||'?')} · ${cdDate(m.date)} · ${esc(mty(m))}</span></div>`).join('');
+ return{o,html:`<div class="cd" data-r="${r[0]}" data-k="map" style="--c1:${r[2]};--c2:${r[3]};--c3:${r[4]}" tabindex="0" role="button" aria-label="Carte de la map ${esc(map)}, note ${o}, touche pour retourner" onclick="this.classList.toggle('cdf')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();this.classList.toggle('cdf')}">
+ <div class="cd-f cd-fr"><div class="cd-top"><div class="cd-ov"><b>${o}</b><span>MAP</span><em>${r[0]}</em></div><div class="cd-ph"><div class="cd-mapem">${nm}${MI[norm(map)]?`<img src="${esc(MI[norm(map)])}" alt="" loading="lazy" onerror="this.remove()">`:''}</div></div></div><div class="cd-nm">${nm}</div><div class="cd-ev">${ms.length} match${ms.length>1?'s':''} · ${w}V – ${l}D</div><div class="cd-st">${stt.map(([a,b,c,d])=>cdBar(a,b,c,d)).join('')}</div><div class="cd-ft">${prov?'<span class="pv" title="Moins de 2 matchs sur cette map : la note peut encore bouger">PROVISOIRE</span>':'<span></span>'}<span></span></div></div>
+ <div class="cd-f cd-bk"><div class="cd-bh"><b>${nm}</b><span>${o} · ${r[0]}</span></div>${bk}<div class="cd-bt"><button onclick="event.stopPropagation();this.closest('.cd').classList.remove('cdf')">Retour</button></div></div></div>`}}
+window.cdMapsTab=function(){
+ loadMapImgs();const ms=S.matches.filter(m=>m.map&&m.date),keys=[...new Set(ms.map(m=>String(m.date).slice(0,7)))].sort().reverse(),now=ymd(new Date()).slice(0,7);
+ if(!keys.length)return'<div class="c cd-sum">Aucun match saisi pour l’instant. Les cartes de maps se créent toutes seules à partir des matchs et de leurs stats.<div class="row" style="margin-top:10px"><button class="p" onclick="navTo(\'matches\')">Ouvrir les matchs</button></div></div>';
+ if(!CDMM||!keys.includes(CDMM))CDMM=keys.includes(now)?now:keys[0];
+ const sel=`<div class="row"><select onchange="CDMM=this.value;render(1)">${keys.map(k=>`<option value="${k}" ${k==CDMM?'selected':''}>${esc(mLab(k))}</option>`).join('')}</select></div>`;
+ const G={};ms.filter(m=>String(m.date).slice(0,7)==CDMM).forEach(m=>{(G[m.map]=G[m.map]||[]).push(m)});
+ const cards=Object.keys(G).map(k=>mapCard(k,G[k])).filter(Boolean).sort((a,b)=>b.o-a.o);
+ if(!cards.length)return sel+'<div class="c cd-sum">Aucune carte possible ce mois-ci : il faut au moins un match avec un résultat ou des stats sur une map.</div>';
+ return sel+`<div class="c cd-sum">Une carte par map jouée en <b>${esc(mLab(CDMM))}</b>, calculée sur les stats de toute l’équipe. Touche une carte pour la retourner.</div><div class="cd-gr">${cards.map(c=>c.html).join('')}</div>`};
 })();
 </script>
 </body></html>
