@@ -1466,6 +1466,13 @@ body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-ph .av{width:88px!important;height
 body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-wm{font-size:64px}
 body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-bdg i{font-size:11px;padding:3px 9px}
 body.mob .cd-gr .cd:not(.sm):not(.cd-sp2) .cd-ft span{font-size:11px;padding:3px 7px}
+
+/* ===== V2.3.0 : nombres des cartes visibles sur les navigateurs sans color-mix() (téléphones anciens) ===== */
+.cd-st>div>b{color:#fff;opacity:1;visibility:visible}
+@supports not (color:color-mix(in srgb,red,blue)){
+.cd:not(.cd-sp2):not([data-r=Mythique]) .cd-ov b{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:0 0 14px var(--c1)!important;filter:none!important}
+.cd-st>div{border-left:2px solid var(--c1);background:linear-gradient(90deg,rgba(255,255,255,.07),transparent 85%)}
+}
 </style></head><body>
 <nav id="nav"></nav><div id="mtop"></div><main id="app"></main><dialog id="dlg"></dialog><dialog id="pal"></dialog><button id="top" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Haut de page">↑</button><button id="fab" class="p" aria-label="Ajouter" onclick="fabGo()"><span class="fp">＋</span><span class="fl">Ajouter</span></button><div id="toast"></div><div id="notifs" aria-live="polite"></div><div id="mdr"></div>
 <script>
@@ -1476,12 +1483,12 @@ const MAPS=['Bind','Haven','Split','Ascent','Icebox','Lotus','Sunset','Abyss','P
 /* ===== SYNCHRO PARTAGÉE : le propriétaire colle ici le lien de son JSON (GitHub raw ou Google Drive) avant de partager le fichier ===== */
 const SYNC_DEFAULT='https://gist.githubusercontent.com/MijeMije17/6328dd4fdd380b24d7046bc8da59ca44/raw/teamops.json',SYNC_KEY_DEFAULT='';
 /* ===== VERSION DU SITE : à chaque nouvelle version du fichier, augmenter APP_VERSION et ajouter une entrée EN HAUT de PATCHES ===== */
-const APP_VERSION='2.2.16';
-const LEGACYV=['2.2.6','2.2.7','2.2.8','2.3.0','2.4.0','2.4.1','2.4.2','2.4.3','2.4.4'];/* anciens numéros (avant remise à plat) : pas d’alerte « nouvelle version » */
+const APP_VERSION='2.3.0';
+const LEGACYV=['2.2.6','2.2.7','2.2.8','2.4.0','2.4.1','2.4.2','2.4.3','2.4.4'];/* anciens numéros (avant remise à plat) : pas d’alerte « nouvelle version » */
 const ROAD=[
 ['Cartes joueur et note (façon FIFA)',[
 'Option d’échelle comparée à l’équipe (la V2 utilise pour l’instant un barème absolu, identique pour tous).',
-'Comparaison d’une même carte à deux dates (la comparaison de deux joueurs existe déjà dans Cartes › Comparer).','Cartes d’équipe : une carte collective avec la note moyenne, la meilleure map et la forme du moment.','Choix du cadre ou du fond de sa carte parmi plusieurs styles, débloqués avec la progression.']],
+'Comparaison d’une même carte à deux dates (la comparaison de deux joueurs existe déjà dans Cartes › Comparer).','Cartes d’équipe : une carte collective avec la note moyenne, la meilleure map et la forme du moment.','Choix du cadre ou du fond de sa carte parmi plusieurs styles, débloqués avec la progression.','Autres moyens d’obtenir des packs (pour l’instant : participer à un match important).']],
 ['Calcul des stats',[
 'Pondération par contexte (tournoi et playoff pèsent plus qu’un practice) et par force de l’adversaire.','Impact des rounds : attaque et défense, pistols, éco et force, clutchs.','Premiers duels par côté (attaque et défense) : le taux de first kill et de first death par joueur et par map existe déjà dans Statistiques individuelles.',]],
 ['Navigation',[
@@ -1493,6 +1500,12 @@ const ROAD=[
 'Export PDF ou image d’un débrief ou d’une compo (les cartes ont déjà leur export image, les compos et les résumés de match se copient déjà pour Discord).','Notifications utiles : rappel de match, pronostic en attente, débrief manquant.','Rôles et droits : joueur, coach, admin.','Performance : rendu découpé des pages lourdes pour garder le mobile fluide.','Rappels de pracs et de tournois envoyés sur Discord via un webhook.','Mode hors ligne complet : saisie sans connexion, synchronisation au retour du réseau.',]],
 ['Design à tester plus tard',['Style Glass moderne (version sobre ou colorée), à comparer avec le néon cyber. À rappeler à l’utilisateur.']]];
 const PATCHES=[
+ {v:'2.3.0',d:'2026-10-28',t:['Cartes : nouvel onglet « Carnet » (Cartes › Joueurs), le carnet de collection du compte connecté. Il recense toutes les cartes du site : cartes générales de chaque joueur, cartes de matchs importants, cartes spéciales (MVP du mois, Ace, Clutch) et cartes de maps du mois. Une carte obtenue s’affiche en entier (touche pour la retourner, « ×2 » pour un doublon), les autres restent en silhouette avec « ??? » et un numéro. Les nouvelles cartes s’ajoutent toutes seules. La carte annuelle n’y est pas encore. Le MVP du mois non révélé reste caché.','Carnet : progression (obtenues / total), filtres par type de carte et par état (obtenues, manquantes), affichage par tranches de 12.','Packs : on gagne des packs en participant (avec ses stats saisies) à un match important, c’est-à-dire de Tournoi ou de Playoff. Victoire : +2 packs. Défaite ou match nul : +1 pack. C’est calculé tout seul à partir des matchs, y compris les anciens. Le Carnet affiche les packs gagnés, ouverts et à ouvrir.','Ouverture : un pack contient 3 cartes tirées au hasard parmi toutes les cartes du site, que l’on retourne une par une, avec la mention NOUVELLE ou DOUBLON. Chances par carte : Bronze 38 %, Argent 28 %, Or 18 %, Néon 9 %, Légende 4 %, Mythique 1 %, cartes spéciales 2 % (si une rareté n’existe pas encore, les autres se partagent sa part). Le tirage est fait et enregistré avant l’animation : fermer la page ne permet pas de refaire un tirage.','Important : le Carnet et le nombre de packs ouverts sont enregistrés sur l’appareil du joueur (comme le casino), pas dans les données partagées. Vider les données du navigateur ou changer d’appareil remet le carnet à zéro et rend les packs déjà ouverts. L’admin a un « Pack de test » (rien n’est enregistré) et « Aperçu : tout débloquer ».','Cartes : sur certains téléphones plus anciens (navigateur trop vieux pour une instruction de couleur), la grosse note de la carte était invisible ; elle s’affiche maintenant en blanc sur ces appareils.','Patch notes : l’onglet À venir est mis à jour.']},
+ {v:'2.2.21',d:'2026-10-27',t:['Gaming House : nouvel onglet « Casino » pour dépenser ses TWIXX coins. Trois jeux : machine à sous (3 rouleaux, de x6 pour trois cerises à x150 pour trois 7), roulette à 37 cases (rouge ou noir x2, vert x36) et pile ou face (x1,9). Mises de 5 à 100 coins, jamais au-dessus du solde. Un cadeau du jour de +10 coins évite de rester bloqué à 0, et l’historique garde les 8 dernières parties.','Le résultat est tiré avant l’animation et le solde est enregistré tout de suite : recharger la page en cours de partie ne permet pas d’annuler une perte. Jeu fictif : les coins n’ont aucune valeur réelle.','Important : les gains et pertes du casino sont enregistrés sur l’appareil du joueur (comme ses réglages). Le solde affiché dans Mon profil et dans le casino est donc « coins gagnés en match + résultat du casino sur cet appareil ». Le classement de l’équipe ne compte que les coins gagnés en match. Un compte admin sans joueur lié joue en mode test avec 100 coins fictifs.']},
+ {v:'2.2.20',d:'2026-10-27',t:['Mon profil : ouverture et changement d’onglet plus fluides. Les blocs lourds de l’onglet Profil (Ma collection de cartes et TWIXX coins) ne bloquent plus l’ouverture : la fenêtre s’affiche tout de suite et ces deux blocs se remplissent juste après, seulement quand l’onglet Profil est visible. Le calcul des coins de toute l’équipe est mis en mémoire.','Pendant que le profil (ou toute fenêtre) est ouvert, les animations des cartes derrière sont mises en pause, ce qui allège nettement le téléphone.','Mon profil : les bulles sont espacées. Le message de l’admin n’est plus collé au bloc en dessous.']},
+ {v:'2.2.19',d:'2026-10-27',t:['TWIXX coins : chaque joueur gagne des jetons automatiquement, calculés à partir de ses matchs saisis (rien à faire). Match joué +10 (+15 si match important), victoire +5, bonne performance K/D 1,2 et plus +10 (K/D 1,5 et plus +20 à la place), ADR 160 et plus +5, MVP du match +15, chaque ace +10 (5 maximum par match) et chaque carte Clutch ou Ace créée par l’admin +10.','Mon profil : nouveau bloc « TWIXX coins » avec ton total, ce que tu as gagné ce mois-ci, ta place dans l’équipe, tes 5 derniers gains avec la raison, le classement du top 5 et le barème.','Admin : bouton « Ajuster les coins » pour donner ou retirer des coins avec une raison (bonus de motivation, récompense d’un défi, correction). Les ajustements apparaissent dans l’historique du joueur. Le total ne descend jamais sous 0.']},
+ {v:'2.2.18',d:'2026-10-27',t:['Cartes : moins de ralentissements et de bugs dans l’écran des cartes. Les notes et les lignes de stats de chaque joueur sont maintenant calculées une seule fois tant que les données ne changent pas (avant, elles étaient refaites plusieurs fois par carte à chaque affichage ou clic), et la liste des cartes spéciales est gardée en mémoire jusqu’à la prochaine modification.','Quand beaucoup de cartes sont affichées en même temps (plus de 9), les animations en boucle les plus coûteuses (flottement de la photo, reflet) sont coupées pour garder l’écran fluide, surtout sur mobile. Les animations d’ouverture et au survol restent.','Si un onglet des cartes rencontre une erreur, l’écran n’est plus vide ou bloqué : un message avec un bouton « Revenir aux cartes de l’équipe » s’affiche.']},
+ {v:'2.2.17',d:'2026-10-27',t:['Cartes : les 9 onglets sont regroupés en 4 onglets avec des sous-onglets. Équipe (Cartes de l’équipe, Matchs importants, Maps du mois), Spéciales (Cartes spéciales, Carte annuelle), Joueurs (Collection, Comparer) et Aide (Comment ça marche, et Aperçu admin pour l’admin). Le groupe actif est surligné et ses sous-onglets s’affichent juste dessous, en pastilles défilantes sur mobile. Un futur onglet non classé est ajouté automatiquement au groupe Aide.']},
  {v:'2.2.16',d:'2026-10-27',t:['Cartes de maps : le rond affiche maintenant une image de la map (une vue artistique du jeu, pas la carte vue du dessus), récupérée sur valorant-api.com comme les images d’agents. Les images sont gardées sur l’appareil et rafraîchies une fois par semaine. Si une map n’a pas d’image (nouvelle map, hors ligne), le rond garde son emblème avec le nom.']},
  {v:'2.2.15',d:'2026-10-27',t:['Cartes : nouvel onglet « Maps du mois ». Une carte par map jouée pendant le mois, calculée sur les stats de toute l’équipe sur cette map : taux de victoire, tir, impact, utilité, K/D et ADR. La note et la rareté (Bronze à Mythique) suivent le même barème que les autres cartes. Au verso : les meilleurs joueurs de l’équipe sur la map, les agents les plus joués et la liste des matchs du mois. Un sélecteur permet de revoir les mois précédents. Moins de 2 matchs sur une map : la carte est marquée provisoire.']},
  {v:'2.2.14',d:'2026-10-27',t:['Cartes sur mobile : une carte par ligne au lieu de deux, centrée et plus grande. Les notes ne sont plus coupées, les badges (Roi de map, Série de victoires, Ace) s’affichent en entier, et la note, le nom, la photo et les barres de stats sont plus lisibles. Les cartes spéciales et les petites cartes de comparaison gardent leur taille.']},
@@ -2276,7 +2289,7 @@ profile(t){const d=$('dlg'),u=USER;if(!u)return;d.style.width='';d.dataset.bd='1
  const hero=`<div class="pf-hero"><label class="pf-av" title="Changer la photo"><span id="pva" data-sz="84">${av({name:u.name},84)}</span><span class="pf-cam"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><input type="file" accept="image/*" style="display:none" onchange="A.pph(this)"></label><div class="pf-id"><b>${esc(u.name)}</b><span class="pf-role">${role}</span><small>Touche la photo pour la changer.</small><button type="button" id="pf-rm" class="pf-link" style="${pr.photo?'':'display:none'}" onclick="A.pph(null)">Retirer la photo</button></div></div>`;
  const account=C('Compte',(!u.admin&&!u.guest?`<button type="button" class="pf-row" onclick="A.pwChange()"><span>🔑</span><b>Changer mon mot de passe</b><i>›</i></button>`:'')+`<button type="button" class="pf-row pf-out" onclick="A.logout()"><span>⏻</span><b>Se déconnecter</b><i>›</i></button>`);
  d.innerHTML=DX+`<h3 class="pf-h">Mon profil</h3><div class="pf-segw"><div class="pf-seg" role="tablist">${TB.map(([k,l])=>`<button type="button" role="tab" aria-selected="${ptb==k}" class="${ptb==k?'on':''}" onclick="A.ptab('${k}')">${l}</button>`).join('')}</div></div>
- <div class="pp${ptb=='p'?' on':''}" data-t="p">${hero}${msgBlock()}${cdProfBlock()}${C('Couleur du contour de la photo',swa(AVSW,e=>`A.pcol(${e})`,pr.color,"A.pcol('')"))}${u.admin?viewAsBlock():''}${account}</div>
+ <div class="pp${ptb=='p'?' on':''}" data-t="p">${hero}${msgBlock()}${cdProfBlock()}${typeof coinsBlock=='function'?coinsBlock():''}${C('Couleur du contour de la photo',swa(AVSW,e=>`A.pcol(${e})`,pr.color,"A.pcol('')"))}${u.admin?viewAsBlock():''}${account}</div>
  <div class="pp${ptb=='a'?' on':''}" data-t="a">${C('Thème',`<div class="pf-opts"><div class="row" style="margin:0"><button id="th-dark" type="button" class="${pr.theme=='light'?'':'p'}" onclick="A.ptheme('dark')">☾ Sombre</button><button id="th-light" type="button" class="${pr.theme=='light'?'p':''}" onclick="A.ptheme('light')">☀ Clair</button></div></div>`)}
  ${C('Couleur d’accent',swa(RSW,e=>`A.pset('accent',${e},1)`,pr.accent,"A.pset('accent','',1)"))}
  ${C('Texte et cartes',R('Taille du texte',op('size',[['s','Petit'],['','Normal'],['l','Grand']]))+R('Densité des cartes',op('dens',[['','Confortable'],['c','Compacte']]))+R('Police',op('font',[['','Par défaut'],['sys','Classique'],['mono','Monospace']])))}
@@ -3310,7 +3323,7 @@ V.house=function(){
  if(!USER||isGuest())return'<h2>La Gaming House</h2><div class="c m">Cet espace est réservé aux membres connectés.</div>';
  lvStart();
  const me=ghhMe(),op=ghhG().filter(ghhOpen),todo=me?op.filter(g=>!ghhPreds(g.id).some(x=>x.p==me.id)).length:op.length,
-  T=[['salon','Salon en direct','','◉'],['pron','Pronostics',todo,'◈'],['jeux','Mini-jeux','','▶'],['mas','Centre du staff','','✦']];
+  T=[['salon','Salon en direct','','◉'],['pron','Pronostics',todo,'◈'],['jeux','Mini-jeux','','▶'],['casino','Casino','','🎰'],['mas','Centre du staff','','✦']];
  if(!T.some(x=>x[0]==HT))HT='salon';
  const tabs=`<div class="gx-tabs" role="tablist">${T.map(([k,l,c,ic])=>`<button role="tab" aria-selected="${HT==k}" class="${HT==k?'on':''}" onclick="A.ht('${k}')"><i class="gx-ic" aria-hidden="true">${ic}</i>${l}${c!==''?`<em>${c}</em>`:''}</button>`).join('')}</div>`;
  let body='';
@@ -3322,6 +3335,7 @@ V.house=function(){
  <form class="lv-f" onsubmit="A.lvSay();return false"><input id="gh-in" maxlength="200" placeholder="Écris un message…" autocomplete="off" value="${esc(window.GHD||'')}" oninput="window.GHD=this.value"><button class="p" type="submit">Envoyer</button></form></div>`}
  else if(HT=='pron')body=ghhPanel();
  else if(HT=='jeux')body=mgHub()+mgBoard();
+ else if(HT=='casino')body=typeof casinoPanel=='function'?casinoPanel():'';
  else body=masStaff();
  setTimeout(()=>{try{document.querySelectorAll('.gx-tabs .on,.stf-ch .on').forEach(e=>e.scrollIntoView({inline:'center',block:'nearest'}))}catch(e){}},0);
  return`<h2>La Gaming House</h2>${tabs}${body}`};
@@ -3420,7 +3434,7 @@ function cdCard(c,o){o=o||{};const p=c.p,r=c.rar,rk=cdRK(p),id=p.id+(c.match?'|'
 const cdEmpty=p=>`<div class="cd cd-none" data-r="Bronze"><div class="cd-f cd-fr"><div class="cd-top"><div class="cd-ov"><b>—</b><span>${CD_AB[cdRK(p)]}</span></div><div class="cd-ph">${av(p,96)}</div></div><div class="cd-nm">${esc(p.name).toUpperCase()}</div><div class="cd-ev">Pas encore de stats</div><div class="m" style="padding:6px 12px;font-size:12px;text-align:center">Saisis le tableau de stats d’un match pour créer cette carte.</div></div></div>`;
 let CDT='team',CDP='',CDA='',CDB='';
 const cdTeam=()=>S.players.filter(p=>!p.demo||S.players.length<=1).map(p=>({p,c:cdCalc(p)}));
-let CDS='ovr';V.cards=function(){const T=[['team','Cartes de l’équipe'],['match','Matchs importants'],['maps','Maps du mois'],['special','Cartes spéciales'],['coll','Collection'],['vs','Comparer'],...(isAdmin()?[['preview','Aperçu admin']]:[]),['rules','Comment ça marche']];if(!T.some(x=>x[0]==CDT))CDT='team';
+let CDS='ovr';V.cards=function(){const T=[['team','Cartes de l’équipe'],['match','Matchs importants'],['maps','Maps du mois'],['special','Cartes spéciales'],['coll','Collection'],['book','Carnet'],['vs','Comparer'],...(isAdmin()?[['preview','Aperçu admin']]:[]),['rules','Comment ça marche']];if(!T.some(x=>x[0]==CDT))CDT='team';
  const tabs=`<div class="gx-tabs" role="tablist">${T.map(([k,l])=>`<button role="tab" aria-selected="${CDT==k}" class="${CDT==k?'on':''}" onclick="CDT='${k}';render(1)">${l}</button>`).join('')}</div>`,L=cdTeam(),C=L.filter(x=>x.c);let b='';
  const sm=C.length?(()=>{const s=[...C].sort((a,z)=>z.c.ovr-a.c.ovr),mean=Math.round(C.reduce((a,x)=>a+x.c.ovr,0)/C.length),np=C.filter(x=>x.c.prov).length;return`<div class="c cd-sum"><b>${esc(s[0].p.name)}</b> a la meilleure carte (${s[0].c.ovr}). Note moyenne de l’équipe : <b>${mean}</b>.${np?` ${np} carte${np>1?'s':''} encore provisoire${np>1?'s':''} (moins de 5 matchs).`:''} <span class="m">Touche une carte pour la retourner.</span></div>`})():`<div class="c cd-sum m">Aucune carte pour le moment : saisis les stats d’un match (« + Match », tableau de stats) et les cartes se créent toutes seules.</div>`;
  if(CDT=='team'){const act=L.filter(x=>x.p.active),rep=L.filter(x=>!x.p.active),h=(a)=>[...a].sort((x,y)=>{const ox=x.c?x.c.ovr:-1,oy=y.c?y.c.ovr:-1;return CDS=='name'?x.p.name.localeCompare(y.p.name):CDS=='role'?String(cdRK(x.p)).localeCompare(String(cdRK(y.p)))||oy-ox:CDS=='trend'?((y.c&&cdTrend(y.c))||0)-((x.c&&cdTrend(x.c))||0):oy-ox}).map(x=>x.c?cdCard(x.c):cdEmpty(x.p)).join('');b=sm+`<div class="row"><span class="m">Trier par</span><select onchange="CDS=this.value;render(1)">${[['ovr','Note'],['trend','Évolution'],['role','Rôle'],['name','Nom']].map(([k,l])=>`<option value="${k}" ${CDS==k?'selected':''}>${l}</option>`).join('')}</select></div><h3 class="stf-t">Titulaires</h3><div class="cd-gr">${h(act)||'<div class="m">Aucun joueur.</div>'}</div>${rep.length?`<h3 class="stf-t" style="margin-top:20px">Remplaçants</h3><div class="cd-gr">${h(rep)}</div>`:''}`}
@@ -3429,6 +3443,7 @@ let CDS='ovr';V.cards=function(){const T=[['team','Cartes de l’équipe'],['mat
  else if(CDT=='preview'&&isAdmin())b=cdPreviewTab();
  else if(CDT=='special')b=cdSpecialTab();
  else if(CDT=='coll')b=cdCollTab();
+ else if(CDT=='book')b=cdBookTab();
  else if(CDT=='best'){const A5=C.filter(x=>x.p.active);if(A5.length<2)b='<div class="c m">Il faut au moins 2 titulaires avec des stats pour composer une équipe type.</div>';else{const used=new Set(),pick=[];['D','I','C','S'].forEach(k=>{const x=[...A5].filter(z=>cdRK(z.p)==k&&!used.has(z.p.id)).sort((a,z)=>z.c.ovr-a.c.ovr)[0];if(x){used.add(x.p.id);pick.push(x)}});[...A5].filter(z=>!used.has(z.p.id)).sort((a,z)=>z.c.ovr-a.c.ovr).slice(0,5-pick.length).forEach(x=>pick.push(x));const mean=Math.round(pick.reduce((a,x)=>a+x.c.ovr,0)/pick.length);b=`<div class="c cd-sum">Équipe type : <b>${pick.length}</b> joueurs, un par rôle quand c’est possible, puis les meilleures notes restantes. <b>Note d’équipe : ${mean}</b></div><div class="cd-gr">${pick.map(x=>cdCard(x.c)).join('')}</div>`+cdBench(C)}}
  else if(CDT=='vs'){const names=C.map(x=>x.p.name);if(names.length<2)b='<div class="c m">Il faut au moins 2 joueurs avec des stats pour comparer.</div>';else{if(!names.includes(CDA))CDA=names[0];if(!names.includes(CDB)||CDB==CDA)CDB=names.find(n=>n!=CDA);const a=C.find(x=>x.p.name==CDA).c,z=C.find(x=>x.p.name==CDB).c,sel=(v,k)=>`<select onchange="${k}=this.value;render(1)">${names.map(n=>`<option ${n==v?'selected':''}>${esc(n)}</option>`).join('')}</select>`;
   b=`<div class="row">${sel(CDA,'CDA')}<span class="m">contre</span>${sel(CDB,'CDB')}</div><div class="cd-vs">${cdCard(a)}<div class="c cd-df"><table><tr><th>${esc(a.p.name)}</th><th></th><th>${esc(z.p.name)}</th></tr>${[['Note',a.ovr,z.ovr],...CD_SL.map(([k,l])=>[l,a.sub[k],z.sub[k]]),['K/D',a.g.kd,z.g.kd,2],['ADR',a.g.adr,z.g.adr,0]].map(([l,x,y,d])=>{const f=v=>v==null?'—':d==null?v:(+v).toFixed(d),w=x!=null&&y!=null?(x>y?1:y>x?2:0):0;return`<tr><td class="${w==1?'ok':''}"><b>${f(x)}</b></td><td class="m" style="text-align:center">${l}</td><td class="${w==2?'ok':''}"><b>${f(y)}</b></td></tr>`}).join('')}</table></div>${cdCard(z)}</div>`}}
@@ -3498,7 +3513,7 @@ function cdAces(pl){const out=[];pl.forEach(p=>cdRows(p).forEach(r=>{const n=+r.
   back:[`<div class="cd-bl"><b>${n>1?n+' aces':'Ace'}</b> <span>sur ${esc(m.map||'?')}${r.s.ag?' avec '+esc(r.s.ag):''}</span></div>`,`<div class="cd-bl">${esc(m.res||'')} <b>${esc(m.score||'')}</b> <span>vs ${esc(m.opp||'?')} · ${cdDate(m.date)}</span></div>`,m.vod?`<a class="cd-lk" href="${esc(m.vod)}" target="_blank" rel="noopener">▶ Voir la VOD</a>`:'']})}));return out}
 
 let CDSPC=null;
-function cdSpAllRaw(){if(CDSPC&&Date.now()-CDSPC.t<400)return CDSPC.v;const pl=cdTeam().map(x=>x.p),v=[...cdMvps(pl),...cdAces(pl),...cdMoments(pl)].sort((a,b)=>String(b.date).localeCompare(String(a.date)));CDSPC={t:Date.now(),v};return v}
+function cdSpAllRaw(){if(CDSPC&&CDSPC.ver===(window.CDV|0)&&Date.now()-CDSPC.t<15000)return CDSPC.v;const pl=cdTeam().map(x=>x.p),v=[...cdMvps(pl),...cdAces(pl),...cdMoments(pl)].sort((a,b)=>String(b.date).localeCompare(String(a.date)));CDSPC={t:Date.now(),v,ver:window.CDV|0};return v}
 const CD_SPN={mvp:'MVP du mois',ace:'Ace',clutch:'Clutch'};
 
 /* --- Collection d’un joueur --- */
@@ -3690,7 +3705,7 @@ A.undo=function(){if(!UNDOS||!canEdit())return;try{S=Object.assign(def(),JSON.pa
 ['delM','delP','delPr','delS','delComp','delE','delO','delSt','delPl','delRank'].forEach(n=>{const f=A[n];if(typeof f!='function')return;A[n]=function(){const snap=JSON.stringify(S);const r=f.apply(this,arguments);try{if(JSON.stringify(S)!==snap)cdUndoBar(snap)}catch(e){}return r}});
 
 /* --- Palette Ctrl+K : cartes, collection, aide --- */
-{const _pi=palItems;palItems=function(q){const it=_pi(q);if(q&&q[0]=='+')return it;const nq=norm(q||''),ex=[{g:'Aller à',t:'Cartes spéciales',s:'MVP du mois, meilleur tournoi, records, aces',ic:'▣',f:()=>{CDT='special';navTo('cards')}},{g:'Aller à',t:'Collection de cartes',s:'Toutes les cartes d’un joueur',ic:'▣',f:()=>{CDT='coll';navTo('cards')}},{g:'Aide',t:'Comment ça marche ? (légende et glossaire)',s:'Aide de la page en cours',ic:'?',f:()=>A.hw()}];
+{const _pi=palItems;palItems=function(q){const it=_pi(q);if(q&&q[0]=='+')return it;const nq=norm(q||''),ex=[{g:'Aller à',t:'Cartes spéciales',s:'MVP du mois, meilleur tournoi, records, aces',ic:'▣',f:()=>{CDT='special';navTo('cards')}},{g:'Aller à',t:'Collection de cartes',s:'Toutes les cartes d’un joueur',ic:'▣',f:()=>{CDT='coll';navTo('cards')}},{g:'Aller à',t:'Carnet de cartes',s:'Les cartes que tu as obtenues',ic:'▣',f:()=>{CDT='book';navTo('cards')}},{g:'Aide',t:'Comment ça marche ? (légende et glossaire)',s:'Aide de la page en cours',ic:'?',f:()=>A.hw()}];
  if(!isGuest()){ex.push({g:'Compte',t:PROF.ess=='1'?'Afficher toutes les pages du menu':'Mode essentiel (menu réduit)',s:'',ic:'◧',f:()=>A.ess()});if(nq)cdTeam().forEach(x=>ex.push({g:'Cartes',t:'Collection de '+x.p.name,s:'Cartes et historique de la note',ic:'▣',f:()=>cdGoColl(x.p.id)}))}
  return it.concat(nq?ex.filter(x=>norm(x.t+x.g+x.s).includes(nq)):ex.filter(x=>x.g!='Cartes'))}}
 
@@ -4377,7 +4392,7 @@ document.head.appendChild(st);
 window.CDMM='';
 const MIK='teamops_mapimg';let MI={};try{MI=JSON.parse(localStorage[MIK]||'{}')||{}}catch(e){MI={}}
 function loadMapImgs(){if(MI._t&&Date.now()-MI._t<6048e5||MI._f)return;MI._f=1;
- fetch('https://valorant-api.com/v1/maps').then(r=>r.json()).then(j=>{const o={_t:Date.now()};(j.data||[]).forEach(m=>{const u=m.listViewIcon||m.splash;if(m.displayName&&u)o[norm(m.displayName)]=u});if(Object.keys(o).length<2)throw 0;MI=o;try{localStorage[MIK]=JSON.stringify(o)}catch(e){}if(typeof CDT!='undefined'&&CDT=='maps')render(1)}).catch(()=>{MI._f=0})}
+ fetch('https://valorant-api.com/v1/maps').then(r=>r.json()).then(j=>{const o={_t:Date.now()};(j.data||[]).forEach(m=>{const u=m.listViewIcon||m.splash;if(m.displayName&&u)o[norm(m.displayName)]=u});if(Object.keys(o).length<2)throw 0;MI=o;try{localStorage[MIK]=JSON.stringify(o)}catch(e){}if(typeof CDT!='undefined'&&(CDT=='maps'||CDT=='book'))render(1)}).catch(()=>{MI._f=0})}
 const mLab=k=>{const[y,m]=k.split('-');return new Date(+y,+m-1,1).toLocaleDateString('fr-FR',{month:'long',year:'numeric'})};
 function mapCard(map,ms){
  const rows=[];ms.forEach(m=>(m.stats||[]).filter(x=>x.k!=null).forEach(s=>rows.push({m,s})));
@@ -4398,6 +4413,7 @@ function mapCard(map,ms){
  return{o,html:`<div class="cd" data-r="${r[0]}" data-k="map" style="--c1:${r[2]};--c2:${r[3]};--c3:${r[4]}" tabindex="0" role="button" aria-label="Carte de la map ${esc(map)}, note ${o}, touche pour retourner" onclick="this.classList.toggle('cdf')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();this.classList.toggle('cdf')}">
  <div class="cd-f cd-fr"><div class="cd-top"><div class="cd-ov"><b>${o}</b><span>MAP</span><em>${r[0]}</em></div><div class="cd-ph"><div class="cd-mapem">${nm}${MI[norm(map)]?`<img src="${esc(MI[norm(map)])}" alt="" loading="lazy" onerror="this.remove()">`:''}</div></div></div><div class="cd-nm">${nm}</div><div class="cd-ev">${ms.length} match${ms.length>1?'s':''} · ${w}V – ${l}D</div><div class="cd-st">${stt.map(([a,b,c,d])=>cdBar(a,b,c,d)).join('')}</div><div class="cd-ft">${prov?'<span class="pv" title="Moins de 2 matchs sur cette map : la note peut encore bouger">PROVISOIRE</span>':'<span></span>'}<span></span></div></div>
  <div class="cd-f cd-bk"><div class="cd-bh"><b>${nm}</b><span>${o} · ${r[0]}</span></div>${bk}<div class="cd-bt"><button onclick="event.stopPropagation();this.closest('.cd').classList.remove('cdf')">Retour</button></div></div></div>`}}
+window.mapCard=mapCard;window.loadMapImgs=loadMapImgs;
 window.cdMapsTab=function(){
  loadMapImgs();const ms=S.matches.filter(m=>m.map&&m.date),keys=[...new Set(ms.map(m=>String(m.date).slice(0,7)))].sort().reverse(),now=ymd(new Date()).slice(0,7);
  if(!keys.length)return'<div class="c cd-sum">Aucun match saisi pour l’instant. Les cartes de maps se créent toutes seules à partir des matchs et de leurs stats.<div class="row" style="margin-top:10px"><button class="p" onclick="navTo(\'matches\')">Ouvrir les matchs</button></div></div>';
@@ -4407,6 +4423,218 @@ window.cdMapsTab=function(){
  const cards=Object.keys(G).map(k=>mapCard(k,G[k])).filter(Boolean).sort((a,b)=>b.o-a.o);
  if(!cards.length)return sel+'<div class="c cd-sum">Aucune carte possible ce mois-ci : il faut au moins un match avec un résultat ou des stats sur une map.</div>';
  return sel+`<div class="c cd-sum">Une carte par map jouée en <b>${esc(mLab(CDMM))}</b>, calculée sur les stats de toute l’équipe. Touche une carte pour la retourner.</div><div class="cd-gr">${cards.map(c=>c.html).join('')}</div>`};
+})();
+
+/* ===== v2.2.17 : onglets de la page Cartes regroupés en sous-onglets ===== */
+(function(){
+const st=document.createElement('style');
+st.textContent='.cd-sub{display:flex;gap:8px;flex-wrap:wrap;margin:-10px 0 18px}.cd-sub button{padding:7px 14px;font-size:13px;font-weight:700;border-radius:999px;border:1px solid var(--bd);background:transparent;color:var(--m);cursor:pointer}.cd-sub button:hover{color:var(--t)}.cd-sub button.on{background:var(--r);border-color:var(--r);color:#fff}body.mob .cd-sub{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}body.mob .cd-sub::-webkit-scrollbar{display:none}body.mob .cd-sub button{white-space:nowrap;flex:0 0 auto}';
+document.head.appendChild(st);
+const G=[['Équipe',['team','match','maps']],['Spéciales',['special','pcard']],['Joueurs',['coll','book','vs']],['Aide',['preview','rules']]];
+const _vc=V.cards;
+V.cards=function(){const h=_vc.apply(this,arguments);
+ try{
+  const m=typeof h=='string'&&h.match(/<div class="gx-tabs" role="tablist">[\s\S]*?<\/div>/);if(!m)return h;
+  const n=(m[0].match(/<button/g)||[]).length,B=[...m[0].matchAll(/<button role="tab" aria-selected="(true|false)" class="([^"]*)" onclick="CDT='([a-z]+)';render\(1\)">([\s\S]*?)<\/button>/g)].map(x=>({on:x[1]=='true'||/\bon\b/.test(x[2]),k:x[3],l:x[4]}));
+  if(!B.length||B.length!=n)return h;
+  const known=G.flatMap(g=>g[1]),extra=B.filter(b=>!known.includes(b.k)).map(b=>b.k);
+  const groups=G.map(([l,ks],i)=>({l,ks:(i==G.length-1?[...ks,...extra]:ks).filter(k=>B.some(b=>b.k==k))})).filter(g=>g.ks.length);
+  const act=B.find(b=>b.on),ag=groups.find(g=>act&&g.ks.includes(act.k))||groups[0];
+  const top=`<div class="gx-tabs" role="tablist">${groups.map(g=>{const on=g===ag;return`<button role="tab" aria-selected="${on}" class="${on?'on':''}" onclick="${on?'':`CDT='${g.ks[0]}';render(1)`}">${g.l}</button>`}).join('')}</div>`;
+  const sub=ag.ks.length>1?`<div class="cd-sub" role="tablist">${ag.ks.map(k=>{const b=B.find(x=>x.k==k),on=act&&act.k==k;return`<button role="tab" aria-selected="${!!on}" class="${on?'on':''}" onclick="CDT='${k}';render(1)">${b.l}</button>`}).join('')}</div>`:'';
+  return h.replace(m[0],()=>top+sub);
+ }catch(e){return h}};
+})();
+
+/* ===== V2.3.0 : Carnet de cartes et packs (enregistrés sur l’appareil du joueur) ===== */
+(function(){
+const st=document.createElement('style');
+st.textContent='.bk-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.bk-bar{flex:1 1 180px;min-width:140px;height:8px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden}.bk-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--r),#19e6ff)}.bk-w{position:relative}.bk-x{position:absolute;top:8px;right:34px;z-index:5;font-style:normal;font-size:12px;font-weight:800;padding:2px 8px;border-radius:99px;background:#fff;color:#05060c}.bk-lk{width:236px;min-height:352px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--m);text-align:center;background:linear-gradient(160deg,#151a29,#070a14 70%);border:2px solid rgba(255,255,255,.12);clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%)}.bk-lk .bk-ph{display:grid;place-items:center;filter:brightness(0) opacity(.45);font-size:64px;line-height:1}.bk-lk b{font-size:28px;letter-spacing:.22em;color:rgba(255,255,255,.3)}.bk-lk span{font-size:12px;letter-spacing:.12em;font-variant-numeric:tabular-nums}body.mob .bk-lk{width:100%;min-height:318px;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}body.mob .bk-x{right:24px}'
++'.pk-b{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px;border-left:4px solid var(--r)}.pk-bi{font-size:38px;line-height:1}.pk-bb{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}.pk-bb button[disabled]{opacity:.45;cursor:not-allowed}'
++'.pk-ov{position:fixed;inset:0;z-index:9999;background:rgba(3,4,10,.92);display:flex;padding:16px;overflow:auto;-webkit-overflow-scrolling:touch}.pk-box{max-width:860px;width:100%;margin:auto;text-align:center}.pk-t{font-size:26px;font-weight:900;letter-spacing:.06em;margin-bottom:4px}.pk-s{color:var(--m);margin-bottom:18px}.pk-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}.pk-slot{width:236px;min-height:352px;display:flex;flex-direction:column;align-items:center;gap:8px;animation:pkIn .4s ease both}.pk-slot:nth-child(2){animation-delay:.12s}.pk-slot:nth-child(3){animation-delay:.24s}.pk-back{width:236px;height:352px;border:2px solid var(--r);background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 2px,transparent 2px 10px),linear-gradient(160deg,#2a1218,#0a0b10 70%);color:#fff;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%);box-shadow:0 0 24px rgba(255,70,85,.25);transition:transform .15s}.pk-back:hover{transform:scale(1.03)}.pk-back b{font-size:28px;letter-spacing:.3em}.pk-back span{font-size:64px;color:var(--r);line-height:1}.pk-card{animation:pkPop .45s ease both}.pk-tag{font-size:12px;font-weight:800;letter-spacing:.14em;padding:3px 10px;border-radius:99px;border:1px solid var(--bd);color:var(--m)}.pk-tag.nw{background:#46d39a;border-color:#46d39a;color:#05060c}.pk-a{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}@keyframes pkPop{0%{transform:scale(.6) rotateY(90deg);opacity:0}100%{transform:none;opacity:1}}@keyframes pkIn{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}body.mob .pk-row{gap:12px}body.mob .pk-slot{width:calc(50% - 8px);min-height:318px}body.mob .pk-back{width:100%;height:318px;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}@media (prefers-reduced-motion:reduce){.pk-slot,.pk-card{animation:none}.pk-back{transition:none}}';
+document.head.appendChild(st);
+})();
+let BKF='',BKS='all',BKN=12,BKP=0;
+const BK_CAT={gen:'Générale',match:'Match',sp:'Spéciale',map:'Map'},BK_W={'Bronze':38,'Argent':28,'Or':18,'Néon':9,'Légende':4,'Mythique':1,'Icône':2},BKL='teamops_book_',BK_PACK=3;
+const bkKey=n=>norm(String(n||''));
+function bkLoad(key){try{const o=JSON.parse(localStorage[BKL+key]||'{}');return{cards:o.cards&&typeof o.cards=='object'&&!Array.isArray(o.cards)?o.cards:{},opened:Math.max(0,+o.opened||0)}}catch(e){return{cards:{},opened:0}}}
+function bkSave(key,o){try{localStorage[BKL+key]=JSON.stringify(o);return true}catch(e){return false}}
+function bkEarned(key){let w=0,l=0;S.matches.forEach(m=>{if(!isImp(m))return;const r=m.res;if(r!='V'&&r!='D'&&r!='N')return;if(!(m.stats||[]).some(s=>s.k!=null&&bkKey(s.n)==key))return;if(r=='V')w++;else l++});return{w,l,total:w*2+l}}
+const bkRnd=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
+function bkCat(){
+ const out=[],cnt={},add=x=>{cnt[x.cat]=(cnt[x.cat]||0)+1;x.n=cnt[x.cat];x.rar=BK_W[x.rar]?x.rar:'Bronze';out.push(x)};
+ const pl=cdTeam(),P=pl.map(x=>x.p);
+ pl.forEach(x=>{if(x.c)add({id:'gen|'+x.p.id,cat:'gen',p:x.p,rar:x.c.rar[0],html:()=>cdCard(x.c)})});
+ cdImpMatches().slice().reverse().forEach(m=>P.forEach(p=>{const c=cdMatch(p,m);if(c)add({id:'m|'+p.id+'|'+m.id,cat:'match',p,rar:c.rar[0],html:()=>cdCard(c)})}));
+ const vis=new Map(cdSpAll().map(c=>[c.id,c]));
+ cdSpAllRaw().slice().reverse().forEach(r=>{const c=vis.get(r.id);if(c)add({id:'sp|'+c.id,cat:'sp',p:c.p,rar:'Icône',html:()=>cdSpCard(c)});else cnt.sp=(cnt.sp||0)+1});
+ const mm=S.matches.filter(m=>m.map&&m.date),keys=[...new Set(mm.map(m=>String(m.date).slice(0,7)))].sort();
+ keys.forEach(k=>{const G={};mm.filter(m=>String(m.date).slice(0,7)==k).forEach(m=>{(G[m.map]=G[m.map]||[]).push(m)});Object.keys(G).sort().forEach(map=>{const c=mapCard(map,G[map]);if(c)add({id:'map|'+k+'|'+map,cat:'map',p:null,rar:(cdRar(c.o)||[])[0],html:()=>c.html})})});
+ return out}
+function bkDraw(cat,n){const by={};cat.forEach(x=>(by[x.rar]=by[x.rar]||[]).push(x));const T=Object.keys(by),tw=T.reduce((a,k)=>a+BK_W[k],0),out=[];
+ for(let i=0;i<n;i++){let r=bkRnd(tw),t=T[0];for(const k of T){if(r<BK_W[k]){t=k;break}r-=BK_W[k]}out.push(by[t][bkRnd(by[t].length)])}return out}
+function bkShow(pulls,fresh,test,left){
+ const o=document.createElement('div');o.className='pk-ov';o.setAttribute('role','dialog');o.setAttribute('aria-label','Ouverture de pack');
+ o.innerHTML=`<div class="pk-box"><div class="pk-t">🎁 Pack${test?' de test':''}</div><div class="pk-s">Touche les cartes pour les retourner${test?' · test : rien n’est enregistré':''}</div><div class="pk-row">${pulls.map((x,i)=>`<div class="pk-slot" data-i="${i}"><button type="button" class="pk-back" aria-label="Retourner la carte ${i+1}"><b>TWIXX</b><span>?</span></button></div>`).join('')}</div><div class="pk-a"><button type="button" data-a="all">Tout retourner</button>${left>0?'<button type="button" class="p" data-a="again" style="display:none">Ouvrir un autre pack ('+left+')</button>':''}<button type="button" data-a="x">Fermer</button></div></div>`;
+ document.body.appendChild(o);const ov=document.body.style.overflow;document.body.style.overflow='hidden';
+ let nr=0;const close=()=>{document.removeEventListener('keydown',kd);document.body.style.overflow=ov;o.remove();render(1)},kd=e=>{if(e.key=='Escape')close()};document.addEventListener('keydown',kd);
+ const rev=i=>{const s=o.querySelector('.pk-slot[data-i="'+i+'"]');if(!s||s.dataset.r)return;s.dataset.r=1;nr++;const x=pulls[i];s.innerHTML=`<div class="pk-card">${x.html()}</div><div class="pk-tag ${fresh[i]?'nw':''}">${fresh[i]?'NOUVELLE':'DOUBLON'}</div>`;if(nr==pulls.length){const ag=o.querySelector('[data-a=again]');if(ag)ag.style.display=''}};
+ o.addEventListener('click',e=>{const b=e.target.closest('.pk-back');if(b){rev(+b.parentNode.dataset.i);return}const a=e.target.closest('[data-a]');if(!a)return;const k=a.dataset.a;if(k=='all')pulls.forEach((_,i)=>rev(i));else if(k=='x')close();else if(k=='again'){close();A.bkOpen()}});
+}
+A.bkOpen=function(test){
+ if(!USER||!USER.name)return;const key=bkKey(USER.name);if(test&&!isAdmin())return;
+ const D=bkLoad(key),left=Math.max(0,bkEarned(key).total-D.opened);
+ if(!test&&left<1)return toast('Aucun pack à ouvrir');
+ const cat=bkCat();if(!cat.length)return toast('Aucune carte à gagner pour l’instant');
+ const pulls=bkDraw(cat,BK_PACK),seen={},fresh=pulls.map(x=>{const nw=!D.cards[x.id]&&!seen[x.id];seen[x.id]=1;return nw});
+ if(!test){pulls.forEach(x=>{const c=D.cards[x.id];D.cards[x.id]={n:(c?c.n:0)+1,d:c?c.d:ymd(new Date())}});D.opened++;if(!bkSave(key,D))return toast('Enregistrement impossible sur cet appareil : pack non ouvert')}
+ bkShow(pulls,fresh,!!test,test?0:left-1)};
+function cdSetBF(k){BKF=k;BKN=12;render(1)}
+function cdBookTab(){
+ try{if(typeof loadMapImgs=='function')loadMapImgs()}catch(e){}
+ if(!USER||!USER.name)return'<div class="c m">Connecte-toi pour voir ton carnet de cartes.</div>';
+ const adm=isAdmin(),key=bkKey(USER.name),prev=adm&&BKP,D=bkLoad(key),E=bkEarned(key),left=Math.max(0,E.total-D.opened);
+ const cat=bkCat(),has=x=>prev?{n:1}:D.cards[x.id],tot=cat.length,got=cat.filter(x=>has(x)).length,pc=tot?Math.round(got/tot*100):0,s1=n=>n>1?'s':'';
+ const pk=`<div class="c pk-b"><div class="pk-bi">🎁</div><div><b>${left} pack${s1(left)} à ouvrir</b><div class="m" style="line-height:1.5">Match important (Tournoi ou Playoff) joué : <b>+2 packs</b> si victoire, <b>+1 pack</b> sinon. Tu as gagné ${E.total} pack${s1(E.total)} (${E.w} victoire${s1(E.w)}, ${E.l} défaite${s1(E.l)} ou nul${s1(E.l)}), ${D.opened} ouvert${s1(D.opened)}. Un pack = ${BK_PACK} cartes au hasard.</div></div><div class="pk-bb"><button class="p" ${left>0&&tot?'':'disabled'} onclick="A.bkOpen()">Ouvrir un pack</button>${adm?`<button onclick="A.bkOpen(1)" ${tot?'':'disabled'}>Pack de test</button><button onclick="BKP=BKP?0:1;render(1)">${prev?'Quitter l’aperçu':'Aperçu : tout débloquer'}</button>`:''}</div></div>`;
+ if(!tot)return pk+'<div class="c cd-sum">Aucune carte n’existe encore sur le site. Saisis le tableau de stats d’un match et les cartes se créent toutes seules : elles apparaîtront ici, à obtenir.<div class="row" style="margin-top:10px"><button class="p" onclick="navTo(\'matches\')">Ouvrir les matchs</button></div></div>';
+ const catN=k=>{const L=cat.filter(x=>x.cat==k);return[L.length,L.filter(x=>has(x)).length]};
+ const pills=cdPills([['','Toutes',got+'/'+tot],...Object.keys(BK_CAT).filter(k=>catN(k)[0]).map(k=>[k,BK_CAT[k],catN(k)[1]+'/'+catN(k)[0]])],BKF,'cdSetBF');
+ let L=BKF?cat.filter(x=>x.cat==BKF):cat;if(BKS=='own')L=L.filter(x=>has(x));else if(BKS=='miss')L=L.filter(x=>!has(x));
+ const shown=L.slice(0,BKN),pad=n=>String(n).padStart(3,'0');
+ const slot=x=>{const o=has(x);if(o)return`<div class="bk-w">${x.html()}${o.n>1?`<em class="bk-x">×${o.n}</em>`:''}</div>`;
+  return`<div class="bk-lk" title="Pas encore obtenue"><div class="bk-ph">${x.p?av(x.p,96):'▦'}</div><b>???</b><span>${BK_CAT[x.cat].toUpperCase()} · N° ${pad(x.n)}</span></div>`};
+ const sum=`<div class="c cd-sum"><div class="bk-top"><span><b>Carnet de ${esc(USER.name)}</b> · <b>${got}</b> / ${tot} carte${s1(tot)} (${pc} %)${prev?' · <span class="m">aperçu admin, rien n’est enregistré</span>':''}</span><div class="bk-bar" title="${pc} %"><i style="width:${pc}%"></i></div></div><div style="margin-top:8px">Toutes les cartes du site sont listées ici. Une carte obtenue s’affiche en entier, les autres restent en silhouette. <span class="m">Le carnet est gardé sur cet appareil.</span></div></div>`;
+ const flt=`<div class="row"><select onchange="BKS=this.value;BKN=12;render(1)">${[['all','Toutes les cartes'],['own','Obtenues'],['miss','Manquantes']].map(([k,l])=>`<option value="${k}" ${BKS==k?'selected':''}>${l}</option>`).join('')}</select></div>`;
+ return pk+sum+pills+flt+(shown.length?`<div class="cd-gr">${shown.map(slot).join('')}</div>`:'<div class="c m">Aucune carte dans cette sélection.</div>')+(L.length>shown.length?`<div class="row" style="justify-content:center"><button onclick="BKN+=12;render(1)">Afficher plus (${L.length-shown.length})</button></div>`:'');
+}
+
+/* ===== v2.2.18 : écran des cartes plus fluide et plus robuste ===== */
+(function(){
+let ver=-1,t0=0;const cc=new Map();
+const chk=()=>{const v=window.CDV|0,n=Date.now();if(v!==ver||n-t0>5000){cc.clear();ver=v;t0=n}};
+try{const _s=window.save;if(typeof _s=='function')window.save=function(){window.CDV=(window.CDV|0)+1;return _s.apply(this,arguments)}}catch(e){}
+try{const _c=cdCalc;cdCalc=function(p,u){if(!p)return _c.apply(this,arguments);chk();const k=p.id+'|'+(u||'');if(cc.has(k))return cc.get(k);const r=_c.apply(this,arguments);cc.set(k,r);return r}}catch(e){}
+try{const _r=cdRows;cdRows=function(p,f){if(f||!p)return _r.apply(this,arguments);chk();const k='r|'+p.id;if(cc.has(k))return cc.get(k);const r=_r.apply(this,arguments);cc.set(k,r);return r}}catch(e){}
+const st=document.createElement('style');
+st.textContent='body.cd-lite .cd .cd-ph,body.cd-lite .cd::after,body.cd-lite .cd .cd-fr::before,body.cd-lite .cd .cd-fr::after{animation:none!important}';
+document.head.appendChild(st);
+try{const _r4=window.render;window.render=function(){const r=_r4.apply(this,arguments);try{document.body.classList.toggle('cd-lite',document.querySelectorAll('.cd').length>9)}catch(e){}return r}}catch(e){}
+try{const _v=V.cards;V.cards=function(){try{return _v.apply(this,arguments)}catch(e){console.error('cartes',e);cc.clear();return'<h2>Cartes</h2><div class="c cd-sum">Une erreur est survenue en affichant cet écran.<div class="row" style="margin-top:10px"><button class="p" onclick="CDT=\'team\';window.CDV=(window.CDV|0)+1;render(1)">Revenir aux cartes de l’équipe</button></div></div>'}}}catch(e){}
+})();
+
+/* ===== v2.2.19 : TWIXX coins ===== */
+(function(){
+const st=document.createElement('style');
+st.textContent='.tc-big{font-size:15px;margin:2px 0 4px}.tc-big b{font-size:36px;color:#f0c542;font-weight:900;margin-right:6px}.tc-ev div{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:4px 0;border-bottom:1px solid var(--bd)}.tc-ev b{color:#f0c542;white-space:nowrap}.tc-ev b.neg{color:#ff6b6b}.tc-d summary{cursor:pointer;margin:10px 0 6px;font-weight:700;font-size:13px}';
+document.head.appendChild(st);
+const CC=new Map();let CV=-1,CT=0;
+function coinsOf(p){const v=window.CDV|0,n=Date.now();if(v!==CV||n-CT>5000){CC.clear();CV=v;CT=n}if(CC.has(p.id))return CC.get(p.id);const r=coinsRaw(p);CC.set(p.id,r);return r}
+function coinsRaw(p){const ev=[];
+ const rows=cdRows(p);
+ rows.forEach(({m,s})=>{const d=m.date||'',vs=' · vs '+(m.opp||'?'),imp=isImp(m);
+  ev.push({d,n:imp?15:10,w:(imp?'Match important joué':'Match joué')+vs});
+  if(m.res=='V')ev.push({d,n:5,w:'Victoire'+vs});
+  const kd=cdOk(s.k)&&cdOk(s.d)?kdOf(s):null;
+  if(kd!=null&&kd>=1.5)ev.push({d,n:20,w:'Grosse perf, K/D '+kd.toFixed(2)+vs});
+  else if(kd!=null&&kd>=1.2)ev.push({d,n:10,w:'Bonne perf, K/D '+kd.toFixed(2)+vs});
+  if(cdOk(s.adr)&&+s.adr>=160)ev.push({d,n:5,w:'ADR '+Math.round(s.adr)+vs});
+  try{if(norm(mvpOf(m)||'')==norm(p.name))ev.push({d,n:15,w:'MVP du match'+vs})}catch(e){}
+  const a=Math.min(5,+s.ace||0);if(a>0)ev.push({d,n:10*a,w:a+' ace'+(a>1?'s':'')+vs})});
+ (S.moments||[]).filter(mo=>mo.pid==p.id).forEach(mo=>{const m=S.matches.find(x=>x.id==mo.mid);
+  if(mo.ace&&m&&rows.some(r=>r.m.id==m.id&&+r.s.ace>0))return;
+  ev.push({d:mo.date||(m&&m.date)||'',n:mo.ace?10*Math.max(1,Math.min(5,+mo.n||1)):10,w:mo.ace?'Carte Ace':(mo.kind||'Clutch')+(mo.sit?' '+mo.sit:'')})});
+ (S.coinAdj||[]).filter(a=>a.pid==p.id).forEach(a=>ev.push({d:a.date||'',n:+a.n||0,w:a.why||'Ajustement admin'}));
+ ev.sort((a,b)=>String(b.d).localeCompare(String(a.d)));
+ const now=ymd(new Date()).slice(0,7),tot=ev.reduce((a,e)=>a+e.n,0),mo=ev.filter(e=>String(e.d).slice(0,7)==now).reduce((a,e)=>a+e.n,0);
+ return{total:Math.max(0,tot),month:mo,ev}}
+window.coinsOf=coinsOf;
+window.coinsBlock=function(){try{
+ if(typeof USER=='undefined'||!USER||isGuest())return'';
+ const p=S.players.find(x=>norm(x.name)==norm(USER.name));if(!p&&!canEdit())return'';
+ const all=cdTeam().map(x=>({p:x.p,t:coinsOf(x.p).total})).filter(x=>x.p.active!==false||x.t>0).sort((a,b)=>b.t-a.t);
+ const c=p?coinsOf(p):null,pos=p?all.findIndex(x=>x.p.id==p.id)+1:0,csd=p&&window.csGet?window.csGet(p.id).d:0,tot=c?Math.max(0,c.total+csd):0;
+ const row=e=>`<div><span>${esc(e.w)}${e.d?' <span class="m">'+cdDate(e.d)+'</span>':''}</span><b class="${e.n<0?'neg':''}">${e.n>0?'+':''}${e.n}</b></div>`;
+ return`<div class="pf-card"><div class="pf-t">🪙 TWIXX coins</div>${c?`<div class="tc-big"><b>${tot}</b>coins</div><div class="m" style="margin-bottom:8px">${c.month>=0?'+':''}${c.month} ce mois-ci${pos?' · #'+pos+' de l’équipe':''}</div><div class="tc-ev">${c.ev.length?c.ev.slice(0,5).map(row).join(''):'<span class="m">Pas encore de coins : ils arrivent avec tes premiers matchs saisis.</span>'}</div>`:'<div class="m">Aucun joueur lié à ton compte.</div>'}
+ <details class="tc-d"><summary>Classement et barème</summary>${all.slice(0,5).map((x,i)=>`<div class="ro" style="display:flex;justify-content:space-between;padding:3px 0"><span>${i+1}. ${esc(x.p.name)}</span><b style="color:#f0c542">${x.t}</b></div>`).join('')||'<span class="m">Aucun joueur.</span>'}
+ <div class="m" style="margin-top:8px;line-height:1.6">Match joué +10 (+15 si important) · victoire +5 · K/D 1,2 et + : +10 (1,5 et + : +20) · ADR 160 et + : +5 · MVP du match +15 · ace +10 chacun · carte Clutch ou Ace +10. Les coins se calculent tout seuls à partir des matchs saisis.</div></details>
+ ${canEdit()?'<div class="row" style="margin:10px 0 0"><button type="button" onclick="A.coinAdj()">Ajuster les coins (admin)</button></div>':''}</div>`}catch(e){return''}};
+A.coinAdj=()=>{if(!canEdit())return deny();const pl=S.players.filter(x=>!x.demo||S.players.length<=1);if(!pl.length)return toast('Aucun joueur');
+ modal('Ajuster les TWIXX coins',[{k:'pl',l:'Joueur',t:'sel',o:pl.map(x=>x.name)},{k:'n',l:'Montant (négatif pour retirer)'},{k:'why',l:'Raison (ex : bonne attitude, défi gagné)'}],{pl:pl[0].name,n:'10',why:''},
+  o=>{const p=pl.find(x=>x.name==o.pl),n=parseInt(o.n,10);if(!p||!n)return false;
+   if(!Array.isArray(S.coinAdj))S.coinAdj=[];S.coinAdj.push({id:uid(),pid:p.id,n:Math.max(-5000,Math.min(5000,n)),why:String(o.why||'').slice(0,80),date:ymd(new Date())});
+   save();render(1);toast('Coins ajustés')})};
+})();
+
+/* ===== v2.2.20 : profil plus fluide (blocs lourds différés) et bulles espacées ===== */
+(function(){
+const st=document.createElement('style');
+st.textContent='.pnote{margin:0 0 12px}.pp>.c{margin-bottom:12px}.pp>.pf-card+.pf-card,.pp>.pnote+.pf-card{margin-top:0}body:has(dialog[open]) .cd,body:has(dialog[open]) .cd *,body:has(dialog[open]) .cd::before,body:has(dialog[open]) .cd::after,body:has(dialog[open]) .cd *::before,body:has(dialog[open]) .cd *::after{animation-play-state:paused!important}body:has(dialog[open]) .cd{transition:none}';
+document.head.appendChild(st);
+let _cd=null,_co=null;
+try{if(typeof cdProfBlock=='function'){_cd=cdProfBlock;cdProfBlock=function(){return'<div class="pf-lz" data-k="cd"></div>'}}}catch(e){}
+try{if(typeof window.coinsBlock=='function'){_co=window.coinsBlock;window.coinsBlock=function(){return'<div class="pf-lz" data-k="co"></div>'}}}catch(e){}
+function fillLz(){const d=document.getElementById('dlg');if(!d)return;
+ d.querySelectorAll('.pf-lz').forEach(el=>{const pp=el.closest('.pp');if(pp&&!pp.classList.contains('on'))return;
+  const f=el.dataset.k=='cd'?_cd:_co;let h='';try{if(f)h=f()}catch(e){}
+  if(h)el.insertAdjacentHTML('beforebegin',h);el.remove()})}
+const d=document.getElementById('dlg');
+if(d)new MutationObserver(()=>setTimeout(fillLz,0)).observe(d,{childList:true});
+try{const _pt=A.ptab;if(typeof _pt=='function')A.ptab=function(){const r=_pt.apply(this,arguments);setTimeout(fillLz,0);return r}}catch(e){}
+})();
+
+/* ===== v2.2.21 : casino de la Gaming House ===== */
+(function(){
+const st=document.createElement('style');
+st.textContent='.cs-top{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}.cs-bal{font-size:34px;font-weight:900;color:#f0c542}.cs-bet{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-weight:700}.cs-bet button{min-width:44px}.cs-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}.cs-g .c{margin:0}.cs-reels{display:flex;gap:8px;justify-content:center;margin:12px 0}.cs-reels span{width:64px;height:72px;display:flex;align-items:center;justify-content:center;font-size:38px;border-radius:12px;border:1px solid var(--bd);background:var(--p2)}.cs-res{min-height:44px;text-align:center;font-weight:800;font-size:15px;margin:8px 0;display:flex;align-items:center;justify-content:center}.cs-res.win{color:#46d39a}.cs-res.lose{color:#ff6672}.cs-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.cs-row button{flex:1 1 80px}.cs-big{font-size:44px;text-align:center;min-height:56px}.cs-log div{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:4px 0;border-bottom:1px solid var(--bd)}.cs-log b.pos{color:#46d39a}.cs-log b.neg{color:#ff6672}';
+document.head.appendChild(st);
+const CK=id=>'teamops_casino_'+id;
+window.csGet=function(id){try{const o=JSON.parse(localStorage[CK(id)]||'{}');return{d:+o.d||0,day:o.day||'',log:Array.isArray(o.log)?o.log.slice(0,8):[]}}catch(e){return{d:0,day:'',log:[]}}};
+const csSet=(id,o)=>{try{localStorage[CK(id)]=JSON.stringify(o)}catch(e){}};
+const who=()=>{const p=typeof USER!='undefined'&&USER?S.players.find(x=>norm(x.name)==norm(USER.name)):null;return p?{id:p.id,base:coinsOf(p).total,p}:{id:'test',base:100,p:null}};
+const bal=(w,l)=>Math.max(0,w.base+l.d);
+const rnd=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
+const SY=[...Array(5).fill('🍒'),...Array(4).fill('🍋'),...Array(3).fill('🔔'),...Array(2).fill('💎'),'7️⃣'],PAY={'🍒':6,'🍋':8,'🔔':15,'💎':40,'7️⃣':150},REDS=[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+window.CSBET=window.CSBET||10;let busy=false;
+const t2=ts=>new Date(ts).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+function logHtml(l){return l.log.length?l.log.map(e=>`<div><span>${t2(e.t)} · ${esc(e.g)}${e.b?' · mise '+e.b:''}</span><b class="${e.n>=0?'pos':'neg'}">${e.n>=0?'+':''}${e.n}</b></div>`).join(''):'<span class="m">Aucune partie pour l’instant.</span>'}
+function refresh(){const w=who(),l=window.csGet(w.id),b=document.getElementById('cs-bal'),g=document.getElementById('cs-log');if(b)b.textContent=bal(w,l);if(g)g.innerHTML=logHtml(l);const d=document.getElementById('cs-daily');if(d)d.style.display=l.day==ymd(new Date())?'none':''}
+/* Applique le résultat tout de suite (anti-recharge), puis l'animation ne fait que l'afficher */
+function start(game){if(busy)return null;const w=who(),l=window.csGet(w.id),b=bal(w,l);
+ if(b<5){toast('Pas assez de coins (mise minimum 5). Passe chercher ton cadeau du jour !');return null}
+ const bet=Math.min(window.CSBET,b);if(window.CSBET>b)toast('Mise ramenée à ton solde : '+bet);
+ return{w,l,bet,game}}
+function settle(c,mult){const pay=Math.round(c.bet*mult),net=pay-c.bet;c.l.d+=net;c.l.log.unshift({t:Date.now(),g:c.game,b:c.bet,n:net});c.l.log=c.l.log.slice(0,8);csSet(c.w.id,c.l);return net}
+function show(el,net){if(!el)return;el.className='cs-res '+(net>0?'win':net<0?'lose':'');el.textContent=net>0?'Gagné ! +'+net+' coins':net<0?'Perdu : '+net+' coins':'Mise remboursée'}
+A.csBet=v=>{window.CSBET=v;document.querySelectorAll('.cs-bet button').forEach(b=>b.classList.toggle('p',+b.dataset.b==v))};
+A.csSlots=()=>{const c=start('Machine à sous');if(!c)return;busy=true;
+ const f=[SY[rnd(SY.length)],SY[rnd(SY.length)],SY[rnd(SY.length)]];let m=0;
+ if(f[0]==f[1]&&f[1]==f[2])m=PAY[f[0]];else if([...new Set(f)].length==2){const x=f.find(a=>f.filter(b=>b==a).length==2);if(x=='🍒')m=1}
+ const net=settle(c,m),R=[0,1,2].map(i=>document.getElementById('cs-r'+i)),res=document.getElementById('cs-slot-res');if(res){res.className='cs-res';res.textContent='…'}
+ const it=setInterval(()=>R.forEach(e=>{if(e)e.textContent=SY[rnd(SY.length)]}),80);
+ setTimeout(()=>{clearInterval(it);R.forEach((e,i)=>{if(e)e.textContent=f[i]});show(res,net);busy=false;refresh()},1000)};
+A.csRoul=k=>{const c=start('Roulette');if(!c)return;busy=true;
+ const n=rnd(37),col=n==0?'V':REDS.includes(n)?'R':'N',m=k==col?(k=='V'?36:2):0,net=settle(c,m),el=document.getElementById('cs-roul'),res=document.getElementById('cs-roul-res');if(res){res.className='cs-res';res.textContent='…'}
+ const it=setInterval(()=>{if(el)el.textContent=rnd(37)},70);
+ setTimeout(()=>{clearInterval(it);if(el)el.innerHTML=`<span style="color:${col=='R'?'#ff4655':col=='V'?'#46d39a':'#fff'}">${n} ${col=='R'?'🔴':col=='V'?'🟢':'⚫'}</span>`;show(res,net);busy=false;refresh()},1100)};
+A.csFlip=k=>{const c=start('Pile ou face');if(!c)return;busy=true;
+ const r=rnd(2)?'P':'F',m=k==r?1.9:0,net=settle(c,m),el=document.getElementById('cs-flip'),res=document.getElementById('cs-flip-res');if(res){res.className='cs-res';res.textContent='…'}
+ let i=0;const it=setInterval(()=>{if(el)el.textContent=(i++%2)?'🪙':'⚪'},120);
+ setTimeout(()=>{clearInterval(it);if(el)el.textContent=r=='P'?'🪙 Pile':'⚪ Face';show(res,net);busy=false;refresh()},900)};
+A.csDaily=()=>{const w=who(),l=window.csGet(w.id),td=ymd(new Date());if(l.day==td)return toast('Cadeau déjà récupéré aujourd’hui');
+ l.d+=10;l.day=td;l.log.unshift({t:Date.now(),g:'Cadeau du jour',b:0,n:10});l.log=l.log.slice(0,8);csSet(w.id,l);toast('+10 coins !');refresh()};
+A.csReset=()=>{if(!confirm('Remettre le casino test à 100 coins ?'))return;try{localStorage.removeItem(CK('test'))}catch(e){}render(1)};
+window.casinoPanel=function(){try{
+ if(!USER||isGuest())return'<div class="c m">Réservé aux membres connectés.</div>';
+ const w=who(),l=window.csGet(w.id),b=bal(w,l),td=ymd(new Date());
+ return`<div class="c cs-top"><div><div class="m">Solde${w.p?'':' · mode test (aucun joueur lié à ton compte)'}</div><div class="cs-bal">🪙 <b id="cs-bal">${b}</b></div></div><div class="cs-bet">Mise ${[5,10,25,50,100].map(v=>`<button type="button" data-b="${v}" class="${window.CSBET==v?'p':''}" onclick="A.csBet(${v})">${v}</button>`).join('')}</div></div>
+ <div class="m" style="line-height:1.6">Jeu fictif entre coéquipiers : les TWIXX coins n’ont aucune valeur réelle. Tes gains et pertes du casino sont gardés sur cet appareil.</div>
+ <div class="cs-g">
+ <div class="c"><h3>🎰 Machine à sous</h3><div class="m">Trois identiques : 🍒 x6 · 🍋 x8 · 🔔 x15 · 💎 x40 · 7️⃣ x150. Deux 🍒 : mise rendue.</div><div class="cs-reels"><span id="cs-r0">🍒</span><span id="cs-r1">🍋</span><span id="cs-r2">🔔</span></div><div id="cs-slot-res" class="cs-res"></div><div class="row" style="margin:0"><button class="p" type="button" onclick="A.csSlots()" style="width:100%">Lancer</button></div></div>
+ <div class="c"><h3>🎡 Roulette</h3><div class="m">37 cases (0 à 36). Rouge ou noir : x2. Vert (le 0) : x36.</div><div id="cs-roul" class="cs-big">—</div><div id="cs-roul-res" class="cs-res"></div><div class="cs-row"><button type="button" onclick="A.csRoul('R')">🔴 Rouge</button><button type="button" onclick="A.csRoul('N')">⚫ Noir</button><button type="button" onclick="A.csRoul('V')">🟢 Vert</button></div></div>
+ <div class="c"><h3>🪙 Pile ou face</h3><div class="m">Une chance sur deux, gain x1,9.</div><div id="cs-flip" class="cs-big">🪙</div><div id="cs-flip-res" class="cs-res"></div><div class="cs-row"><button type="button" onclick="A.csFlip('P')">Pile</button><button type="button" onclick="A.csFlip('F')">Face</button></div></div>
+ </div>
+ <div class="row" style="margin:0 0 14px"><button type="button" id="cs-daily" onclick="A.csDaily()" style="${l.day==td?'display:none':''}">🎁 Cadeau du jour : +10 coins</button>${w.p?'':'<button type="button" onclick="A.csReset()">Remettre à 100 (test)</button>'}</div>
+ <div class="c"><h3>Dernières parties</h3><div id="cs-log" class="cs-log">${logHtml(l)}</div></div>`}catch(e){console.error(e);return'<div class="c m">Le casino a rencontré une erreur. Recharge la page.</div>'}};
 })();
 </script>
 </body></html>
